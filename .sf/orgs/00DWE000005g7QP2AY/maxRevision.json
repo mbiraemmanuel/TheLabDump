@@ -1,0 +1,588 @@
+{
+    "fileVersion": 0,
+    "serverMaxRevisionCounter": 2425,
+    "sourceMembers": {
+        "Profile__Admin": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 1404,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__CommunityAuthController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 2,
+            "lastRetrievedFromServer": 2,
+            "isNameObsolete": false
+        },
+        "StaticResource__VBUBackgroundImage": {
+            "memberType": "StaticResource",
+            "serverRevisionCounter": 3,
+            "lastRetrievedFromServer": 3,
+            "isNameObsolete": false
+        },
+        "StaticResource__VBUTileMenuIcons": {
+            "memberType": "StaticResource",
+            "serverRevisionCounter": 4,
+            "lastRetrievedFromServer": 4,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__navigationMenuItem": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 543,
+            "lastRetrievedFromServer": 543,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 544,
+            "lastRetrievedFromServer": 544,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 545,
+            "lastRetrievedFromServer": 545,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 546,
+            "lastRetrievedFromServer": 546,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 547,
+            "lastRetrievedFromServer": 547,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__vBU_TileMenu": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 1119,
+            "lastRetrievedFromServer": 1119,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1120,
+            "lastRetrievedFromServer": 1120,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1121,
+            "lastRetrievedFromServer": 1121,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1122,
+            "lastRetrievedFromServer": 1122,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1123,
+            "lastRetrievedFromServer": 1123,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__VoicebrookUniveristyLayout": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 2079,
+            "lastRetrievedFromServer": 2079,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 2080,
+            "lastRetrievedFromServer": 2080,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayoutController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 2081,
+            "lastRetrievedFromServer": 2081,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 2082,
+            "lastRetrievedFromServer": 2082,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__CommunitySubmitIdea": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 19,
+            "lastRetrievedFromServer": 19,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunitySubmitIdea/CommunitySubmitIdea.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 20,
+            "lastRetrievedFromServer": 20,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunitySubmitIdea/CommunitySubmitIdea.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 21,
+            "lastRetrievedFromServer": 21,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunitySubmitIdea/CommunitySubmitIdeaController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 22,
+            "lastRetrievedFromServer": 22,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 24,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 26,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 28,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 30,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 32,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 34,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setExpId": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 38,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setExpId/setExpId.evt": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 36,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setStartUrl": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 42,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setStartUrl/setStartUrl.evt": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 40,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__loginForm": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 54,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 44,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 46,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 48,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 50,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 52,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__selfRegister": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 66,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 56,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 58,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 60,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 62,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 64,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__forgotPassword": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 78,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 68,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 70,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 72,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 74,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 76,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Voicebrook University Profile": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 95,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomSite__Voicebrook_University": {
+            "memberType": "CustomSite",
+            "serverRevisionCounter": 96,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AppMenu__AppSwitcher": {
+            "memberType": "AppMenu",
+            "serverRevisionCounter": 103,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NetworkBranding__cbVoicebrook_University": {
+            "memberType": "NetworkBranding",
+            "serverRevisionCounter": 98,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_Navigation21": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 106,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Audience__Default16": {
+            "memberType": "Audience",
+            "serverRevisionCounter": 102,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Network__Voicebrook University": {
+            "memberType": "Network",
+            "serverRevisionCounter": 105,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "SiteDotCom__Voicebrook_University1": {
+            "memberType": "SiteDotCom",
+            "serverRevisionCounter": 2420,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Voicebrook_University_Main_Navigation": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 1964,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Voicebrook_University_Tile_Navigation": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 1142,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayoutHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 499,
+            "lastRetrievedFromServer": 499,
+            "isNameObsolete": false
+        },
+        "StaticResource__SNA_ssAbl_sf_default_cdn_Voicebrook_University1": {
+            "memberType": "StaticResource",
+            "serverRevisionCounter": 1143,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__CopilotSalesforceUserPSG": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 623,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__CopilotSalesforceAdminPSG": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 622,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__AgentforceServiceAgentUserPsg": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 1162,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "StaticResource__VoicebrookUniversityLogo": {
+            "memberType": "StaticResource",
+            "serverRevisionCounter": 631,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "RecordType__Knowledge__kav.Default": {
+            "memberType": "RecordType",
+            "serverRevisionCounter": 640,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomField__Knowledge__kav.Collection__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 639,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomField__Knowledge__kav.Collection_Category__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 642,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "SiteDotCom__Voicebrook_Success_Community1": {
+            "memberType": "SiteDotCom",
+            "serverRevisionCounter": 1246,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__Manage_ASC_Analytics": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 1161,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__CheckBusinessHours": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 1164,
+            "lastRetrievedFromServer": 1164,
+            "isNameObsolete": false
+        },
+        "Settings__BusinessHours": {
+            "memberType": "Settings",
+            "serverRevisionCounter": 1219,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Flow__Case_Management_Check_for_Active_Chat_Business_Hours": {
+            "memberType": "Flow",
+            "serverRevisionCounter": 1177,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Flow__Case_Management_Check_for_Business_Hours": {
+            "memberType": "Flow",
+            "serverRevisionCounter": 1204,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSet__sfdcInternalInt__sfdc_chatbot": {
+            "memberType": "PermissionSet",
+            "serverRevisionCounter": 1206,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__ChatDoc.v2": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 1253,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__Brook_v2.v3": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 1230,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Bot__Brook_v2": {
+            "memberType": "Bot",
+            "serverRevisionCounter": 1223,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__CheckBusinessHoursTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 1233,
+            "lastRetrievedFromServer": 1233,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__communityContactSupport": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 1330,
+            "lastRetrievedFromServer": 1330,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityContactSupport/communityContactSupport.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1331,
+            "lastRetrievedFromServer": 1331,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityContactSupport/communityContactSupport.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1332,
+            "lastRetrievedFromServer": 1332,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityContactSupport/communityContactSupport.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1333,
+            "lastRetrievedFromServer": 1333,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityContactSupport/communityContactSupport.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 1334,
+            "lastRetrievedFromServer": 1334,
+            "isNameObsolete": false
+        },
+        "EmbeddedServiceConfig__PRO_Chat": {
+            "memberType": "EmbeddedServiceConfig",
+            "serverRevisionCounter": 1249,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CorsWhitelistOrigin__https_voicebrook_rafiki_c_sandbox_vf_force_com": {
+            "memberType": "CorsWhitelistOrigin",
+            "serverRevisionCounter": 1247,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "EmbeddedServiceConfig__Customer_Success_Community": {
+            "memberType": "EmbeddedServiceConfig",
+            "serverRevisionCounter": 1248,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "EmbeddedServiceConfig__Web_Chat": {
+            "memberType": "EmbeddedServiceConfig",
+            "serverRevisionCounter": 1250,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__Brook_v2.v4": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 1295,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__ChatDoc.v3": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 1329,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__VBU_KnowledgeController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 1405,
+            "lastRetrievedFromServer": 1405,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__vBU_KnowledgeArticleViewer": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 2421,
+            "lastRetrievedFromServer": 2421,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_KnowledgeArticleViewer/vBU_KnowledgeArticleViewer.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 2422,
+            "lastRetrievedFromServer": 2422,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_KnowledgeArticleViewer/vBU_KnowledgeArticleViewer.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 2423,
+            "lastRetrievedFromServer": 2423,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_KnowledgeArticleViewer/vBU_KnowledgeArticleViewer.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 2424,
+            "lastRetrievedFromServer": 2424,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_KnowledgeArticleViewer/vBU_KnowledgeArticleViewer.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 2425,
+            "lastRetrievedFromServer": 2425,
+            "isNameObsolete": false
+        }
+    }
+}

@@ -1,0 +1,136 @@
+.THIS.voicebrook-theme {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header & Navigation Styles */
+.THIS .header-section {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.THIS .nav-wrapper {
+    margin: 0 auto;
+}
+
+/* Hero Section Styles */
+.THIS .hero-section {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.THIS .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://voicebrook--rafiki--c.sandbox.vf.force.com/resource/1739586351000/VBUBackgroundImage');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.THIS .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.THIS .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Logo Styles */
+.THIS .container-logo {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    width: 100%;
+}
+
+.THIS .container-logo img {
+    width: 100%;
+    height: auto;
+}
+
+/* Tagline Styles */
+.THIS .tagline {
+    margin-bottom: 2rem;
+    color: #54698d;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+/* Search Styles */
+.THIS .search-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.THIS .search-wrapper .slds-form-element__control {
+    height: 48px;
+}
+
+.THIS .search-wrapper .slds-input {
+    height: 48px;
+    border-radius: 24px;
+    padding-left: 1.5rem;
+    padding-right: 3rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Section Styles */
+.THIS .content-section {
+    flex: 1;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Footer Styles */
+.THIS .footer-section {
+    background: #fff;
+    padding: 2rem 0 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .THIS .hero-section {
+        min-height: 300px;
+        padding: 2rem 1rem;
+    }
+    
+    .THIS .tagline {
+        font-size: 1rem;
+    }
+    
+    .THIS .search-wrapper {
+        padding: 0 1rem;
+    }
+}

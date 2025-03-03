@@ -1,0 +1,125 @@
+<!-- contactSupport.html -->
+<template>
+    <div class="contact-support-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <p class="intro-text">
+                At Voicebrook, we're committed to providing you with exceptional support and ensuring that your experience with our products and services is both successful and enjoyable. If you are unable to find the answers or information you need on our Community, our dedicated Client Support Team is here to assist you with any questions, concerns, or issues you might encounter.
+            </p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="info-column">
+                <div class="info-card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:call" size="small" class="icon"></lightning-icon>
+                        <h2>Contact Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-item">
+                            <lightning-icon icon-name="utility:phone_portrait" size="xx-small"></lightning-icon>
+                            <span>1-866-864-2397</span>
+                        </div>
+                        <div class="contact-item">
+                            <lightning-icon icon-name="utility:email" size="xx-small"></lightning-icon>
+                            <span>support@voicebrook.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <lightning-icon icon-name="utility:chat" size="xx-small"></lightning-icon>
+                            <span>Chat: click on the icon at the bottom right of the page</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:clock" size="small" class="icon"></lightning-icon>
+                        <h2>Hours of Operation</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="hours-item">
+                            <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                            <span>Monday - Friday, 7am - 10pm EST</span>
+                        </div>
+                        <div class="hours-item">
+                            <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                            <span>Sat (Phone only), 9am - 5pm EST</span>
+                        </div>
+                        <p class="holiday-note">
+                            Excluding observed Voicebrook holidays. 
+                            <a href="https://www.voicebrook.com/support" target="_blank">Click here </a> 
+                            for the current list of observed holidays.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="form-column">
+                <div class="form-card">
+                    <div class="card-header">
+                        <lightning-icon icon-name="utility:user" size="small" class="icon"></lightning-icon>
+                        <h2>Connect with Support</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="form-description">
+                            If you're already in touch with client support and need to start a screenshare with an agent, please enter your name and the 9-digit session number the agent provided
+                        </p>
+                        <form method="POST" action="https://www.fastsupport.com/servlet/download/customerDownload" name="ssid" target="_blank">
+                            <div class="form-fields">
+                                <lightning-input 
+                                    type="text" 
+                                    label="Name" 
+                                    name="name" 
+                                    required
+                                    class="form-input"
+                                ></lightning-input>
+                                <lightning-input 
+                                    type="text" 
+                                    label="Session #" 
+                                    name="supportSessionId" 
+                                    required
+                                    class="form-input"
+                                ></lightning-input>
+                                <lightning-button 
+                                    class="connect-button" 
+                                    type="submit" 
+                                    label="Connect" 
+                                    variant="brand"
+                                ></lightning-button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="preparation-section">
+            <div class="info-card">
+                <div class="card-header">
+                    <lightning-icon icon-name="utility:help" size="small" class="icon"></lightning-icon>
+                    <h2>Preparing to Contact Support</h2>
+                </div>
+                <div class="card-body">
+                    <p class="prep-description">
+                        To help us assist you as efficiently as possible, please prepare the following information:
+                    </p>
+                    <lightning-accordion allow-multiple-sections-open class="prep-accordion">
+                        <template for:each={accordionSections} for:item="section">
+                            <lightning-accordion-section 
+                                key={section.id} 
+                                name={section.id} 
+                                label={section.title}
+                            >
+                                <p>{section.content}</p>
+                            </lightning-accordion-section>
+                        </template>
+                    </lightning-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,141 @@
+/* contactSupport.css */
+.contact-support-container {
+    padding: 2rem;
+    background-color: white;
+    min-height: 100vh;
+}
+
+.header-section {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    color: #013a81;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.intro-text {
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    color: #013a81;
+    font-weight: 600;
+    margin: 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.contact-item, .hours-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: #4a4a4a;
+}
+
+.holiday-note {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.holiday-note a {
+    color: #013a81;
+    text-decoration: none;
+}
+
+.form-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-description {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-input {
+    margin-bottom: 0.5rem;
+}
+
+.connect-button {
+    margin-top: 1rem;
+    --slds-c-button-brand-color-background: rgb(0, 167, 80);
+    --slds-c-button-brand-color-background-hover: rgb(0, 147, 70);
+}
+
+.preparation-section {
+    margin-top: 2rem;
+}
+
+.prep-description {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.prep-accordion {
+    --slds-c-accordion-heading-text-color: #013a81;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-support-container {
+        padding: 1rem;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+}

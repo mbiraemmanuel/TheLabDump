@@ -1,0 +1,40 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="subject" type="String" />
+    <aura:attribute name="description" type="String" />
+    <aura:attribute name="flowName" type="String" default="Case_Management_Create_Case_for_Idea_Success_Community"/>
+    <aura:attribute name="flowInputs" type="Object" />
+    <aura:attribute name="flowOutput" type="Object" />
+    <aura:attribute name="flowFinished" type="Boolean" default="false"/>
+    <div class="{!v.flowFinished ? 'hidden' : ''}">
+    	<lightning:flow aura:id="caseFlow" onstatuschange="{!c.handleStatusChange}" />
+    </div>
+
+    
+    <div>
+        <p>
+            We value your creativity and insights! If you have an idea for a new product or an improvement to an existing one, we would love to hear from you. Please use the form below to submit your suggestions.
+        </p>
+        <hr/>
+        
+        <p>
+            How to submit your idea:
+        </p>
+        <br/>
+    </div>
+    <div>
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1">
+                <lightning:input aura:id="subjectInput" type="text" label="1. Provide a description of your idea" required="true" value="{!v.subject}"/>
+            </div>
+        </div>
+        <br/>
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1">
+                <lightning:input aura:id="descriptionInput" type="text" label="2. Provide a description of any specific features or functionalities you envision. Tell us how your idea can benefit users or improve upon current solutions." required="true" value="{!v.description}" />  
+            </div>  
+        </div>
+        <div class="button-footer">
+            <lightning:button class="slds-m-top_small slds-button_brand" onclick="{!c.handleSubmit}" label="Submit Idea" />
+        </div>
+    </div>
+</aura:component>

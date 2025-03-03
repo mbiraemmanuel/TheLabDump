@@ -1,0 +1,25 @@
+.THIS {
+}
+
+.THIS .banner{
+    width: 100%;
+    height: 2rem;
+    margin: 3rem 0 3rem 0;
+    background: rgb(0, 167, 80);
+    color: white;
+    font-size: larger;
+    border-radius: .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.THIS .button-footer{
+	display : flex;
+    justify-content : center;
+    margin: 3rem 0 3rem 0;
+    
+}
+.THIS.hidden {
+    display: none;
+}

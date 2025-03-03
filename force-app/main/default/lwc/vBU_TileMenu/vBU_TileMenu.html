@@ -1,0 +1,22 @@
+<template>
+    <div class="navigation-menu">
+        <template if:true={isLoaded}>
+            <div class="menu-grid">
+                <template for:each={menuItems} for:item="menuItem">
+                    <div key={menuItem.id} 
+                         class="menu-item"
+                         data-id={menuItem.id}
+                         onclick={handleClick}>
+                        <div class="icon-container">
+                            <img src={menuItem.icon} 
+                                 alt={menuItem.label}
+                                 class="menu-icon" />
+                        </div>
+                        <div class="menu-label">{menuItem.label}</div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>
+

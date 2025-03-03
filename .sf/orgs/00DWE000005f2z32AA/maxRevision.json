@@ -1,0 +1,665 @@
+{
+    "serverMaxRevisionCounter": 2274,
+    "sourceMembers": {
+        "Profile__Admin": {
+            "serverRevisionCounter": 1410,
+            "lastRetrievedFromServer": null,
+            "memberType": "Profile",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterController": {
+            "serverRevisionCounter": 2,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordController": {
+            "serverRevisionCounter": 4,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormController": {
+            "serverRevisionCounter": 6,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormControllerTest": {
+            "serverRevisionCounter": 8,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordControllerTest": {
+            "serverRevisionCounter": 10,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterControllerTest": {
+            "serverRevisionCounter": 12,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setExpId": {
+            "serverRevisionCounter": 16,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setExpId/setExpId.evt": {
+            "serverRevisionCounter": 14,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setStartUrl": {
+            "serverRevisionCounter": 20,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setStartUrl/setStartUrl.evt": {
+            "serverRevisionCounter": 18,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__loginForm": {
+            "serverRevisionCounter": 32,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.cmp": {
+            "serverRevisionCounter": 22,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormController.js": {
+            "serverRevisionCounter": 24,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormHelper.js": {
+            "serverRevisionCounter": 26,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.css": {
+            "serverRevisionCounter": 28,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.design": {
+            "serverRevisionCounter": 30,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__selfRegister": {
+            "serverRevisionCounter": 44,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.cmp": {
+            "serverRevisionCounter": 34,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterController.js": {
+            "serverRevisionCounter": 36,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterHelper.js": {
+            "serverRevisionCounter": 38,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.css": {
+            "serverRevisionCounter": 40,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.design": {
+            "serverRevisionCounter": 42,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__forgotPassword": {
+            "serverRevisionCounter": 56,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.cmp": {
+            "serverRevisionCounter": 46,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordController.js": {
+            "serverRevisionCounter": 48,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordHelper.js": {
+            "serverRevisionCounter": 50,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.css": {
+            "serverRevisionCounter": 52,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.design": {
+            "serverRevisionCounter": 54,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "Profile__Voicebrook University Profile": {
+            "serverRevisionCounter": 73,
+            "lastRetrievedFromServer": null,
+            "memberType": "Profile",
+            "isNameObsolete": false
+        },
+        "CustomSite__Voicebrook_University": {
+            "serverRevisionCounter": 74,
+            "lastRetrievedFromServer": null,
+            "memberType": "CustomSite",
+            "isNameObsolete": false
+        },
+        "AppMenu__AppSwitcher": {
+            "serverRevisionCounter": 242,
+            "lastRetrievedFromServer": null,
+            "memberType": "AppMenu",
+            "isNameObsolete": false
+        },
+        "NetworkBranding__cbVoicebrook_University": {
+            "serverRevisionCounter": 76,
+            "lastRetrievedFromServer": null,
+            "memberType": "NetworkBranding",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_Navigation21": {
+            "serverRevisionCounter": 1043,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "Audience__Default16": {
+            "serverRevisionCounter": 80,
+            "lastRetrievedFromServer": null,
+            "memberType": "Audience",
+            "isNameObsolete": false
+        },
+        "Network__Voicebrook University": {
+            "serverRevisionCounter": 83,
+            "lastRetrievedFromServer": null,
+            "memberType": "Network",
+            "isNameObsolete": false
+        },
+        "SiteDotCom__Voicebrook_University1": {
+            "serverRevisionCounter": 2040,
+            "lastRetrievedFromServer": null,
+            "memberType": "SiteDotCom",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Voicebrook_University_Main_Navigation": {
+            "serverRevisionCounter": 201,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "Profile__Voicebrook University1 Profile": {
+            "serverRevisionCounter": 234,
+            "lastRetrievedFromServer": null,
+            "memberType": "Profile",
+            "isNameObsolete": false
+        },
+        "CustomSite__Voicebrook_University11": {
+            "serverRevisionCounter": 235,
+            "lastRetrievedFromServer": null,
+            "memberType": "CustomSite",
+            "isNameObsolete": false
+        },
+        "NetworkBranding__cbVoicebrook_University1": {
+            "serverRevisionCounter": 237,
+            "lastRetrievedFromServer": null,
+            "memberType": "NetworkBranding",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_Navigation22": {
+            "serverRevisionCounter": 239,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "Audience__Default17": {
+            "serverRevisionCounter": 241,
+            "lastRetrievedFromServer": null,
+            "memberType": "Audience",
+            "isNameObsolete": false
+        },
+        "Network__Voicebrook University1": {
+            "serverRevisionCounter": 251,
+            "lastRetrievedFromServer": null,
+            "memberType": "Network",
+            "isNameObsolete": false
+        },
+        "DigitalExperienceBundle__site/Voicebrook_University12": {
+            "serverRevisionCounter": 246,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperienceBundle",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__languageSettings/languages": {
+            "serverRevisionCounter": 248,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__mobilePublisherConfig/mobilePublisherConfig": {
+            "serverRevisionCounter": 250,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__styles/styles_css": {
+            "serverRevisionCounter": 254,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__styles/print_css": {
+            "serverRevisionCounter": 255,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Forgot_Password": {
+            "serverRevisionCounter": 296,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/forgotPassword": {
+            "serverRevisionCounter": 297,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Error": {
+            "serverRevisionCounter": 298,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/error": {
+            "serverRevisionCounter": 299,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Login": {
+            "serverRevisionCounter": 292,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/login": {
+            "serverRevisionCounter": 293,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Home": {
+            "serverRevisionCounter": 294,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/home": {
+            "serverRevisionCounter": 1177,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/serviceNotAvailable": {
+            "serverRevisionCounter": 288,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Register": {
+            "serverRevisionCounter": 289,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/register": {
+            "serverRevisionCounter": 290,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__themeLayout/scopedHeaderAndFooter": {
+            "serverRevisionCounter": 321,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Service_Not_Available": {
+            "serverRevisionCounter": 287,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__themeLayout/snaThemeLayout": {
+            "serverRevisionCounter": 286,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__theme/Build_Your_Own_LWR": {
+            "serverRevisionCounter": 282,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__brandingSet/Build_Your_Own_LWR": {
+            "serverRevisionCounter": 283,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Too_Many_Requests": {
+            "serverRevisionCounter": 284,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/tooManyRequests": {
+            "serverRevisionCounter": 285,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__site/Voicebrook_University12": {
+            "serverRevisionCounter": 280,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__appPage/mainAppPage": {
+            "serverRevisionCounter": 281,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/Check_Password": {
+            "serverRevisionCounter": 300,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/checkPasswordResetEmail": {
+            "serverRevisionCounter": 301,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__view/newsDetail": {
+            "serverRevisionCounter": 302,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/Voicebrook_University12.sfdc_cms__route/News_Detail__c": {
+            "serverRevisionCounter": 303,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "DigitalExperienceConfig__Voicebrook_University12": {
+            "serverRevisionCounter": 304,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperienceConfig",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__VBU_Main_Navigation": {
+            "serverRevisionCounter": 310,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_User_Profile_Menu2": {
+            "serverRevisionCounter": 460,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "ContentAsset__web_main_header_VB_logo_white_1": {
+            "serverRevisionCounter": 1035,
+            "lastRetrievedFromServer": null,
+            "memberType": "ContentAsset",
+            "isNameObsolete": false
+        },
+        "ContentAsset__web_main_header_VB_logo_white_11": {
+            "serverRevisionCounter": 1038,
+            "lastRetrievedFromServer": null,
+            "memberType": "ContentAsset",
+            "isNameObsolete": false
+        },
+        "ContentAsset__university": {
+            "serverRevisionCounter": 1151,
+            "lastRetrievedFromServer": null,
+            "memberType": "ContentAsset",
+            "isNameObsolete": false
+        },
+        "DigitalExperienceBundle__content/Voicebrook_University": {
+            "serverRevisionCounter": 1153,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperienceBundle",
+            "isNameObsolete": false
+        },
+        "DigitalExperience__content/Voicebrook_University.sfdc_cms__languageSettings/languages": {
+            "serverRevisionCounter": 1155,
+            "lastRetrievedFromServer": null,
+            "memberType": "DigitalExperience",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__VBUGlobalSearch": {
+            "serverRevisionCounter": 1450,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearch/VBUGlobalSearch.cmp": {
+            "serverRevisionCounter": 1414,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "ApexClass__CustomSearchController": {
+            "serverRevisionCounter": 1412,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearch/VBUGlobalSearchController.js": {
+            "serverRevisionCounter": 1443,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__VBUGlobalSearchResultItem": {
+            "serverRevisionCounter": 1428,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearchResultItem/VBUGlobalSearchResultItem.cmp": {
+            "serverRevisionCounter": 1427,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__VBUGlobalSearchResultsList": {
+            "serverRevisionCounter": 1441,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearchResultsList/VBUGlobalSearchResultsList.cmp": {
+            "serverRevisionCounter": 1434,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearchResultsList/VBUGlobalSearchResultsListController.js": {
+            "serverRevisionCounter": 1440,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VBUGlobalSearch/VBUGlobalSearch.css": {
+            "serverRevisionCounter": 1449,
+            "lastRetrievedFromServer": null,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__VoicebrookUniveristyLayout": {
+            "serverRevisionCounter": 2219,
+            "lastRetrievedFromServer": 2035,
+            "memberType": "AuraDefinitionBundle",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.cmp": {
+            "serverRevisionCounter": 2020,
+            "lastRetrievedFromServer": 2020,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayoutController.js": {
+            "serverRevisionCounter": 1630,
+            "lastRetrievedFromServer": 1630,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.css": {
+            "serverRevisionCounter": 2218,
+            "lastRetrievedFromServer": 2034,
+            "memberType": "AuraDefinition",
+            "isNameObsolete": false
+        },
+        "StaticResource__VBUBackgroundImage": {
+            "serverRevisionCounter": 1638,
+            "lastRetrievedFromServer": 1638,
+            "memberType": "StaticResource",
+            "isNameObsolete": false
+        },
+        "SiteDotCom__playground1": {
+            "serverRevisionCounter": 1812,
+            "lastRetrievedFromServer": null,
+            "memberType": "SiteDotCom",
+            "isNameObsolete": false
+        },
+        "StaticResource__VBUTileMenuIcons": {
+            "serverRevisionCounter": 2175,
+            "lastRetrievedFromServer": 2041,
+            "memberType": "StaticResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__vBU_TileMenu": {
+            "serverRevisionCounter": 2162,
+            "lastRetrievedFromServer": 2162,
+            "memberType": "LightningComponentBundle",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.js": {
+            "serverRevisionCounter": 2163,
+            "lastRetrievedFromServer": 2163,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.js-meta.xml": {
+            "serverRevisionCounter": 2164,
+            "lastRetrievedFromServer": 2164,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.css": {
+            "serverRevisionCounter": 2165,
+            "lastRetrievedFromServer": 2165,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__vBU_TileMenu/vBU_TileMenu.html": {
+            "serverRevisionCounter": 2166,
+            "lastRetrievedFromServer": 2166,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Tile_Navigation": {
+            "serverRevisionCounter": 2063,
+            "lastRetrievedFromServer": null,
+            "memberType": "NavigationMenu",
+            "isNameObsolete": false
+        },
+        "ApexClass__CommunityAuthController": {
+            "serverRevisionCounter": 2269,
+            "lastRetrievedFromServer": 2269,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__navigationMenuItem": {
+            "serverRevisionCounter": 2270,
+            "lastRetrievedFromServer": 2270,
+            "memberType": "LightningComponentBundle",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.js": {
+            "serverRevisionCounter": 2271,
+            "lastRetrievedFromServer": 2271,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.css": {
+            "serverRevisionCounter": 2272,
+            "lastRetrievedFromServer": 2272,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.html": {
+            "serverRevisionCounter": 2273,
+            "lastRetrievedFromServer": 2273,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__navigationMenuItem/navigationMenuItem.js-meta.xml": {
+            "serverRevisionCounter": 2274,
+            "lastRetrievedFromServer": 2274,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        }
+    }
+}
