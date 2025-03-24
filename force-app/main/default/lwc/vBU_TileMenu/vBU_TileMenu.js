@@ -71,7 +71,7 @@ export default class CommunityTileMenu extends NavigationMixin(LightningElement)
                     return {
                         id: index,
                         label: labelForDisplay,
-                        icon: NavigationIcons + '/VBUTileMenuIcons/' + this.refineLabel(item.Label) + '.png',
+                        icon: NavigationIcons + '/TheLabTileMenuIcons/' + this.refineLabel(item.Label) + '.png',
                         target: item.Target,
                         defaultListViewId: item.DefaultListViewId,
                         type: item.Type,

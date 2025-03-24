@@ -1,0 +1,98 @@
+.THIS.vbu-feedback-form {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #ffffff;
+}
+
+.THIS .form-intro {
+    margin-bottom: 2rem;
+}
+
+.THIS .form-intro p {
+    color: #000000;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.THIS .form-body h2 {
+    color: #000000;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.THIS .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.THIS .form-group label {
+    display: block;
+    color: #000000;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.THIS .question-number {
+    color: #dc3545;
+    font-weight: normal;
+}
+
+.THIS .form-group label.required:after {
+    content: " *";
+    color: #dc3545;
+}
+
+.THIS .feedback-textarea {
+    min-height: 120px;
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 0.875rem;
+}
+
+.THIS .button-container {
+    margin: 2rem 0;
+}
+
+.THIS .submit-button {
+    background-color: #4CAF50 !important;
+    border: none !important;
+    padding: 0.5rem 1.5rem !important;
+    font-size: 0.875rem !important;
+    border-radius: 4px !important;
+}
+
+.THIS .form-footer {
+    margin-top: 1.5rem;
+    color: #000000;
+    font-size: 0.875rem;
+}
+
+.THIS .form-footer p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.THIS .success-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #4CAF50;
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 0.875rem;
+    z-index: 9000;
+}
+
+.THIS .toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.THIS .close-toast {
+    color: white;
+}

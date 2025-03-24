@@ -65,6 +65,45 @@ public with sharing class VBU_KnowledgeController {
         }
     }
     
+    @AuraEnabled(cacheable=true)
+    public static Knowledge__kav getArticle(String UrlName, String recordId){
+        try {
+            if (!String.isBlank(recordId)) {
+                // Query by Id
+                return [
+                    SELECT Id, Title, Media_Id__c, Media_Type__c, Summary__c, Question__c, CreatedDate,
+                           Collection__c, Collection_Category__c, ArticleCaseAttachCount, ArticleTotalViewCount,
+                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, 
+                           Do_Not_Show_Collection_On_Community__c, Do_Not_Show_Collection_On_Public_KB__c, 
+                           Navigation_Title__c, Expand_Navigation__c
+                    FROM Knowledge__kav
+                    WHERE Id = :recordId
+                    AND PublishStatus = 'Online'
+                    LIMIT 1
+                ];
+            } else if (!String.isBlank(UrlName)) {
+                // Query by UrlName
+                return [
+                    SELECT Id, Title, Media_Id__c, Media_Type__c, Summary__c, Question__c, CreatedDate,
+                           Collection__c, Collection_Category__c, ArticleCaseAttachCount, ArticleTotalViewCount,
+                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, 
+                           Do_Not_Show_Collection_On_Community__c, Do_Not_Show_Collection_On_Public_KB__c, 
+                           Navigation_Title__c, Expand_Navigation__c
+                    FROM Knowledge__kav
+                    WHERE UrlName = :UrlName
+                    AND PublishStatus = 'Online'
+                    LIMIT 1
+                ];
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            System.debug('Exception: ' + e);
+            return null;
+        }
+    }
+
+    
     public class CategoryWrapper {
         @AuraEnabled public String id;
         @AuraEnabled public String name;

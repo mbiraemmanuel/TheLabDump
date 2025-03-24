@@ -1,0 +1,58 @@
+<aura:component controller="VBUFeedbackController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <!-- Attributes -->
+    <aura:attribute name="generalFeedback" type="String" default=""/>
+    <aura:attribute name="improvementSuggestions" type="String" default=""/>
+    <aura:attribute name="isSubmitting" type="Boolean" default="false"/>
+    
+    <!-- Handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="vbu-feedback-form">
+        
+        <!-- Introduction -->
+        <div class="form-intro">
+            <p>We value your input and encourage you to use this platform to suggest corrections, propose new topics, ask questions, and submit ideas to improve our community resources.</p>
+            <p>Your feedback is key to creating a supportive and empowering space for all Voicebrook employees.</p>
+        </div>
+        
+        <!-- Form -->
+        <div class="form-body">
+            <h2>How to submit feedback</h2>
+            
+            <div class="form-group">
+                <label class="required">
+                    1. What feedback do you have about VBU? (e.g., corrections, new topic ideas, questions, general feedback)
+                </label>
+                <lightning:textarea name="generalFeedback"
+                                    value="{!v.generalFeedback}"
+                                    required="true"
+                                    class="feedback-textarea" />
+            </div>
+            
+            <div class="form-group">
+                <label class="required">
+                    2. What's missing or could be improved in the Success Community to better support your daily work and help you find the information you need quickly and easily?
+                </label>
+                <lightning:textarea name="improvementSuggestions"
+                                    value="{!v.improvementSuggestions}"
+                                    required="true"
+                                    class="feedback-textarea" />
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="button-container">
+                <lightning:button variant="brand"
+                                  label="Submit Feedback"
+                                  onclick="{!c.handleSubmit}"
+                                  disabled="{!v.isSubmitting}"
+                                  class="submit-button" />
+            </div>
+        </div>
+        
+        <!-- Footer Message -->
+        <div class="form-footer">
+            <p>We review every submission carefully. Our VBU Team will contact you if we need more information and will follow-up once a decision has been made on your proposal.</p>
+            <p>Thank you for choosing to collaborate with us sharing your innovative thoughts.</p>
+        </div>
+    </div>
+</aura:component>

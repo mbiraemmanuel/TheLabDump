@@ -21,7 +21,7 @@
 /* Hero Section Styles */
 .THIS .hero-section {
     position: relative;
-    min-height: 400px;
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,6 +76,19 @@
     color: #54698d;
     font-size: 1.25rem;
     line-height: 1.5;
+}
+.THIS .title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: #1a365d; /* Slightly darker blue for better contrast */
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .THIS .title {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
 }
 
 /* Search Styles */

@@ -6,29 +6,20 @@
                 <div key={collection.id} class="collection-section">
                     <!-- Collection Header -->
                     <div class="collection-header">
-                        <lightning-icon 
-                            icon-name={collection.iconName}
-                            size="small"
-                            class="collection-icon"
-                        ></lightning-icon>
+                        <lightning-icon icon-name={collection.iconName} size="small"
+                            class="collection-icon"></lightning-icon>
                         {collection.name}
                     </div>
+
                     <div class="categories-list">
                         <template for:each={collection.subcategories} for:item="subcat">
                             <div key={subcat.id} class="category-section">
                                 <!-- Category Header -->
-                                <button 
-                                    class="category-header"
-                                    data-collection-id={collection.id}
-                                    data-category-id={subcat.id}
-                                    onclick={handleCategoryToggle}
-                                >
+                                <button class="category-header" data-collection-id={collection.id}
+                                    data-category-id={subcat.id} onclick={handleCategoryToggle}>
                                     {subcat.name}
-                                    <lightning-icon
-                                        icon-name={subcat.expandIconName}
-                                        size="xx-small"
-                                        class="expand-icon"
-                                    ></lightning-icon>
+                                    <lightning-icon icon-name={subcat.expandIconName} size="xx-small"
+                                        class="expand-icon"></lightning-icon>
                                 </button>
 
                                 <!-- Articles as Radio Buttons -->
@@ -36,14 +27,9 @@
                                     <template if:true={subcat.isExpanded}>
                                         <template for:each={subcat.articles} for:item="article">
                                             <div key={article.id} class="article-radio">
-                                                <input
-                                                    type="radio"
-                                                    id={article.id}
-                                                    name="articleSelection"
-                                                    value={article.id}
-                                                    checked={article.isSelected}
-                                                    onchange={handleArticleSelection}
-                                                />
+                                                <input type="radio" id={article.id} name="articleSelection"
+                                                    value={article.id} checked={article.isSelected}
+                                                    onchange={handleArticleSelection} />
                                                 <label for={article.id}>{article.title}</label>
                                             </div>
                                         </template>
@@ -60,12 +46,32 @@
         <div class="slds-col slds-size_12-of-12 slds-medium-size_9-of-12 content-col">
             <div class="content-scroll">
                 <template if:true={activeArticle}>
-                    <h1>{activeArticle.title}</h1>
+                    <h1>{activeArticle.Title}</h1>
                     <p>{activeArticle.description}</p>
-                    <lightning-formatted-rich-text
-                        value={activeArticle.body}
-                    ></lightning-formatted-rich-text>
+                    <lightning-formatted-rich-text value={activeArticle.Article__c}></lightning-formatted-rich-text>
+                    <!-- Render media if the article has a Media_Type__c -->
+                    <template if:true={showMedia}>
+                        <div class="media-video">
+                            <template if:true={isPdf}>
+                                <!-- PDF media viewer -->
+                                <iframe src={pdfUrl} style={iframeStyle} frameborder="0"></iframe>
+                            </template>
+                            <template if:true={isVideo}>
+                                <!-- Show any RTE content above the video -->
+                                <lightning-formatted-rich-text
+                                    value={activeArticle.body}></lightning-formatted-rich-text>
+
+                                <!-- Vidyard video viewer (iframe) -->
+                                <iframe src={vidyardUrl} width="560" height="315" frameborder="0"
+                                    allow="autoplay; fullscreen" allowfullscreen>
+                                </iframe>
+                            </template>
+                        </div>
+
+                    </template>
                 </template>
+
+
                 <template if:false={activeArticle}>
                     <p>Please select an article to view its content.</p>
                 </template>

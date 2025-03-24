@@ -1,13 +1,13 @@
 <aura:component implements="forceCommunity:themeLayout">
     <!-- Drop Zone Attributes -->
     <aura:attribute name="newHeader" type="Aura.Component[]" required="false" />
-    <aura:attribute name="search" type="Aura.Component[]"/>
-    <aura:attribute name="profileMenu" type="Aura.Component[]"/>
-    <aura:attribute name="sidebarFooter" type="Aura.Component[]"/>
+    <aura:attribute name="search" type="Aura.Component[]" />
+    <aura:attribute name="profileMenu" type="Aura.Component[]" />
+    <aura:attribute name="sidebarFooter" type="Aura.Component[]" />
     <!-- New attribute to indicate if this is the Home page -->
     <aura:attribute name="isHome" type="Boolean" default="true" />
     <!-- Set isHome based on the page URL -->
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="forceCommunity:routeChange" action="{!c.handleRouteChange}" />
 
     <div class="voicebrook-theme">
@@ -17,13 +17,13 @@
                 {!v.newHeader}
             </div>
         </header>
-        
+
         <!-- Hero Section (Only displayed when isHome is true) -->
         <aura:if isTrue="{!v.isHome}">
             <section class="hero-section">
                 <!-- Background Image -->
                 <div class="hero-background"></div>
-                
+
                 <!-- Hero Content -->
                 <div class="hero-content">
                     <div class="hero-container">
@@ -31,26 +31,27 @@
                         <!-- <div class="container-logo">
                             <img src="{!$Resource.VoicebrookUniversityLogo}" alt="Voicebrook University" />
                         </div> -->
-                        
+
                         <!-- Tagline -->
+                        <h1 class="title">Welcome to The Lab</h1>
                         <div class="tagline">
                             <p>A place to learn, collaborate, and grow as you navigate your journey at Voicebrook</p>
                         </div>
-                        
+
                         <!-- Search Component Drop Zone -->
-                        <div class="search-wrapper">
+                        <!-- <div class="search-wrapper">
                             {!v.search}
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
         </aura:if>
-        
+
         <!-- Main Content Area -->
         <div class="content-section">
             {!v.body}
         </div>
-        
+
         <!-- Footer Area -->
         <footer class="footer-section">
             {!v.sidebarFooter}
