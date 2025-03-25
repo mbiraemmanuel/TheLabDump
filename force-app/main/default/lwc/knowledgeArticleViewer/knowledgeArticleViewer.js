@@ -6,7 +6,7 @@ import getPdfAsBase64 from '@salesforce/apex/PdfFileController.getPdfAsBase64';
 import { CurrentPageReference } from 'lightning/navigation';
 import { NavigationMixin } from 'lightning/navigation';
 
-export default class VbuKnowledgeArticleViewer extends NavigationMixin(LightningElement) {
+export default class KnowledgeArticleViewer extends NavigationMixin(LightningElement) {
     // Data properties
     collections = [];
     loading = true;
@@ -56,6 +56,8 @@ export default class VbuKnowledgeArticleViewer extends NavigationMixin(Lightning
                     }))
                 }))
             }));
+            console.log('URL Param (urlName):', this.urlName);
+            console.log('Record Id:', this.recordId);
 
             // Scenario 1: If urlName is present
             if (this.urlName) {
@@ -96,6 +98,46 @@ export default class VbuKnowledgeArticleViewer extends NavigationMixin(Lightning
                     this.fetchPdf();
                 }
             }
+            // Scenario 1b: If no urlName but recordId is present
+            else if (this.recordId) {
+                const result = await getArticle({ recordId: this.recordId });
+                if (!result) {
+                    this.error = 'No article found for the provided Record ID.';
+                    this.loading = false;
+                    return;
+                }
+                // unify the returned Apex article
+                const foundArticle = { ...result, id: result.Id };
+
+                this.activeArticleId = foundArticle.id;
+
+                // Expand only the subcategory containing that article and only show the collection that the article has bsed of Collection__c
+
+
+                // First filter collections to only include those matching the article's Collection__c
+                collections = collections.filter(c => c.name === foundArticle.Collection__c);
+                
+                // Then expand the subcategory containing the article
+                collections = collections.map(c => {
+                    const updatedSubcats = c.subcategories.map(sub => {
+                        const hasMatch = sub.articles.some(
+                            art => art.id === foundArticle.id
+                        );
+                        return {
+                            ...sub,
+                            isExpanded: hasMatch ? true : sub.isExpanded
+                        };
+                    });
+                    return { ...c, subcategories: updatedSubcats };
+                });
+                this.activeArticle = foundArticle;
+
+                // Fetch the PDF if the article is a PDF
+                if (this.isPdf) {
+                    this.fetchPdf();
+                }
+            }
+            
             // Scenario 2: No urlName but activeCollectionName is given
             else if (this.activeCollectionName) {
                 // Filter to that one collection name

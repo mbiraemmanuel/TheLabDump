@@ -78,7 +78,6 @@ public with sharing class VBU_KnowledgeController {
                            Navigation_Title__c, Expand_Navigation__c
                     FROM Knowledge__kav
                     WHERE Id = :recordId
-                    AND PublishStatus = 'Online'
                     LIMIT 1
                 ];
             } else if (!String.isBlank(UrlName)) {
