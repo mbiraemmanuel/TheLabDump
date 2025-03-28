@@ -336,10 +336,11 @@
                                         </div>
                                     </lightning-tab>
                                     <lightning-tab label="Trends">
+                                        <!-- Fix the monthly trend chart to use processedMonthlyTrend instead of monthlyTrendEntries -->
                                         <div class="slds-p-around_medium">
                                             <h4 class="slds-text-title_caps slds-m-bottom_small">Monthly Submissions</h4>
                                             <div class="slds-grid slds-grid_align-end slds-gutters slds-p-top_medium" style="height: 200px;">
-                                                <template for:each={monthlyTrendEntries} for:item="entry">
+                                                <template for:each={processedMonthlyTrend} for:item="entry">
                                                     <div key={entry.month} class="slds-col slds-size_1-of-12 slds-text-align_center">
                                                         <div class="slds-box slds-box_xx-small slds-theme_brand trend-bar-height {entry.heightClass}"></div>
                                                         <div class="slds-text-body_small slds-m-top_xx-small">{entry.month}</div>
@@ -366,7 +367,8 @@
                         </lightning-tab>
                         <lightning-tab label="Assigned" value="assigned"></lightning-tab>
                         <lightning-tab label="Unassigned" value="unassigned"></lightning-tab>
-                        <lightning-tab label="High Priority" value="high-priority"></lightning-tab>
+                        <lightning-tab label="Scheduled" value="scheduled"></lightning-tab>
+                        <lightning-tab label="Backlog" value="backlog"></lightning-tab>
                         <lightning-tab label="New" value="new"></lightning-tab>
                     </lightning-tabset>
                 </div>
@@ -395,7 +397,7 @@
                                 <label class="slds-form-element__label slds-text-title_caps">Description</label>
                                 <div class="slds-form-element__control">
                                     <div class="slds-box slds-box_xx-small slds-theme_default">
-                                        {selectedIdea.description}
+                                        <lightning-formatted-rich-text value={selectedIdea.description}></lightning-formatted-rich-text>
                                     </div>
                                 </div>
                             </div>
@@ -427,7 +429,7 @@
                                                             </template>
                                                             <span class="slds-text-body_small slds-text-color_weak slds-m-left_auto">{comment.formattedDate}</span>
                                                         </div>
-                                                        <p class="slds-text-body_small">{comment.text}</p>
+                                                        <lightning-formatted-rich-text class="slds-text-body_small" value={comment.text}></lightning-formatted-rich-text>
                                                     </div>
                                                 </li>
                                             </template>
@@ -552,50 +554,52 @@
                     <p class="slds-m-top_x-small">
                         Your response will be visible to all users as a staff comment.
                     </p>
-                </header>
-                
-                <!-- Modal Body -->
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
-                    <div class="slds-form-element slds-m-bottom_medium">
-                        <label class="slds-form-element__label" for="idea-title">Idea</label>
-                        <div class="slds-form-element__control">
-                            <div class="slds-box slds-box_xx-small slds-theme_default">
-                                {selectedIdea.title}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="slds-form-element">
-                        <label class="slds-form-element__label" for="response-text">Your Response</label>
-                        <div class="slds-form-element__control">
-                            <lightning-textarea
-                                id="response-text"
-                                placeholder="Type your response here..."
-                                value={responseText}
-                                onchange={handleResponseTextChange}
-                                class="slds-m-bottom_small">
-                            </lightning-textarea>
+            </header>
+            
+            <!-- Modal Body -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <div class="slds-form-element slds-m-bottom_medium">
+                    <label class="slds-form-element__label" for="idea-title">Idea</label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-box slds-box_xx-small slds-theme_default">
+                            {selectedIdea.title}
                         </div>
                     </div>
                 </div>
                 
-                <!-- Modal Footer -->
-                <footer class="slds-modal__footer">
-                    <lightning-button 
-                        label="Cancel" 
-                        variant="neutral" 
-                        onclick={handleCloseModal}
-                        class="slds-m-right_x-small">
-                    </lightning-button>
-                    <lightning-button 
-                        label="Submit Response" 
-                        variant="brand" 
-                        onclick={handleSubmitResponse}
-                        disabled={disableResponseButton}>
-                    </lightning-button>
-                </footer>
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" for="response-text">Your Response</label>
+                    <div class="slds-form-element__control">
+                        <lightning-input-rich-text
+                            id="response-text"
+                            placeholder="Type your response here..."
+                            value={responseText}
+                            onchange={handleResponseTextChange}
+                            formats={richTextFormats}
+                            class="slds-m-bottom_small">
+                        </lightning-input-rich-text>
+                    </div>
+                </div>
             </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </template>
+            
+            <!-- Modal Footer -->
+            <footer class="slds-modal__footer">
+                <lightning-button 
+                    label="Cancel" 
+                    variant="neutral" 
+                    onclick={handleCloseModal}
+                    class="slds-m-right_x-small">
+                </lightning-button>
+                <lightning-button 
+                    label="Submit Response" 
+                    variant="brand" 
+                    onclick={handleSubmitResponse}
+                    disabled={disableResponseButton}>
+                </lightning-button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
 </template>
+</template>
+

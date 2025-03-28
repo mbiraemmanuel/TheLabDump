@@ -1,10 +1,10 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 6377,
+    "serverMaxRevisionCounter": 6527,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 6332,
+            "serverRevisionCounter": 6390,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -610,13 +610,13 @@
         },
         "Profile__v3.0 Default Voicebrook User": {
             "memberType": "Profile",
-            "serverRevisionCounter": 6155,
+            "serverRevisionCounter": 6388,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "Profile__Read Only": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4687,
+            "serverRevisionCounter": 6389,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -628,19 +628,19 @@
         },
         "Profile__TEST - Voicebrook Success Community User": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4692,
+            "serverRevisionCounter": 6392,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "Profile__Service Supervisor": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4690,
+            "serverRevisionCounter": 6394,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "Profile__Service Agent": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4689,
+            "serverRevisionCounter": 6395,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -652,7 +652,7 @@
         },
         "Profile__v2.0 Default Voicebrook User": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4693,
+            "serverRevisionCounter": 6396,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -700,7 +700,7 @@
         },
         "Profile__Voicebrook Success Community Client Admin (Member)": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4697,
+            "serverRevisionCounter": 6384,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -724,7 +724,7 @@
         },
         "Profile__Salesforce API Only System Integrations": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4688,
+            "serverRevisionCounter": 6385,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -742,13 +742,13 @@
         },
         "Profile__Voicebrook Success Community Client Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4695,
+            "serverRevisionCounter": 6386,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "Profile__Chatter Only": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4686,
+            "serverRevisionCounter": 6387,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -766,7 +766,7 @@
         },
         "Profile__Voicebrook Success Community Client Admin (Login)": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4696,
+            "serverRevisionCounter": 6391,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -778,7 +778,7 @@
         },
         "Profile__Voicebrook Success Community User (default)": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4698,
+            "serverRevisionCounter": 6393,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -958,61 +958,61 @@
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2mAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4665,
+            "serverRevisionCounter": 6512,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a34000000DizOAAS_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4666,
+            "serverRevisionCounter": 6513,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000DhlcAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4667,
+            "serverRevisionCounter": 6514,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000DhlhAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4668,
+            "serverRevisionCounter": 6515,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2rAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4669,
+            "serverRevisionCounter": 6516,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.InternalIdeasIdeaRecordType": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4676,
+            "serverRevisionCounter": 6517,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di36AAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4671,
+            "serverRevisionCounter": 6518,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2wAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4672,
+            "serverRevisionCounter": 6519,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2hAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4673,
+            "serverRevisionCounter": 6520,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di31AAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4674,
+            "serverRevisionCounter": 6521,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1276,32 +1276,50 @@
         },
         "LightningComponentBundle__ideasAdminDashboard": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 6373,
-            "lastRetrievedFromServer": 6373,
+            "serverRevisionCounter": 6523,
+            "lastRetrievedFromServer": 6523,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6374,
-            "lastRetrievedFromServer": 6374,
+            "serverRevisionCounter": 6524,
+            "lastRetrievedFromServer": 6524,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6375,
-            "lastRetrievedFromServer": 6375,
+            "serverRevisionCounter": 6525,
+            "lastRetrievedFromServer": 6525,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6376,
-            "lastRetrievedFromServer": 6376,
+            "serverRevisionCounter": 6526,
+            "lastRetrievedFromServer": 6526,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6377,
-            "lastRetrievedFromServer": 6377,
+            "serverRevisionCounter": 6527,
+            "lastRetrievedFromServer": 6527,
+            "isNameObsolete": false
+        },
+        "FlexiPage__Ideas_Admin_Dashboard": {
+            "memberType": "FlexiPage",
+            "serverRevisionCounter": 6381,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomTab__Ideas_Admin_Dashboard": {
+            "memberType": "CustomTab",
+            "serverRevisionCounter": 6383,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "StandardValueSet__IdeaStatus": {
+            "memberType": "StandardValueSet",
+            "serverRevisionCounter": 6522,
+            "lastRetrievedFromServer": null,
             "isNameObsolete": false
         }
     }
