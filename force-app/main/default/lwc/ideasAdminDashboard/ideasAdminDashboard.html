@@ -1,0 +1,601 @@
+<template>
+    <!-- Loading spinner -->
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+    
+    <div class="slds-card">
+        <!-- Header -->
+        <div class="slds-card__header slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                <h2 class="slds-text-heading_medium slds-p-around_small">Ideas Admin Dashboard</h2>
+                <p class="slds-text-body_small slds-p-horizontal_small">Manage and respond to customer ideas</p>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-grid_align-end slds-p-around_small">
+                <lightning-button 
+                    label="Refresh" 
+                    icon-name="utility:refresh" 
+                    variant="neutral" 
+                    class="slds-m-right_x-small"
+                    onclick={handleRefresh}>
+                </lightning-button>
+                <lightning-button 
+                    label="Add Idea" 
+                    icon-name="utility:add" 
+                    variant="brand">
+                </lightning-button>
+            </div>
+        </div>
+        
+        <!-- Dashboard Content -->
+        <div class="slds-card__body">
+            <!-- Stats Cards -->
+            <div class="slds-grid slds-gutters slds-wrap slds-p-around_medium">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-bottom_medium">
+                    <div class="slds-box slds-box_small slds-theme_default">
+                        <div class="slds-text-title_caps slds-m-bottom_x-small">Total Ideas</div>
+                        <div class="slds-grid slds-grid_vertical-align-center">
+                            <div class="slds-text-heading_large">{ideas.length}</div>
+                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">+12% from last month</div>
+                        </div>
+                        <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width: 75%"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-bottom_medium">
+                    <div class="slds-box slds-box_small slds-theme_default">
+                        <div class="slds-text-title_caps slds-m-bottom_x-small">Pending Response</div>
+                        <div class="slds-grid slds-grid_vertical-align-center">
+                            <div class="slds-text-heading_large">{pendingResponseCount}</div>
+                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">-3% from last week</div>
+                        </div>
+                        <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width: 45%"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-bottom_medium">
+                    <div class="slds-box slds-box_small slds-theme_default">
+                        <div class="slds-text-title_caps slds-m-bottom_x-small">Implementation Rate</div>
+                        <div class="slds-grid slds-grid_vertical-align-center">
+                            <div class="slds-text-heading_large">68%</div>
+                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">+5% from last quarter</div>
+                        </div>
+                        <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width: 68%"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="slds-grid slds-gutters slds-wrap slds-p-horizontal_medium slds-p-bottom_medium">
+                <!-- Sidebar -->
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4 slds-p-bottom_medium">
+                    <!-- Filters -->
+                    <div class="slds-box slds-box_small slds-theme_default slds-m-bottom_medium">
+                        <h3 class="slds-text-heading_small slds-m-bottom_small">Filters</h3>
+                        <p class="slds-text-body_small slds-m-bottom_medium">Narrow down the ideas list</p>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="search-input">Search</label>
+                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                                <lightning-icon icon-name="utility:search" size="x-small" class="slds-icon slds-input__icon slds-input__icon_left"></lightning-icon>
+                                <input type="text" id="search-input" class="slds-input" placeholder="Search ideas..." onkeyup={handleSearchChange} value={searchQuery} />
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="status-select">Status</label>
+                            <div class="slds-form-element__control">
+                                <lightning-combobox
+                                    id="status-select"
+                                    name="status"
+                                    value={statusFilter}
+                                    options={statusOptions}
+                                    onchange={handleStatusFilterChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="category-select">Category</label>
+                            <div class="slds-form-element__control">
+                                <lightning-combobox
+                                    id="category-select"
+                                    name="category"
+                                    value={categoryFilter}
+                                    options={categoryOptions}
+                                    onchange={handleCategoryFilterChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-m-bottom_medium">
+                            <label class="slds-form-element__label" for="priority-select">Priority</label>
+                            <div class="slds-form-element__control">
+                                <lightning-combobox
+                                    id="priority-select"
+                                    name="priority"
+                                    value={priorityFilter}
+                                    options={priorityOptions}
+                                    onchange={handlePriorityFilterChange}>
+                                </lightning-combobox>
+                            </div>
+                        </div>
+                        
+                        <lightning-button 
+                            label="Reset Filters" 
+                            variant="neutral" 
+                            class="slds-m-top_small slds-size_1-of-1"
+                            onclick={handleResetFilters}>
+                        </lightning-button>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="slds-box slds-box_small slds-theme_default">
+                        <h3 class="slds-text-heading_small slds-m-bottom_medium">Quick Stats</h3>
+                        
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                            <span class="slds-text-body_small slds-text-color_weak">New Ideas</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{newIdeasCount}</span>
+                        </div>
+                        
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                            <span class="slds-text-body_small slds-text-color_weak">In Progress</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{inProgressIdeasCount}</span>
+                        </div>
+                        
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                            <span class="slds-text-body_small slds-text-color_weak">Completed</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{completedIdeasCount}</span>
+                        </div>
+                        
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                            <span class="slds-text-body_small slds-text-color_weak">High Priority</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{highPriorityIdeasCount}</span>
+                        </div>
+                        
+                        <div class="slds-border_top slds-m-vertical_small"></div>
+                        
+                        <div class="slds-grid slds-grid_vertical-align-center">
+                            <span class="slds-text-body_small slds-text-color_weak">Total Comments</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{totalCommentsCount}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content Area -->
+                <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-4">
+                    <!-- Tabs -->
+                    <lightning-tabset variant="scoped" active-tab-value={activeTab} onactive={handleTabChange}>
+                        <lightning-tab label="All Ideas" value="all">
+                            <!-- Ideas Table -->
+                            <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Idea">Idea</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Status">Status</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Priority">Priority</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Submitted By">Submitted By</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Votes">Votes</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Comments">Comments</div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Actions">Actions</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template if:true={hasFilteredIdeas}>
+                                            <template for:each={filteredIdeas} for:item="idea">
+                                                <tr key={idea.id} class="slds-hint-parent" data-id={idea.id} onclick={handleIdeaSelect}>
+                                                    <td data-label="Idea">
+                                                        <div class="slds-grid slds-grid_vertical">
+                                                            <div class="slds-truncate slds-text-body_regular slds-text-link" title={idea.title}>{idea.title}</div>
+                                                            <div class="slds-truncate slds-text-body_small slds-text-color_weak" title={idea.category}>{idea.category}</div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Status">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <span class={idea.statusClass}>{idea.status}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Priority">
+                                                        <lightning-badge label={idea.priority} class={idea.priority}></lightning-badge>
+                                                    </td>
+                                                    <td data-label="Submitted By">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <span class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
+                                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                            </span>
+                                                            <span class="slds-truncate">{idea.authorName}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Votes">
+                                                        <div class="slds-truncate">{idea.points}</div>
+                                                    </td>
+                                                    <td data-label="Comments">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:comments" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                                            <span>{idea.commentCount}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Actions">
+                                                        <lightning-button-menu alternative-text="Show menu" variant="border-filled" icon-name="utility:down">
+                                                            <lightning-menu-item value="view" label="View Details" onclick={handleIdeaSelect} data-id={idea.id}></lightning-menu-item>
+                                                            <lightning-menu-item value="respond" label="Respond" onclick={handleOpenResponseModal} data-id={idea.id}></lightning-menu-item>
+                                                            <lightning-menu-divider></lightning-menu-divider>
+                                                            <lightning-menu-subheader label="Change Status"></lightning-menu-subheader>
+                                                            <template for:each={statusOptions} for:item="status">
+                                                                <template if:true={status.value}>
+                                                                    <lightning-menu-item 
+                                                                        key={status.value} 
+                                                                        value={status.value} 
+                                                                        label={status.label} 
+                                                                        onclick={handleStatusChange} 
+                                                                        data-id={idea.id}>
+                                                                    </lightning-menu-item>
+                                                                </template>
+                                                            </template>
+                                                            <lightning-menu-divider></lightning-menu-divider>
+                                                            <lightning-menu-subheader label="Change Priority"></lightning-menu-subheader>
+                                                            <template for:each={priorityOptions} for:item="priority">
+                                                                <lightning-menu-item 
+                                                                    key={priority.value} 
+                                                                    value={priority.value} 
+                                                                    label={priority.label} 
+                                                                    onclick={handlePriorityChange} 
+                                                                    data-id={idea.id}>
+                                                                </lightning-menu-item>
+                                                            </template>
+                                                        </lightning-button-menu>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </template>
+                                        <template if:false={hasFilteredIdeas}>
+                                            <tr>
+                                                <td colspan="7" class="slds-text-align_center slds-p-around_medium">
+                                                    No ideas found.
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                                
+                                <!-- Pagination -->
+                                <div class="slds-grid slds-grid_align-center slds-p-around_medium">
+                                    <lightning-button 
+                                        label="Previous" 
+                                        icon-name="utility:chevronleft" 
+                                        onclick={handlePrevPage} 
+                                        disabled={isPrevDisabled}
+                                        class="slds-m-right_small">
+                                    </lightning-button>
+                                    <span class="slds-align-middle slds-p-horizontal_small">{paginationText}</span>
+                                    <lightning-button 
+                                        label="Next" 
+                                        icon-name="utility:chevronright" 
+                                        icon-position="right" 
+                                        onclick={handleNextPage} 
+                                        disabled={isNextDisabled}
+                                        class="slds-m-left_small">
+                                    </lightning-button>
+                                </div>
+                            </div>
+                            
+                            <!-- Analytics Section -->
+                            <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
+                                <h3 class="slds-text-heading_small slds-m-bottom_small">Analytics</h3>
+                                <p class="slds-text-body_small slds-m-bottom_medium">Insights and trends from submitted ideas</p>
+                                
+                                <lightning-tabset variant="default">
+                                    <lightning-tab label="Distribution">
+                                        <div class="slds-grid slds-gutters slds-wrap slds-p-around_medium">
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                                <h4 class="slds-text-title_caps slds-m-bottom_small">By Category</h4>
+                                                <template for:each={categoryDistributionItems} for:item="item">
+                                                    <div key={item.name} class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                                        <span class="slds-truncate slds-text-body_small" title={item.name}>{item.name}</span>
+                                                        <span class="slds-badge slds-badge_lightest slds-m-left_auto">{item.count}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                                <h4 class="slds-text-title_caps slds-m-bottom_small">By Status</h4>
+                                                <template for:each={statusDistributionItems} for:item="item">
+                                                    <div key={item.name} class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                                        <span class="slds-truncate slds-text-body_small" title={item.name}>{item.name}</span>
+                                                        <span class="slds-badge slds-badge_lightest slds-m-left_auto">{item.count}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                                                <h4 class="slds-text-title_caps slds-m-bottom_small">By Priority</h4>
+                                                <template for:each={priorityDistributionItems} for:item="item">
+                                                    <div key={item.name} class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                                        <span class="slds-truncate slds-text-body_small slds-text-title_caps" title={item.name}>{item.name}</span>
+                                                        <span class="slds-badge slds-badge_lightest slds-m-left_auto">{item.count}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </lightning-tab>
+                                    <lightning-tab label="Trends">
+                                        <div class="slds-p-around_medium">
+                                            <h4 class="slds-text-title_caps slds-m-bottom_small">Monthly Submissions</h4>
+                                            <div class="slds-grid slds-grid_align-end slds-gutters slds-p-top_medium" style="height: 200px;">
+                                                <template for:each={monthlyTrendEntries} for:item="entry">
+                                                    <div key={entry.month} class="slds-col slds-size_1-of-12 slds-text-align_center">
+                                                        <div class="slds-box slds-box_xx-small slds-theme_brand trend-bar-height {entry.heightClass}"></div>
+                                                        <div class="slds-text-body_small slds-m-top_xx-small">{entry.month}</div>
+                                                        <div class="slds-text-body_small slds-text-color_weak">{entry.count}</div>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </lightning-tab>
+                                    <lightning-tab label="Popular Tags">
+                                        <div class="slds-p-around_medium">
+                                            <h4 class="slds-text-title_caps slds-m-bottom_small">Top Tags</h4>
+                                            <div class="slds-p-vertical_medium">
+                                                <template for:each={topTags} for:item="tag">
+                                                    <span key={tag.tag} class="slds-badge slds-badge_lightest slds-m-around_xx-small">
+                                                        {tag.tag} <span class="slds-badge slds-badge_inverse">{tag.count}</span>
+                                                    </span>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </lightning-tab>
+                                </lightning-tabset>
+                            </div>
+                        </lightning-tab>
+                        <lightning-tab label="Assigned" value="assigned"></lightning-tab>
+                        <lightning-tab label="Unassigned" value="unassigned"></lightning-tab>
+                        <lightning-tab label="High Priority" value="high-priority"></lightning-tab>
+                        <lightning-tab label="New" value="new"></lightning-tab>
+                    </lightning-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Idea Detail Modal -->
+    <template if:true={hasSelectedIdea}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class={detailModalClass}>
+            <div class="slds-modal__container">
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <lightning-button-icon class="slds-modal__close" icon-name="utility:close" alternative-text="Close" title="Close" onclick={handleCloseModal}></lightning-button-icon>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{selectedIdea.title}</h2>
+                    <p class="slds-m-top_x-small">
+                        Submitted by {selectedIdea.authorName} on {selectedIdea.formattedDate}
+                    </p>
+                </header>
+                
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_2-of-3">
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Description</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-box slds-box_xx-small slds-theme_default">
+                                        {selectedIdea.description}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Tags</label>
+                                <div class="slds-form-element__control">
+                                    <template for:each={selectedIdea.tags} for:item="tag">
+                                        <span key={tag} class="slds-badge slds-badge_lightest slds-m-around_xx-small">{tag}</span>
+                                    </template>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label slds-text-title_caps">Comments</label>
+                                <div class="slds-form-element__control">
+                                    <template if:true={hasSelectedIdeaComments}>
+                                        <ul class="slds-has-dividers_bottom-space">
+                                            <template for:each={selectedIdea.comments} for:item="comment">
+                                                <li key={comment.id} class="slds-item">
+                                                    <div class={comment.commentClass}>
+                                                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                                            <span class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
+                                                                <img src={comment.authorPhotoUrl} alt={comment.authorName} />
+                                                            </span>
+                                                            <span class="slds-text-body_small slds-text-title_bold">{comment.authorName}</span>
+                                                            <template if:true={comment.isStaff}>
+                                                                <span class="slds-badge slds-badge_lightest slds-m-left_x-small">Staff</span>
+                                                            </template>
+                                                            <span class="slds-text-body_small slds-text-color_weak slds-m-left_auto">{comment.formattedDate}</span>
+                                                        </div>
+                                                        <p class="slds-text-body_small">{comment.text}</p>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                    <template if:false={hasSelectedIdeaComments}>
+                                        <div class="slds-text-body_small slds-text-color_weak slds-p-around_medium slds-text-align_center">
+                                            No comments yet.
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-col slds-size_1-of-3">
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Status</label>
+                                <div class="slds-form-element__control">
+                                    <lightning-combobox
+                                        name="status"
+                                        value={selectedIdea.status}
+                                        options={statusOptions}
+                                        onchange={handleStatusChange}
+                                        data-id={selectedIdea.id}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Priority</label>
+                                <div class="slds-form-element__control">
+                                    <lightning-combobox
+                                        name="priority"
+                                        value={selectedIdea.priority}
+                                        options={priorityOptions}
+                                        onchange={handlePriorityChange}
+                                        data-id={selectedIdea.id}>
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Assigned To</label>
+                                <div class="slds-form-element__control">
+                                    <template if:true={selectedIdea.assignedTo}>
+                                        <div class="slds-box slds-box_xx-small slds-theme_default">
+                                            <div class="slds-grid slds-grid_vertical-align-center">
+                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
+                                                    <img src={selectedIdea.assignedTo.avatar} alt={selectedIdea.assignedTo.name} />
+                                                </span>
+                                                <div class="slds-grid slds-grid_vertical">
+                                                    <span class="slds-text-body_small slds-text-title_bold">{selectedIdea.assignedTo.name}</span>
+                                                    <span class="slds-text-body_small slds-text-color_weak">{selectedIdea.assignedTo.department}</span>
+                                                </div>
+                                                <lightning-button-icon 
+                                                    icon-name="utility:delete" 
+                                                    alternative-text="Remove assignment" 
+                                                    title="Remove assignment" 
+                                                    class="slds-m-left_auto"
+                                                    onclick={handleRemoveAssignment}
+                                                    data-id={selectedIdea.id}>
+                                                </lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:false={selectedIdea.assignedTo}>
+                                        <lightning-combobox
+                                            name="assignedTo"
+                                            placeholder="Assign to staff"
+                                            options={staffOptions}
+                                            onchange={handleAssignmentChange}
+                                            data-id={selectedIdea.id}>
+                                        </lightning-combobox>
+                                    </template>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label slds-text-title_caps">Votes</label>
+                                <div class="slds-form-element__control">
+                                    <div class="slds-box slds-box_xx-small slds-theme_default">
+                                        {selectedIdea.points} points
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <lightning-button 
+                        label="Close" 
+                        variant="neutral" 
+                        onclick={handleCloseModal}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button 
+                        label="Delete Idea" 
+                        variant="destructive" 
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button 
+                        label="Respond" 
+                        variant="brand" 
+                        onclick={handleOpenResponseModal}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+    <!-- Response Modal -->
+    <template if:true={isResponseModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <lightning-button-icon class="slds-modal__close" icon-name="utility:close" alternative-text="Close" title="Close" onclick={handleCloseModal}></lightning-button-icon>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Respond to Idea</h2>
+                    <p class="slds-m-top_x-small">
+                        Your response will be visible to all users as a staff comment.
+                    </p>
+                </header>
+                
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="idea-title">Idea</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-box slds-box_xx-small slds-theme_default">
+                                {selectedIdea.title}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="response-text">Your Response</label>
+                        <div class="slds-form-element__control">
+                            <lightning-textarea
+                                id="response-text"
+                                placeholder="Type your response here..."
+                                value={responseText}
+                                onchange={handleResponseTextChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <lightning-button 
+                        label="Cancel" 
+                        variant="neutral" 
+                        onclick={handleCloseModal}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button 
+                        label="Submit Response" 
+                        variant="brand" 
+                        onclick={handleSubmitResponse}
+                        disabled={disableResponseButton}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

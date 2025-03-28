@@ -11,7 +11,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     collections = [];
     loading = true;
     error = '';
-    @track pdfUrl;
+    // @track pdfUrl;
     contentVersionId = '068WE000005j7orYAA';
 
     // URL parameter
@@ -95,7 +95,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
 
                 // Fetch the PDF if the article is a PDF
                 if (this.isPdf) {
-                    this.fetchPdf();
+                    // this.fetchPdf();
                 }
             }
             // Scenario 1b: If no urlName but recordId is present
@@ -134,7 +134,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
 
                 // Fetch the PDF if the article is a PDF
                 if (this.isPdf) {
-                    this.fetchPdf();
+                    // this.fetchPdf();
                 }
             }
             
@@ -180,17 +180,17 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     }
     
     
-    fetchPdf() {
-        getPdfAsBase64({ contentVersionId: this.contentVersionId })
-            .then((base64Pdf) => {
-                // Convert the Base64 string to a data URL
-                this.pdfUrl = 'data:application/pdf;base64,' + base64Pdf;
-            })
-            .catch((error) => {
-                this.error = error;
-                console.error('Error retrieving PDF: ', error);
-            });
-    }
+    // fetchPdf() {
+    //     getPdfAsBase64({ contentVersionId: this.contentVersionId })
+    //         .then((base64Pdf) => {
+    //             // Convert the Base64 string to a data URL
+    //             this.pdfUrl = 'data:application/pdf;base64,' + base64Pdf;
+    //         })
+    //         .catch((error) => {
+    //             this.error = error;
+    //             console.error('Error retrieving PDF: ', error);
+    //         });
+    // }
     
 
     // Expand/collapse
@@ -316,7 +316,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
             return '';
         }
         return (
-            'sfc/servlet.shepherd/version/download/' + this.activeArticle.Media_Id__c
+            'https://voicebrook--rafiki.sandbox.file.force.com/sfc/servlet.shepherd/version/download/' + this.activeArticle.Media_Id__c
         );
     }
     get vidyardUrl() {

@@ -135,10 +135,11 @@
     margin-bottom: 1rem;
 }
 
-.media-video {
+.media {
     display: flex;
     justify-content: center;
     margin-top: 3em;
+    height: 65vh;
 }
 
 /* --- RESPONSIVE ADJUSTMENTS --- */

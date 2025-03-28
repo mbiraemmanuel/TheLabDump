@@ -3,7 +3,7 @@
     <apiVersion>63.0</apiVersion>
     <isExposed>true</isExposed>
 
-    <masterLabel>The Lab Knowledge Article Viewer</masterLabel>
+    <masterLabel>Knowledge Article Viewer</masterLabel>
 
     <targets>
         <!-- experience site -->

@@ -1,0 +1,366 @@
+<template>
+    <div class="ideas-container">
+        <!-- Loading spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <!-- Main container -->
+        <div class="slds-card main-card">
+            <!-- Header -->
+            <div class="slds-card__header slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <h2 class="slds-text-heading_medium">The Lab Ideas</h2>
+                    <!-- subtext your feedback is highly appreciated -->
+                    <p class="slds-text-body_small">Your feedback is highly appreciated. Share your ideas to improve Voicebrook products and services.</p>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-grid_align-end">
+                    <div class="slds-form-element slds-p-around_small slds-grow">
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                            <lightning-icon icon-name="utility:search" size="x-small" class="slds-icon slds-input__icon slds-input__icon_left"></lightning-icon>
+                            <input type="text" class="slds-input" placeholder="Search ideas..." onkeyup={handleSearchChange} value={searchQuery} />
+                        </div>
+                    </div>
+                    <div class="slds-p-around_small">
+                        <lightning-button 
+                            label="Post Your Idea" 
+                            icon-name="utility:add" 
+                            variant="brand" 
+                            onclick={openNewIdeaModal}
+                        ></lightning-button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="slds-card__body slds-grid slds-wrap">
+                <!-- Sidebar Filters -->
+                <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-4 slds-p-around_medium sidebar">
+                    <!-- Show Filter -->
+                    <div class="slds-p-bottom_medium">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small filter-header" onclick={toggleShowFilter}>
+                            <h3 class="slds-text-heading_small slds-grow">Show</h3>
+                            <lightning-icon 
+                                icon-name={showFilterIcon} 
+                                size="x-small"
+                            ></lightning-icon>
+                        </div>
+                        
+                        <div class={showFilterClass}>
+                            <ul class="slds-has-dividers_around-space filter-list">
+                                <template for:each={showOptions} for:item="option">
+                                    <li key={option.value} data-value={option.value} class={option.customClass}>
+                                        <a href="javascript:void(0);" 
+                                           class="slds-p-around_xx-small filter-item" 
+                                           data-value={option.value}
+                                           onclick={handleShowFilterChange}>
+                                            {option.label}
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-border_top slds-m-vertical_small"></div>
+                    
+                    <!-- Category Filter -->
+                    <div class="slds-p-bottom_medium">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small filter-header" onclick={toggleCategoryFilter}>
+                            <h3 class="slds-text-heading_small slds-grow">Category</h3>
+                            <lightning-icon 
+                                icon-name={categoryFilterIcon} 
+                                size="x-small"
+                            ></lightning-icon>
+                        </div>
+                        
+                        <div class={categoryFilterClass}>
+                            <ul class="slds-has-dividers_around-space filter-list">
+                                <template for:each={categoryOptions} for:item="option">
+                                    <li key={option.value} data-value={option.value} class={option.customClass}>
+                                        <a href="javascript:void(0);" 
+                                           class="slds-p-around_xx-small filter-item" 
+                                           data-value={option.value}
+                                           onclick={handleCategoryFilterChange}>
+                                            {option.label}
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-border_top slds-m-vertical_small"></div>
+                    
+                    <!-- Status Filter -->
+                    <div class="slds-p-bottom_medium">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small filter-header" onclick={toggleStatusFilter}>
+                            <h3 class="slds-text-heading_small slds-grow">Status</h3>
+                            <lightning-icon 
+                                icon-name={statusFilterIcon} 
+                                size="x-small"
+                            ></lightning-icon>
+                        </div>
+                        
+                        <div class={statusFilterClass}>
+                            <ul class="slds-has-dividers_around-space filter-list">
+                                <template for:each={statusOptions} for:item="option">
+                                    <li key={option.value} data-value={option.value} class={option.customClass}>
+                                        <a href="javascript:void(0);" 
+                                           class="slds-p-around_xx-small filter-item" 
+                                           data-value={option.value}
+                                           onclick={handleStatusFilterChange}>
+                                            {option.label}
+                                        </a>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-4 slds-p-around_medium">
+                    <!-- Ideas List -->
+                    <template if:true={hasIdeas}>
+                        <ul class="ideas-list">
+                            <template for:each={processedIdeas} for:item="idea">
+                                <li key={idea.id} class="slds-box slds-m-bottom_medium idea-card">
+                                    <div class="slds-grid slds-grid_align-spread">
+                                        <!-- Avatar and Voting -->
+                                        <div class="slds-col slds-size_1-of-12 slds-align_absolute-center voting-column">
+                                                <div class="slds-avatar slds-avatar_circle slds-m-bottom_small">
+                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                            </div>
+                                            
+                                            <div class="voting-buttons">
+                                                <button class="slds-button slds-button_icon" data-id={idea.id} data-vote="up" onclick={handleVote}>
+                                                    <lightning-icon icon-name="utility:arrowup" size="x-small"></lightning-icon>
+                                                </button>
+                                                <div class="slds-text-body_small slds-p-vertical_xx-small">{idea.voteTotal}</div>
+                                                <button class="slds-button slds-button_icon" data-id={idea.id} data-vote="down" onclick={handleVote}>
+                                                    <lightning-icon icon-name="utility:arrowdown" size="x-small"></lightning-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Idea Content -->
+                                        <div class="slds-col slds-size_11-of-12 slds-p-left_medium">
+                                            <div class="slds-grid slds-grid_vertical-align-center slds-wrap">
+                                                <h3 class="slds-text-heading_small slds-truncate slds-m-right_small">{idea.title}</h3>
+                                                <span class={idea.statusClass}>{idea.status}</span>
+                                            </div>
+                                            
+                                            <div class="slds-p-vertical_x-small">
+                                                <span class="slds-badge slds-badge_lightest">{idea.category}</span>
+                                            </div>
+                                            
+                                            <!-- <p class="slds-p-vertical_small">{idea.description}</p> -->
+                                            <lightning-formatted-rich-text value={idea.description}></lightning-formatted-rich-text>
+                                            
+                                            <div class="slds-grid slds-grid_vertical-align-center slds-text-body_small slds-text-color_weak">
+                                                <div class="slds-p-right_medium">{idea.formattedDate}</div>
+                                                <a href="javascript:void(0);" 
+                                                   class="slds-p-right_medium comments-link" 
+                                                   data-id={idea.id} 
+                                                   onclick={toggleComments}>
+                                                    <lightning-icon icon-name="utility:comments" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                                    {idea.commentCount} {idea.commentCountText}
+                                                </a>
+                                            </div>
+                                            
+                                            <!-- Comments Section -->
+                                            <template if:true={idea.isCommentsExpanded}>
+                                                <div class="slds-p-top_medium slds-border_top slds-m-top_medium">
+                                                    <h4 class="slds-text-heading_small slds-p-bottom_small">Comments</h4>
+                                                    
+                                                    <!-- Existing Comments -->
+                                                    <template if:true={idea.comments.length}>
+                                                        <ul class="slds-has-dividers_bottom-space comments-list">
+                                                            <template for:each={idea.comments} for:item="comment">
+                                                                <li key={comment.id} class="slds-p-vertical_x-small">
+                                                                    <div class="slds-grid">
+                                                                        <div class="slds-col slds-size_1-of-12">
+                                                                            <div class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                                <img src={comment.authorPhotoUrl} alt={comment.authorName} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="slds-col slds-size_11-of-12 slds-p-left_small">
+                                                                            <div class="slds-grid slds-grid_vertical-align-center">
+                                                                                <div class="slds-text-body_small slds-text-color_default slds-p-right_small">
+                                                                                    <strong>{comment.authorName}</strong>
+                                                                                </div>
+                                                                                <div class="slds-text-body_small slds-text-color_weak">
+                                                                                    {comment.formattedDate}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="slds-p-top_xx-small">
+                                                                                <lightning-formatted-rich-text value={comment.text}></lightning-formatted-rich-text>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                    </template>
+                                                    <template if:false={idea.comments.length}>
+                                                        <p class="slds-text-body_small slds-text-color_weak slds-p-vertical_small">
+                                                            No comments yet. Be the first to comment!
+                                                        </p>
+                                                    </template>
+                                                    
+                                                    <!-- Add Comment Form -->
+                                                    <div class="slds-grid slds-p-top_medium">
+                                                        <div class="slds-col slds-size_1-of-12">
+                                                            <div class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                <img src={currentUserPhotoUrl} alt="Current User" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-col slds-size_11-of-12 slds-p-left_small">
+                                                            <div class="slds-form-element">
+                                                                <div class="slds-form-element__control">
+                                                                    <lightning-input-rich-text 
+                                                                        name="commentText" 
+                                                                        placeholder="Add a comment..." 
+                                                                        data-id={idea.id}
+                                                                        value={idea.newCommentText}
+                                                                        onchange={handleCommentChange}
+                                                                    ></lightning-input-rich-text>
+                                                                </div>
+                                                            </div>
+                                                            <div class="slds-grid slds-grid_align-end slds-p-top_x-small">
+                                                                <lightning-button 
+                                                                    label="Submit" 
+                                                                    variant="brand" 
+                                                                    data-id={idea.id}
+                                                                    onclick={submitComment}
+                                                                ></lightning-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                        
+                        <!-- Pagination -->
+                        <div class="slds-grid slds-grid_align-center slds-p-top_medium">
+                            <div class="slds-button-group">
+                                <lightning-button 
+                                    label="Prev" 
+                                    onclick={handlePrevPage} 
+                                    disabled={isPrevDisabled}
+                                ></lightning-button>
+                                <span class="slds-text-body_small slds-p-horizontal_medium slds-align-middle">
+                                    {paginationText}
+                                </span>
+                                <lightning-button 
+                                    label="Next" 
+                                    onclick={handleNextPage} 
+                                    disabled={isNextDisabled}
+                                ></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!-- No Ideas Found -->
+                    <template if:false={hasIdeas}>
+                        <div class="slds-illustration slds-illustration_small">
+                            <div class="slds-text-longform">
+                                <h3 class="slds-text-heading_medium">No ideas found</h3>
+                                <p class="slds-text-body_regular">Try adjusting your filters or search criteria.</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Idea Modal -->
+        <template if:true={isNewIdeaModalOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Modal Header -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick={closeNewIdeaModal}>
+                            <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium">Post Your Idea</h2>
+                        <p class="slds-m-top_x-small">
+                            Share your ideas to improve Voicebrook products and services. Be specific and provide details to help others understand your suggestion.
+                        </p>
+                    </header>
+                    
+                    <!-- Modal Body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div class="slds-form">
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required" title="required">*</abbr> Title
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <input type="text" 
+                                           name="title" 
+                                           class="slds-input" 
+                                           placeholder="Enter a clear, concise title"
+                                           value={newIdea.title}
+                                           onchange={handleNewIdeaChange}
+                                           required />
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element slds-m-bottom_medium">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required" title="required">*</abbr> Category
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <lightning-combobox
+                                        name="category"
+                                        options={categoryOptions}
+                                        value={newIdea.category}
+                                        onchange={handleNewIdeaChange}
+                                        placeholder="Select a category"
+                                        required
+                                    ></lightning-combobox>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required" title="required">*</abbr> Description
+                                </label>
+                                <div class="slds-form-element__control">
+                                    <lightning-input-rich-text
+                                        name="description"
+                                        placeholder="Describe your idea in detail. What problem does it solve? How would it benefit users?"
+                                        value={newIdea.description}
+                                        onchange={handleNewIdeaChange}
+                                        required
+                                    ></lightning-input-rich-text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeNewIdeaModal}>
+                            <lightning-icon icon-name="utility:close" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                            Cancel
+                        </button>
+                        <button class="slds-button slds-button_brand" onclick={submitNewIdea}>
+                            <lightning-icon icon-name="utility:add" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                            Submit Idea
+                        </button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template>
+

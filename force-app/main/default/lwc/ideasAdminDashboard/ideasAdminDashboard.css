@@ -1,0 +1,79 @@
+.slds-badge.high {
+    background-color: #c23934;
+    color: white;
+}
+
+.slds-badge.medium {
+    background-color: #ffb75d;
+    color: #514f4d;
+}
+
+.slds-badge.low {
+    background-color: #4bca81;
+    color: white;
+}
+
+.status-new {
+    color: #1589ee;
+    font-weight: bold;
+}
+
+.status-backlog {
+    color: #706e6b;
+    font-weight: bold;
+}
+
+.status-in-progress {
+    color: #04844b;
+    font-weight: bold;
+}
+
+.status-default {
+    color: #514f4d;
+    font-weight: bold;
+}
+
+/* Trend bar height classes for the chart */
+.trend-bar-height {
+    min-height: 10px;
+}
+
+.trend-bar-height-10 {
+    height: 10%;
+}
+
+.trend-bar-height-20 {
+    height: 20%;
+}
+
+.trend-bar-height-30 {
+    height: 30%;
+}
+
+.trend-bar-height-40 {
+    height: 40%;
+}
+
+.trend-bar-height-50 {
+    height: 50%;
+}
+
+.trend-bar-height-60 {
+    height: 60%;
+}
+
+.trend-bar-height-70 {
+    height: 70%;
+}
+
+.trend-bar-height-80 {
+    height: 80%;
+}
+
+.trend-bar-height-90 {
+    height: 90%;
+}
+
+.trend-bar-height-100 {
+    height: 100%;
+}

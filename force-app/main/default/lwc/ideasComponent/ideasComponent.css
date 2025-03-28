@@ -1,0 +1,107 @@
+.ideas-container {
+    position: relative;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dddbda;
+    margin-top: 16px;
+    border-radius: 7px;
+}
+
+.filter-header {
+    cursor: pointer;
+}
+
+.filter-list {
+    margin-top: 0.5rem;
+}
+
+.filter-item {
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #16325c;
+    transition: background-color 0.2s ease;
+}
+
+.filter-item:hover {
+    background-color: #eef1f6;
+}
+
+.filter-list li.selected .filter-item {
+    background-color: rgba(0, 48, 135, 0.1);
+    color: #00a750;
+    font-weight: 500;
+    border-left: 4px solid #00a750;
+    padding-left: calc(0.5rem - 4px);
+}
+
+.idea-card {
+    transition: box-shadow 0.2s ease;
+}
+
+.idea-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.voting-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.voting-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comments-link {
+    display: flex;
+    align-items: center;
+    color: #706e6b;
+    transition: color 0.2s ease;
+}
+
+.comments-link:hover {
+    color: #003087;
+}
+
+/* Status badges */
+.status-new {
+    background-color: #003087;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.status-backlog {
+    background-color: #706e6b;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.status-in-progress {
+    background-color: #00a651;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.status-default {
+    background-color: #dddbda;
+    color: #16325c;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.main-card {
+    border: none !important;
+}

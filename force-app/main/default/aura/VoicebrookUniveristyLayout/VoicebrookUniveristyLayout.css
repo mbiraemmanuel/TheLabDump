@@ -124,7 +124,7 @@
 .THIS .footer-section {
     background: #fff;
     padding: 2rem 0 0 0;
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     left: 0;
     width: 100%;

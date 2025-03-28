@@ -51,7 +51,7 @@
                     <lightning-formatted-rich-text value={activeArticle.Article__c}></lightning-formatted-rich-text>
                     <!-- Render media if the article has a Media_Type__c -->
                     <template if:true={showMedia}>
-                        <div class="media-video">
+                        <div class="media">
                             <template if:true={isPdf}>
                                 <!-- PDF media viewer -->
                                 <iframe src={pdfUrl} style={iframeStyle} frameborder="0"></iframe>
@@ -62,7 +62,7 @@
                                     value={activeArticle.body}></lightning-formatted-rich-text>
 
                                 <!-- Vidyard video viewer (iframe) -->
-                                <iframe src={vidyardUrl} width="560" height="315" frameborder="0"
+                                <iframe src={vidyardUrl} width="700" height="450" frameborder="0"
                                     allow="autoplay; fullscreen" allowfullscreen>
                                 </iframe>
                             </template>

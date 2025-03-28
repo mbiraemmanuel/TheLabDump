@@ -1,10 +1,10 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 5695,
+    "serverMaxRevisionCounter": 6377,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 5694,
+            "serverRevisionCounter": 6332,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -88,26 +88,26 @@
         },
         "AuraDefinitionBundle__VoicebrookUniveristyLayout": {
             "memberType": "AuraDefinitionBundle",
-            "serverRevisionCounter": 5156,
-            "lastRetrievedFromServer": 5156,
+            "serverRevisionCounter": 6214,
+            "lastRetrievedFromServer": 6214,
             "isNameObsolete": false
         },
         "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.cmp": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 5157,
-            "lastRetrievedFromServer": 5157,
+            "serverRevisionCounter": 6215,
+            "lastRetrievedFromServer": 6215,
             "isNameObsolete": false
         },
         "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayoutController.js": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 5158,
-            "lastRetrievedFromServer": 5158,
+            "serverRevisionCounter": 6216,
+            "lastRetrievedFromServer": 6216,
             "isNameObsolete": false
         },
         "AuraDefinition__VoicebrookUniveristyLayout/VoicebrookUniveristyLayout.css": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 5159,
-            "lastRetrievedFromServer": 5159,
+            "serverRevisionCounter": 6217,
+            "lastRetrievedFromServer": 6217,
             "isNameObsolete": false
         },
         "AuraDefinitionBundle__CommunitySubmitIdea": {
@@ -352,7 +352,7 @@
         },
         "NavigationMenu__Voicebrook_University_Main_Navigation": {
             "memberType": "NavigationMenu",
-            "serverRevisionCounter": 2885,
+            "serverRevisionCounter": 6352,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -370,7 +370,7 @@
         },
         "StaticResource__SNA_ssAbl_sf_default_cdn_Voicebrook_University1": {
             "memberType": "StaticResource",
-            "serverRevisionCounter": 5202,
+            "serverRevisionCounter": 6085,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -400,7 +400,7 @@
         },
         "RecordType__Knowledge__kav.Default": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4934,
+            "serverRevisionCounter": 6148,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -610,7 +610,7 @@
         },
         "Profile__v3.0 Default Voicebrook User": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4866,
+            "serverRevisionCounter": 6155,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1060,7 +1060,7 @@
         },
         "SiteDotCom__The_Lab1": {
             "memberType": "SiteDotCom",
-            "serverRevisionCounter": 5261,
+            "serverRevisionCounter": 6367,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1090,13 +1090,13 @@
         },
         "FlexiPage__Community_Management": {
             "memberType": "FlexiPage",
-            "serverRevisionCounter": 4831,
+            "serverRevisionCounter": 6006,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "ReportType__Knowledge_Articles": {
             "memberType": "ReportType",
-            "serverRevisionCounter": 4867,
+            "serverRevisionCounter": 6154,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1108,55 +1108,55 @@
         },
         "RecordType__Knowledge__kav.Frequently_Asked_Questions": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4929,
+            "serverRevisionCounter": 6143,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Quick_Answer": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4930,
+            "serverRevisionCounter": 6144,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Best_Practices": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4931,
+            "serverRevisionCounter": 6145,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.How_To": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4932,
+            "serverRevisionCounter": 6146,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Product_Documentation": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4933,
+            "serverRevisionCounter": 6147,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Known_Issue": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4935,
+            "serverRevisionCounter": 6149,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Master": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4936,
+            "serverRevisionCounter": 6150,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Knowledge__kav.Product_Related": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 4937,
+            "serverRevisionCounter": 6151,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "Layout__Knowledge__kav-Default Layout": {
             "memberType": "Layout",
-            "serverRevisionCounter": 4864,
+            "serverRevisionCounter": 6152,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1186,38 +1186,122 @@
         },
         "LightningComponentBundle__knowledgeArticleViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 5689,
-            "lastRetrievedFromServer": 5689,
+            "serverRevisionCounter": 6096,
+            "lastRetrievedFromServer": 6096,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 5690,
-            "lastRetrievedFromServer": 5690,
+            "serverRevisionCounter": 6097,
+            "lastRetrievedFromServer": 6097,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 5691,
-            "lastRetrievedFromServer": 5691,
+            "serverRevisionCounter": 6098,
+            "lastRetrievedFromServer": 6098,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 5692,
-            "lastRetrievedFromServer": 5692,
+            "serverRevisionCounter": 6099,
+            "lastRetrievedFromServer": 6099,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 5693,
-            "lastRetrievedFromServer": 5693,
+            "serverRevisionCounter": 6100,
+            "lastRetrievedFromServer": 6100,
             "isNameObsolete": false
         },
         "FlexiPage__Knowledge_Record_Page_2": {
             "memberType": "FlexiPage",
-            "serverRevisionCounter": 5683,
+            "serverRevisionCounter": 5894,
             "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Settings__FileUploadAndDownloadSecurity": {
+            "memberType": "Settings",
+            "serverRevisionCounter": 5907,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__IdeasController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 6333,
+            "lastRetrievedFromServer": 6333,
+            "isNameObsolete": false
+        },
+        "CustomField__Knowledge__kav.Role__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 6142,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__ideasComponent": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 6334,
+            "lastRetrievedFromServer": 6334,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasComponent/ideasComponent.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6335,
+            "lastRetrievedFromServer": 6335,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasComponent/ideasComponent.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6336,
+            "lastRetrievedFromServer": 6336,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasComponent/ideasComponent.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6337,
+            "lastRetrievedFromServer": 6337,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasComponent/ideasComponent.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6338,
+            "lastRetrievedFromServer": 6338,
+            "isNameObsolete": false
+        },
+        "ApexClass__IdeasComponentZoneChoice": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 6316,
+            "lastRetrievedFromServer": 6316,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__ideasAdminDashboard": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 6373,
+            "lastRetrievedFromServer": 6373,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6374,
+            "lastRetrievedFromServer": 6374,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6375,
+            "lastRetrievedFromServer": 6375,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6376,
+            "lastRetrievedFromServer": 6376,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6377,
+            "lastRetrievedFromServer": 6377,
             "isNameObsolete": false
         }
     }
