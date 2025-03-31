@@ -1,0 +1,109 @@
+<template>
+    <div class={getContainerClass}>
+        <label if:true={label} class="slds-form-element__label">
+            <abbr if:true={required} title="required" class="slds-required">*</abbr>
+            {label}
+        </label>
+        <div class={getComboboxClass} aria-expanded={hasDropdownOpened} aria-haspopup="listbox" role="combobox">
+            <!-- Search input -->
+            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                <template if:false={hasSelection}>
+                    <!-- Input -->
+                    <input
+                        type="text"
+                        class={getInputClass}
+                        aria-autocomplete="list"
+                        aria-controls="lookup-results"
+                        autocomplete="off"
+                        role="textbox"
+                        id="combobox-input"
+                        placeholder={placeholder}
+                        value={searchTerm}
+                        onfocus={handleFocus}
+                        onblur={handleBlur}
+                        oninput={handleInput}
+                        onkeydown={handleKeyDown}
+                        disabled={isDisabled}
+                        aria-label={searchInputLabel}
+                    />
+                    <!-- Search icon -->
+                    <lightning-icon
+                        icon-name="utility:search"
+                        size="x-small"
+                        alternative-text="Search"
+                        class="slds-input__icon slds-input__icon_right"
+                    ></lightning-icon>
+                </template>
+                <template if:true={hasSelection}>
+                    <!-- Lookup selection pill -->
+                    <span class={getSelectionPillClass}>
+                        <span class="slds-pill__label">{selection.title}</span>
+                        <lightning-button-icon
+                            class="slds-pill__remove"
+                            icon-name="utility:close"
+                            alternative-text={removeSelectionLabel}
+                            title={removeSelectionLabel}
+                            onclick={handleClearSelection}
+                        ></lightning-button-icon>
+                    </span>
+                </template>
+            </div>
+
+            <!-- Search results dropdown -->
+            <div id="lookup-results" class={getDropdownClass} role="listbox" onmousedown={handlePreventBlur}>
+                <!-- Display search help if needed -->
+                <div if:true={showSearchHelp} class="slds-lookup__item">
+                    <span>{getInputHelp}</span>
+                </div>
+                <!-- Display spinner while loading -->
+                <div if:true={isLoading} class="slds-lookup__item">
+                    <lightning-spinner alternative-text={loadingMessage} size="small"></lightning-spinner>
+                </div>
+                <!-- Display "No results" if needed -->
+                <div if:true={noSearchResults} class="slds-lookup__item">
+                    <span>{noRecordsMessage}</span>
+                </div>
+                <!-- Display results -->
+                <template for:each={searchResults} for:item="result" for:index="index">
+                    <div
+                        key={result.id}
+                        class={result.cssClass}
+                        role="option"
+                        data-recordid={result.id}
+                        onclick={handleResultSelect}
+                        aria-selected={result.ariaSelected}
+                    >
+                        <span class="slds-media__figure">
+                            <lightning-icon
+                                if:true={result.icon}
+                                icon-name={result.icon}
+                                size="small"
+                                alternative-text={result.title}
+                            ></lightning-icon>
+                            <span
+                                if:true={result.avatarSrc}
+                                class="slds-avatar slds-avatar_circle slds-avatar_small"
+                            >
+                                <img src={result.avatarSrc} alt={result.title} />
+                            </span>
+                        </span>
+                        <span class="slds-media__body">
+                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                {result.title}
+                            </span>
+                            <span if:true={result.subtitle} class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                {result.subtitle}
+                            </span>
+                        </span>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <!-- Error message -->
+        <div if:true={errors.length} class="slds-form-element__help slds-has-error">
+            <template for:each={errors} for:item="error">
+                <div key={error}>{error}</div>
+            </template>
+        </div>
+    </div>
+</template>

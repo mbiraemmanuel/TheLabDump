@@ -24,6 +24,9 @@ public with sharing class IdeasController {
                 CreatedById,
                 CreatedBy.Name,
                 CreatedBy.SmallPhotoUrl,
+                Priority__c,
+                Idea_Owner__r.Name,
+                Idea_Owner__r.SmallPhotoUrl,
                 (SELECT Id FROM Comments)
             FROM Idea
             ORDER BY CreatedDate DESC
@@ -57,6 +60,9 @@ public with sharing class IdeasController {
             wrapper.authorId = idea.CreatedById;
             wrapper.authorName = idea.CreatedBy.Name;
             wrapper.authorPhotoUrl = idea.CreatedBy.SmallPhotoUrl;
+            wrapper.assignedTo = idea.Idea_Owner__r.Name;
+            wrapper.assignedToPhotoUrl = idea.Idea_Owner__r.SmallPhotoUrl;
+            wrapper.priority = idea.Priority__c;
 
             // Count of Comments
             wrapper.commentCount = idea.Comments.size();
@@ -330,6 +336,97 @@ public with sharing class IdeasController {
     }
 
     /**
+     * Retrieves priority options for the idea form
+     * Fetches priority values from the Idea object's Priority__c field picklist values
+     * @return List<PicklistOptionWrapper> - List of priority options with label and value
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<PicklistOptionWrapper> getPriorityOptions() {
+        List<PicklistOptionWrapper> options = new List<PicklistOptionWrapper>();
+        
+        // Get the describe result for the Idea object
+        Schema.DescribeSObjectResult describeResult = Schema.SObjectType.Idea;
+        
+        // Get the field describe for the Priority__c field
+        Schema.DescribeFieldResult fieldResult = describeResult.fields.getMap().get('Priority__c').getDescribe();
+        
+        // Check if it's a picklist field
+        if (fieldResult.getType() == Schema.DisplayType.PICKLIST) {
+            
+            // Get the picklist values
+            List<Schema.PicklistEntry> picklistValues = fieldResult.getPicklistValues();
+            
+            // Create a wrapper object for each picklist entry
+            for (Schema.PicklistEntry entry : picklistValues) {
+                if (entry.isActive()) {
+                    options.add(new PicklistOptionWrapper(entry.getLabel(), entry.getValue()));
+                }
+            }
+        }
+        
+        return options;
+    }
+
+    /**
+     * Updates an idea record with new values
+     * @param ideaId The ID of the idea to update
+     * @param fieldName The field to update (status, category, priority, assignedTo)
+     * @param newValue The new value for the field
+     * @return Boolean True if update was successful
+     */
+    @AuraEnabled
+    public static Boolean updateIdea(Id ideaId, String fieldName, String newValue) {
+        try {
+            // Retrieve the idea record
+            Idea idea = [SELECT Id, Status, Categories, Priority__c, Idea_Owner__c FROM Idea WHERE Id = :ideaId LIMIT 1];
+            
+            // Update the appropriate field based on fieldName
+            String fieldNameLower = fieldName.toLowerCase();
+            if (fieldNameLower == 'status') {
+                idea.Status = newValue;
+            } else if (fieldNameLower == 'category') {
+                idea.Categories = newValue;
+            } else if (fieldNameLower == 'priority') {
+                idea.Priority__c = newValue;
+            } else if (fieldNameLower == 'assignedto') {
+                // If newValue is empty, set to null, otherwise set to the user ID
+                idea.Idea_Owner__c = String.isBlank(newValue) ? null : newValue;
+            } else {
+                throw new AuraHandledException('Invalid field name: ' + fieldName);
+            }
+            
+            // Update the record
+            update idea;
+            return true;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error updating idea: ' + e.getMessage());
+        }
+    }
+
+    /**
+     * Assigns an idea to the current user
+     * @param ideaId The ID of the idea to assign
+     * @return Boolean True if assignment was successful
+     */
+    @AuraEnabled
+    public static Boolean assignToMe(Id ideaId) {
+        try {
+            // Get the current user's ID
+            Id currentUserId = UserInfo.getUserId();
+            
+            // Update the idea record
+            Idea idea = [SELECT Id FROM Idea WHERE Id = :ideaId LIMIT 1];
+            idea.Idea_Owner__c = currentUserId;
+            update idea;
+            
+            return true;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error assigning idea: ' + e.getMessage());
+        }
+    }
+    
+
+    /**
      * Wrapper class for ideas
      */
     public class IdeaWrapper {
@@ -338,6 +435,7 @@ public with sharing class IdeasController {
         @AuraEnabled public String description;
         @AuraEnabled public String category;
         @AuraEnabled public String status;
+        @AuraEnabled public String priority;
         @AuraEnabled public Integer points;
         @AuraEnabled public Integer voteTotal;
         @AuraEnabled public Datetime createdDate;
@@ -345,6 +443,8 @@ public with sharing class IdeasController {
         @AuraEnabled public Id authorId;
         @AuraEnabled public String authorName;
         @AuraEnabled public String authorPhotoUrl;
+        @AuraEnabled public String assignedTo;
+        @AuraEnabled public String assignedToPhotoUrl;
         @AuraEnabled public Integer commentCount;
         @AuraEnabled public String statusClass;
         @AuraEnabled public Boolean isCurrentUserAuthor;
@@ -354,6 +454,24 @@ public with sharing class IdeasController {
 
         public IdeaWrapper() {
             this.comments = new List<CommentWrapper>();
+        }
+    }
+    /**
+     * Retrieves a list of active users from Salesforce
+     * @return List<User> List of active users with basic information
+     */
+    @AuraEnabled(cacheable=true)
+    public static List<User> getUsers() {
+        try {
+            return [
+                SELECT Id, Name, SmallPhotoUrl, Department, Title
+                FROM User
+                WHERE IsActive = true
+                ORDER BY Name
+                LIMIT 100
+            ];
+        } catch (Exception e) {
+            throw new AuraHandledException('Error retrieving users: ' + e.getMessage());
         }
     }
 

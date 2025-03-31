@@ -5,7 +5,12 @@ import getIdeas from "@salesforce/apex/IdeasController.getIdeas"
 import getComments from "@salesforce/apex/IdeasController.getComments"
 import getStatusOptions from "@salesforce/apex/IdeasController.getStatusOptions"
 import getCategoryOptions from "@salesforce/apex/IdeasController.getCategoryOptions"
+import getPriorityOptions from "@salesforce/apex/IdeasController.getPriorityOptions"
 import addComment from "@salesforce/apex/IdeasController.addComment"
+import getUsers from "@salesforce/apex/IdeasController.getUsers"
+import updateIdea from "@salesforce/apex/IdeasController.updateIdea"
+import assignToMe from "@salesforce/apex/IdeasController.assignToMe"
+import Id from "@salesforce/user/Id" // Import current user Id
 
 export default class IdeasAdminDashboard extends LightningElement {
   // Track state variables
@@ -13,11 +18,7 @@ export default class IdeasAdminDashboard extends LightningElement {
   @track filteredIdeas = []
   @track statusOptions = []
   @track categoryOptions = []
-  @track priorityOptions = [
-    { label: "High", value: "high", color: "slds-theme_error" },
-    { label: "Medium", value: "medium", color: "slds-theme_warning" },
-    { label: "Low", value: "low", color: "slds-theme_info" },
-  ]
+  @track priorityOptions = []
 
   @track searchQuery = ""
   @track statusFilter = "All"
@@ -29,6 +30,7 @@ export default class IdeasAdminDashboard extends LightningElement {
   @track isDetailModalOpen = false
   @track isResponseModalOpen = false
   @track responseText = ""
+  @track modalRefreshCounter = 0
 
   @track isLoading = true
   @track error
@@ -68,6 +70,30 @@ export default class IdeasAdminDashboard extends LightningElement {
     "header",
   ]
 
+  // Add these properties to track the dropdown state
+  @track searchTerm = ""
+  @track filteredUserOptions = []
+  @track isUserSearchOpen = false
+  @track noSearchResults = false
+
+  // Add this property to track state
+  @track userOptions = []
+  @track selectedUserId = ""
+  @track tempSelectedUserId = null
+
+  // Store current user Id
+  currentUserId = Id
+
+  // Add these tracked properties for statistics
+  @track statsData = {
+    totalIdeas: 0,
+    pendingResponse: 0,
+    implementationRate: 0,
+    totalTrend: '+0% from last month',       // Replace with real logic or keep as placeholder
+    pendingTrend: '-0% from last week',      // Replace with real logic or keep as placeholder
+    implementationTrend: '+0% from last quarter' // Replace with real logic or keep as placeholder
+  };
+
   // Wire methods to fetch data
   @wire(getIdeas)
   wiredIdeas(result) {
@@ -80,14 +106,6 @@ export default class IdeasAdminDashboard extends LightningElement {
 
       // Add priority field (not in standard Idea object)
       this.ideas = this.ideas.map((idea) => {
-        // Assign priority based on points (just for demo)
-        let priority = "low"
-        if (idea.points > 30) {
-          priority = "high"
-        } else if (idea.points > 15) {
-          priority = "medium"
-        }
-
         // Add tags array (not in standard Idea object)
         const tags = idea.category ? idea.category.split(";") : []
 
@@ -99,7 +117,6 @@ export default class IdeasAdminDashboard extends LightningElement {
 
         return {
           ...idea,
-          priority,
           tags,
           statusClass,
           description,
@@ -108,6 +125,7 @@ export default class IdeasAdminDashboard extends LightningElement {
 
       this.applyFilters()
       this.calculateAnalytics()
+      this.calculateStatistics()
       this.isLoading = false
     } else if (result.error) {
       this.error = result.error
@@ -135,6 +153,31 @@ export default class IdeasAdminDashboard extends LightningElement {
       )
     } else if (error) {
       this.showToast("Error", "Error loading category options: " + error.body.message, "error")
+    }
+  }
+
+  @wire(getPriorityOptions)
+  wiredPriorityOptions({ error, data }) {
+    if (data) {
+      // Add "All" option and format for combobox
+      this.priorityOptions = [{ label: "All", value: "All" }].concat(data)
+    } else if (error) {
+      this.showToast("Error", "Error loading priority options: " + error.body.message, "error")
+    }
+  }
+
+  // Add this wire method after the other wire methods
+  @wire(getUsers)
+  wiredUsers({ error, data }) {
+    if (data) {
+      this.userOptions = data.map((user) => ({
+        label: user.Name,
+        value: user.Id,
+        photoUrl: user.SmallPhotoUrl,
+        department: user.Department || "Not Specified",
+      }))
+    } else if (error) {
+      this.showToast("Error", "Error loading users: " + error.body.message, "error")
     }
   }
 
@@ -181,70 +224,236 @@ export default class IdeasAdminDashboard extends LightningElement {
 
   handleStatusChange(event) {
     const ideaId = event.currentTarget.dataset.id
-    const newStatus = event.detail.value
+    const newStatus = event.detail.value ? event.detail.value : event.currentTarget.value
 
-    // In a real implementation, you would call an Apex method to update the status
-    // For this demo, we'll just update the local state
-    this.ideas = this.ideas.map((idea) => {
-      if (idea.id === ideaId) {
-        return {
-          ...idea,
-          status: newStatus,
-          statusClass: this.getStatusClass(newStatus),
-        }
-      }
-      return idea
-    })
+    this.isLoading = true
 
-    this.applyFilters()
-    this.showToast("Success", "Status updated successfully", "success")
+    // Call Apex method to update the status
+    updateIdea({ ideaId, fieldName: "status", newValue: newStatus })
+      .then(() => {
+        // Update local state
+        this.ideas = this.ideas.map((idea) => {
+          if (idea.id === ideaId) {
+            return {
+              ...idea,
+              status: newStatus,
+              statusClass: this.getStatusClass(newStatus),
+            }
+          }
+          return idea
+        })
+
+        this.applyFilters()
+        this.showToast("Success", "Status updated successfully", "success")
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error updating status: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
   handlePriorityChange(event) {
     const ideaId = event.currentTarget.dataset.id
-    const newPriority = event.detail.value
 
-    // In a real implementation, you would call an Apex method to update the priority
-    // For this demo, we'll just update the local state
-    this.ideas = this.ideas.map((idea) => {
-      if (idea.id === ideaId) {
-        return { ...idea, priority: newPriority }
-      }
-      return idea
-    })
+    const newPriority = event.detail.value ? event.detail.value : event.currentTarget.value
 
-    this.applyFilters()
-    this.showToast("Success", "Priority updated successfully", "success")
+    this.isLoading = true
+
+    // Call Apex method to update the priority
+    updateIdea({ ideaId, fieldName: "priority", newValue: newPriority })
+      .then(() => {
+        // Update local state
+        this.ideas = this.ideas.map((idea) => {
+          if (idea.id === ideaId) {
+            return { ...idea, priority: newPriority }
+          }
+          return idea
+        })
+
+        this.applyFilters()
+        this.showToast("Success", "Priority updated successfully", "success")
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error updating priority: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
-  handleAssignmentChange(event) {
+  handleCategoryChange(event) {
     const ideaId = event.currentTarget.dataset.id
-    const staffMemberId = event.detail.value
+    const newCategory = event.detail.value ? event.detail.value : event.currentTarget.value
 
-    // In a real implementation, you would call an Apex method to update the assignment
-    // For this demo, we'll just update the local state
-    this.ideas = this.ideas.map((idea) => {
-      if (idea.id === ideaId) {
-        // Mock staff member data
-        const staffMember = staffMemberId
-          ? {
-              id: staffMemberId,
-              name: "Jane Wilson",
-              email: "jane.wilson@example.com",
-              avatar: "/resource/UserPhotos/jane_wilson.jpg",
-              department: "Product Management",
-            }
-          : undefined
+    this.isLoading = true
 
-        return { ...idea, assignedTo: staffMember }
-      }
-      return idea
-    })
+    // Call Apex method to update the category
+    updateIdea({ ideaId, fieldName: "category", newValue: newCategory })
+      .then(() => {
+        // Update local state
+        this.ideas = this.ideas.map((idea) => {
+          if (idea.id === ideaId) {
+            return { ...idea, category: newCategory }
+          }
+          return idea
+        })
 
-    this.applyFilters()
-    this.showToast("Success", "Assignment updated successfully", "success")
+        this.applyFilters()
+        this.showToast("Success", "Category updated successfully", "success")
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error updating category: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
+
+  // Add these methods for the searchable dropdown
+  handleUserSearch(event) {
+    this.searchTerm = event.target.value
+
+    if (this.searchTerm.length > 0) {
+      this.isUserSearchOpen = true
+      this.isLoading = true
+
+      // Filter users based on search term
+      this.filteredUserOptions = this.userOptions.filter((user) =>
+        user.label.toLowerCase().includes(this.searchTerm.toLowerCase()),
+      )
+
+      this.noSearchResults = this.filteredUserOptions.length === 0
+      this.isLoading = false
+    } else {
+      // If search is empty, show all users (limited to first 5)
+      this.filteredUserOptions = this.userOptions.slice(0, 5)
+      this.noSearchResults = false
+    }
+  }
+
+  handleUserSearchFocus() {
+    // Show dropdown when input is focused
+    this.isUserSearchOpen = true
+
+    // If no search term, show first 5 users
+    if (!this.searchTerm) {
+      this.filteredUserOptions = this.userOptions.slice(0, 5)
+    }
+  }
+
+  handleUserSearchBlur() {
+    // Use setTimeout to allow click events to fire before closing dropdown
+    setTimeout(() => {
+      this.isUserSearchOpen = false
+    }, 300)
+  }
+
+  handleUserSelect(event) {
+    const userId = event.currentTarget.dataset.id
+    const selectedUser = this.userOptions.find((user) => user.value === userId)
+
+    if (selectedUser) {
+      this.searchTerm = ''
+      this.isUserSearchOpen = false
+
+      // Update the assignment
+      this.updateAssignment(this.selectedIdea.id, userId, selectedUser)
+
+    }
+  }
+
+  // Helper method to update assignment
+  updateAssignment(ideaId, userId, selectedUser) {
+    this.isLoading = true
+
+    // Call Apex method to update the assignment
+    updateIdea({ ideaId, fieldName: "assignedto", newValue: userId || "" })
+      .then(() => {
+        // Update the global ideas list.
+        this.ideas = this.ideas.map((idea) => {
+          if (idea.id === ideaId) {
+            const updatedIdea = {
+              ...idea,
+              assignedTo: selectedUser ? selectedUser.label : null,
+              assignedToPhotoUrl: selectedUser ? selectedUser.photoUrl : null,
+            };
+            // If this idea is currently shown in the modal, update it.
+            if (this.selectedIdea && this.selectedIdea.id === ideaId) {
+              this.selectedIdea = { ...updatedIdea };
+
+            }
+            return updatedIdea;
+          }
+          return idea;
+        });
+        this.modalRefreshCounter++;
+        this.applyFilters();
+        this.showToast("Success", "Assignment updated successfully", "success");
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error updating assignment: " + error.body.message, "error");
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+
+
+  }
+  // Update the handleRemoveAssignment method
+  // handleRemoveAssignment(event) {
+  //   const ideaId = event.currentTarget.dataset.id
+
+  //   // Clear the search term
+  //   this.searchTerm = ""
+
+  //   // Update assignment with null user
+  //   this.updateAssignment(ideaId, null, null)
+  // }
+
+  // Update the handleAssignToMe method
+  handleAssignToMe(event) {
+    const ideaId = event.currentTarget.dataset.id
+
+    this.isLoading = true
+
+    // Call Apex method to assign to current user
+    assignToMe({ ideaId })
+      .then(() => {
+        // Find the current user from our options
+        const currentUser = this.userOptions.find((user) => user.value === this.currentUserId)
+
+        if (currentUser) {
+          // Update the search term if this is the selected idea
+          if (this.selectedIdea && this.selectedIdea.id === ideaId) {
+            this.searchTerm = currentUser.label
+          }
+
+          // Update local state
+          this.ideas = this.ideas.map((idea) => {
+            if (idea.id === ideaId) {
+              return {
+                ...idea,
+                assignedTo: currentUser.label,
+                assignedToPhotoUrl: currentUser.photoUrl,
+              }
+            }
+            return idea
+          })
+
+          this.applyFilters()
+          this.showToast("Success", "Idea assigned to you successfully", "success")
+        }
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error assigning idea: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
+  }
   handleOpenResponseModal(event) {
     const ideaId = event.currentTarget.dataset.id
     if (ideaId && !this.selectedIdea) {
@@ -289,6 +498,7 @@ export default class IdeasAdminDashboard extends LightningElement {
   handleCloseModal() {
     this.isDetailModalOpen = false
     this.isResponseModalOpen = false
+    this.searchTerm = "" // Clear the search term when closing the modal  
     this.selectedIdea = null // Also reset the selected idea to fully close the modal
   }
 
@@ -296,6 +506,7 @@ export default class IdeasAdminDashboard extends LightningElement {
     this.isLoading = true
     refreshApex(this.wiredIdeasResult)
       .then(() => {
+        this.calculateStatistics()
         this.showToast("Success", "Data refreshed successfully", "success")
       })
       .catch((error) => {
@@ -330,10 +541,70 @@ export default class IdeasAdminDashboard extends LightningElement {
 
   handleRemoveAssignment(event) {
     const ideaId = event.currentTarget.dataset.id
-    this.handleAssignmentChange({
-      currentTarget: { dataset: { id: ideaId } },
-      detail: { value: null },
-    })
+
+    this.isLoading = true
+
+    // Call Apex method to remove assignment
+    updateIdea({ ideaId, fieldName: "assignedto", newValue: "" })
+      .then(() => {
+        // Update local state
+        this.ideas = this.ideas.map((idea) => {
+          if (idea.id === ideaId) {
+            return {
+              ...idea,
+              assignedTo: null,
+              assignedToPhotoUrl: null,
+            }
+          }
+          return idea
+        })
+        this.selectedIdea = { ...this.selectedIdea, assignedTo: null, assignedToPhotoUrl: null }
+        this.applyFilters()
+        this.showToast("Success", "Assignment removed successfully", "success")
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error removing assignment: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
+  }
+
+  // Update handleAssignToMe to use the Apex method
+  handleAssignToMe(event) {
+    const ideaId = event.currentTarget.dataset.id
+
+    this.isLoading = true
+
+    // Call Apex method to assign to current user
+    assignToMe({ ideaId })
+      .then(() => {
+        // Find the current user from our options
+        const currentUser = this.userOptions.find((user) => user.value === this.currentUserId)
+
+        if (currentUser) {
+          // Update local state
+          this.ideas = this.ideas.map((idea) => {
+            if (idea.id === ideaId) {
+              return {
+                ...idea,
+                assignedTo: currentUser.label,
+                assignedToPhotoUrl: currentUser.photoUrl,
+              }
+            }
+            return idea
+          })
+
+          this.applyFilters()
+          this.showToast("Success", "Idea assigned to you successfully", "success")
+        }
+      })
+      .catch((error) => {
+        this.showToast("Error", "Error assigning idea: " + error.body.message, "error")
+      })
+      .finally(() => {
+        this.isLoading = false
+      })
   }
 
   // Helper methods
@@ -375,6 +646,7 @@ export default class IdeasAdminDashboard extends LightningElement {
       })
   }
 
+  // Update the applyFilters method to correctly filter assigned and unassigned ideas
   applyFilters() {
     if (!this.ideas) return
 
@@ -408,15 +680,26 @@ export default class IdeasAdminDashboard extends LightningElement {
 
     // Apply tab filter
     if (this.activeTab === "assigned") {
-      filtered = filtered.filter((idea) => idea.assignedTo)
+      // Only show ideas that have a non-empty assignedTo value
+      filtered = filtered.filter((idea) => idea.assignedTo && idea.assignedTo.trim() !== "")
     } else if (this.activeTab === "unassigned") {
-      filtered = filtered.filter((idea) => !idea.assignedTo)
+      // Only show ideas that have no assignedTo value or an empty string
+      filtered = filtered.filter((idea) => !idea.assignedTo || idea.assignedTo.trim() === "")
     } else if (this.activeTab === "scheduled") {
       filtered = filtered.filter((idea) => idea.status === "Scheduled")
     } else if (this.activeTab === "backlog") {
       filtered = filtered.filter((idea) => idea.status === "Backlog")
     } else if (this.activeTab === "new") {
       filtered = filtered.filter((idea) => idea.status === "New")
+    } else if (this.activeTab === "mywork") {
+      // Find the current user's name
+      const currentUser = this.userOptions.find((user) => user.value === this.currentUserId)
+      const currentUserName = currentUser ? currentUser.label : null
+
+      // Only show ideas assigned to the current user by exact name match
+      filtered = filtered.filter(
+        (idea) => idea.assignedTo && currentUserName && idea.assignedTo.trim() === currentUserName.trim(),
+      )
     }
 
     // Calculate pagination
@@ -561,11 +844,11 @@ export default class IdeasAdminDashboard extends LightningElement {
   }
 
   get completedIdeasCount() {
-    return this.ideas.filter((idea) => idea.status === "Completed").length
+    return this.ideas.filter((idea) => idea.status === "Completed/Archived/Released").length
   }
 
   get highPriorityIdeasCount() {
-    return this.ideas.filter((idea) => idea.priority === "high").length
+    return this.ideas.filter((idea) => idea.priority === "High").length
   }
 
   get totalCommentsCount() {
@@ -589,20 +872,77 @@ export default class IdeasAdminDashboard extends LightningElement {
   }
 
   get detailModalClass() {
-    return this.isDetailModalOpen ? "slds-modal slds-fade-in-open" : "slds-modal"
+    return this.isDetailModalOpen ? "slds-modal slds-fade-in-open slds-modal_medium" : "slds-modal"
   }
 
-  get staffOptions() {
-    // Mock staff options for demo
-    return [
-      { label: "Jane Wilson", value: "staff-5" },
-      { label: "Michael Brown", value: "staff-6" },
-      { label: "Sarah Davis", value: "staff-7" },
-    ]
+  get responseModalClass() {
+    return this.isResponseModalOpen ? "slds-modal slds-fade-in-open slds-modal_medium" : "slds-modal"
   }
 
   get disableResponseButton() {
     return !this.responseText.trim()
+  }
+
+  // Update the assignedCount and unassignedCount getters to use the same logic
+  get assignedCount() {
+    return this.ideas.filter((idea) => idea.assignedTo && idea.assignedTo.trim() !== "").length
+  }
+
+  get unassignedCount() {
+    return this.ideas.filter((idea) => !idea.assignedTo || idea.assignedTo.trim() === "").length
+  }
+
+  // Update the myWorkCount getter to use the same logic
+  get myWorkCount() {
+    // Find the current user's name
+    const currentUser = this.userOptions.find((user) => user.value === this.currentUserId)
+    const currentUserName = currentUser ? currentUser.label : null
+
+    // Count ideas assigned to the current user by exact name match
+    return this.ideas.filter(
+      (idea) => idea.assignedTo && currentUserName && idea.assignedTo.trim() === currentUserName.trim(),
+    ).length
+  }
+  get comboboxClass() {
+    return this.isUserSearchOpen
+      ? "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"
+      : "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click"
+  }
+
+  calculateStatistics() {
+    // Calculate total ideas
+    const totalIdeas = this.ideas.length;
+
+    // Calculate pending response (e.g. status = New or Under Review)
+    const pendingResponse = this.ideas.filter(
+        idea => idea.status === 'New'
+    ).length;
+
+    // Calculate how many are "implemented" or "completed"
+    const implementedIdeas = this.ideas.filter(
+        idea => idea.status === 'Completed/Archived/Released'
+    ).length;
+
+    // Calculate implementation rate as a percentage
+    const implementationRate = totalIdeas > 0 
+        ? Math.round((implementedIdeas / totalIdeas) * 100)
+        : 0;
+    
+    // Update the reactive statsData object
+    this.statsData = {
+        totalIdeas,
+        pendingResponse,
+        implementationRate,
+        // You can dynamically compute "trend" or keep them placeholders
+        totalTrend: '+12% from last month',
+        pendingTrend: '-3% from last week',
+        implementationTrend: '+5% from last quarter'
+    };
+}
+
+  // Remove these getters as they're now part of statsData
+  get pendingResponseCount() {
+    return this.statsData.pendingResponse
   }
 }
 

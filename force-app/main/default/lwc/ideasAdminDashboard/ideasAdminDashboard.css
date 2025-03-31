@@ -1,14 +1,14 @@
-.slds-badge.high {
+.slds-badge.High {
     background-color: #c23934;
     color: white;
   }
   
-  .slds-badge.medium {
+  .slds-badge.Medium {
     background-color: #ffb75d;
     color: #514f4d;
   }
   
-  .slds-badge.low {
+  .slds-badge.Low {
     background-color: #4bca81;
     color: white;
   }
@@ -98,4 +98,44 @@
     word-wrap: break-word;
   }
   
+  /* Add styles for the lookup dropdown */
+  .slds-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .slds-dropdown.slds-dropdown_fluid {
+    min-width: 100%;
+  }
+  
+  .slds-listbox__option {
+    cursor: pointer;
+  }
+  
+  .slds-listbox__option:hover {
+    background-color: #f3f2f2;
+  }
+  
+  /* Add these styles at the end of the file to ensure they override the default SLDS styles */
+  
+  /* Increase modal width - using !important to override SLDS defaults */
+  .wide-modal .slds-modal__container {
+    max-width: 90% !important;
+    width: 90% !important;
+  }
+  
+  /* Make sure the content has proper spacing */
+  .wide-modal .slds-modal__content {
+    padding: 1.5rem 2rem !important;
+  }
+  
+  /* Ensure the modal header and footer match the wider container */
+  .wide-modal .slds-modal__header,
+  .wide-modal .slds-modal__footer {
+    width: 100% !important;
+  }
+  
+  .selection-section{
+    cursor: pointer;
+  }
   

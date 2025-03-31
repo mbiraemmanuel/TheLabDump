@@ -1,10 +1,10 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 6527,
+    "serverMaxRevisionCounter": 6826,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 6390,
+            "serverRevisionCounter": 6635,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -610,7 +610,7 @@
         },
         "Profile__v3.0 Default Voicebrook User": {
             "memberType": "Profile",
-            "serverRevisionCounter": 6388,
+            "serverRevisionCounter": 6622,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -958,67 +958,67 @@
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2mAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6512,
+            "serverRevisionCounter": 6605,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a34000000DizOAAS_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6513,
+            "serverRevisionCounter": 6606,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000DhlcAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6514,
+            "serverRevisionCounter": 6607,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000DhlhAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6515,
+            "serverRevisionCounter": 6608,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2rAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6516,
+            "serverRevisionCounter": 6609,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.InternalIdeasIdeaRecordType": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6517,
+            "serverRevisionCounter": 6610,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di36AAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6518,
+            "serverRevisionCounter": 6611,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2wAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6519,
+            "serverRevisionCounter": 6612,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di2hAAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6520,
+            "serverRevisionCounter": 6613,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "RecordType__Idea.Record_type_for_community_09a80000000Di31AAC_entity_Idea": {
             "memberType": "RecordType",
-            "serverRevisionCounter": 6521,
+            "serverRevisionCounter": 6614,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "StandardValueSet__IdeaMultiCategory": {
             "memberType": "StandardValueSet",
-            "serverRevisionCounter": 4677,
+            "serverRevisionCounter": 6552,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1228,8 +1228,8 @@
         },
         "ApexClass__IdeasController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 6333,
-            "lastRetrievedFromServer": 6333,
+            "serverRevisionCounter": 6636,
+            "lastRetrievedFromServer": 6636,
             "isNameObsolete": false
         },
         "CustomField__Knowledge__kav.Role__c": {
@@ -1276,32 +1276,32 @@
         },
         "LightningComponentBundle__ideasAdminDashboard": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 6523,
-            "lastRetrievedFromServer": 6523,
+            "serverRevisionCounter": 6822,
+            "lastRetrievedFromServer": 6822,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6524,
-            "lastRetrievedFromServer": 6524,
+            "serverRevisionCounter": 6823,
+            "lastRetrievedFromServer": 6823,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6525,
-            "lastRetrievedFromServer": 6525,
+            "serverRevisionCounter": 6824,
+            "lastRetrievedFromServer": 6824,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6526,
-            "lastRetrievedFromServer": 6526,
+            "serverRevisionCounter": 6825,
+            "lastRetrievedFromServer": 6825,
             "isNameObsolete": false
         },
         "LightningComponentResource__ideasAdminDashboard/ideasAdminDashboard.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6527,
-            "lastRetrievedFromServer": 6527,
+            "serverRevisionCounter": 6826,
+            "lastRetrievedFromServer": 6826,
             "isNameObsolete": false
         },
         "FlexiPage__Ideas_Admin_Dashboard": {
@@ -1319,6 +1319,102 @@
         "StandardValueSet__IdeaStatus": {
             "memberType": "StandardValueSet",
             "serverRevisionCounter": 6522,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__lookup": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 6560,
+            "lastRetrievedFromServer": 6560,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookup/lookup.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6561,
+            "lastRetrievedFromServer": 6561,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookup/lookup.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6562,
+            "lastRetrievedFromServer": 6562,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookup/lookup.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6563,
+            "lastRetrievedFromServer": 6563,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookup/lookup.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6564,
+            "lastRetrievedFromServer": 6564,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__lookupContainer": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 6565,
+            "lastRetrievedFromServer": 6565,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookupContainer/lookupContainer.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6566,
+            "lastRetrievedFromServer": 6566,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookupContainer/lookupContainer.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6567,
+            "lastRetrievedFromServer": 6567,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__lookupContainer/lookupContainer.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 6568,
+            "lastRetrievedFromServer": 6568,
+            "isNameObsolete": false
+        },
+        "CustomField__Idea.Priority__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 6604,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Layout__Idea-Customer Community Layout": {
+            "memberType": "Layout",
+            "serverRevisionCounter": 6615,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Layout__Idea-Idea Layout": {
+            "memberType": "Layout",
+            "serverRevisionCounter": 6616,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ReportType__IdeaExchange": {
+            "memberType": "ReportType",
+            "serverRevisionCounter": 6617,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ReportType__IdeasVotes": {
+            "memberType": "ReportType",
+            "serverRevisionCounter": 6618,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ReportType__IdeasVotesAccounts": {
+            "memberType": "ReportType",
+            "serverRevisionCounter": 6619,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ReportType__Ideas": {
+            "memberType": "ReportType",
+            "serverRevisionCounter": 6620,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         }
