@@ -1,14 +1,44 @@
 public with sharing class VBU_KnowledgeController {
+    /**
+     * Get available roles for filtering articles
+     * @return List<String> List of available roles
+     */
     @AuraEnabled(cacheable=true)
-    public static List<CategoryWrapper> getCollectionData() {
+    public static List<String> getRoles() {
         try {
-            List<CategoryWrapper> categories = new List<CategoryWrapper>();
-            
+            // Query distinct roles from Knowledge articles
+            Set<String> roleSet = new Set<String>();
+        
+            // Query articles with 'All About Your Role' collection and get unique roles
+            for(Knowledge__kav article : [
+                SELECT Role__c 
+                FROM Knowledge__kav 
+                WHERE Collection__c = 'All About Your Role' 
+                AND Role__c != null 
+                AND PublishStatus = 'Online'
+            ]) {
+                if(String.isNotBlank(article.Role__c)) {
+                    roleSet.add(article.Role__c);
+                }
+            }
+        
+            // Convert set to list and sort
+            List<String> roles = new List<String>(roleSet);
+            roles.sort();
+        
+            return roles;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error retrieving roles: ' + e.getMessage());
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<CollectionWrapper> getCollectionData() {
+        try {
             // Query for Knowledge Articles
-            // NOTE: Add Article__c (or the correct field) here
             List<Knowledge__kav> articles = [
                 SELECT Id, Title, UrlName, Summary, Collection__c, Collection_Category__c,
-                Article__c
+                Article__c, Role__c
                 FROM Knowledge__kav 
                 WHERE PublishStatus = 'Online' 
                 AND Language = 'en_US'
@@ -17,54 +47,103 @@ public with sharing class VBU_KnowledgeController {
 
             // Group articles by Collection and Collection Category
             Map<String, Map<String, List<ArticleWrapper>>> collectionMap = new Map<String, Map<String, List<ArticleWrapper>>>();
-            
+        
             for(Knowledge__kav article : articles) {
                 String collection = article.Collection__c;
                 String category = article.Collection_Category__c;
-                
+            
+                if(String.isBlank(collection)) continue;
+                if(String.isBlank(category)) category = 'General';
+            
                 if(!collectionMap.containsKey(collection)) {
                     collectionMap.put(collection, new Map<String, List<ArticleWrapper>>());
                 }
                 if(!collectionMap.get(collection).containsKey(category)) {
                     collectionMap.get(collection).put(category, new List<ArticleWrapper>());
                 }
-                
+            
                 ArticleWrapper wrapper = new ArticleWrapper();
                 wrapper.id = article.Id;
                 wrapper.title = article.Title;
                 wrapper.description = article.Summary;
-                // Save the full article body
                 wrapper.body = article.Article__c;
-                
+                wrapper.role = article.Role__c;
+            
                 collectionMap.get(collection).get(category).add(wrapper);
             }
-            
-            // Create category wrappers
+        
+            // Build the collection wrappers
+            List<CollectionWrapper> collections = new List<CollectionWrapper>();
+        
             for(String collectionName : collectionMap.keySet()) {
-                CategoryWrapper collection = new CategoryWrapper();
-                // Generate a pseudo-ID for the collection
-                collection.id = EncodingUtil.base64Encode(Crypto.generateAesKey(128)).substring(0, 15);
-                collection.name = collectionName;
-                collection.subcategories = new List<SubcategoryWrapper>();
-                
-                for(String categoryName : collectionMap.get(collectionName).keySet()) {
-                    SubcategoryWrapper subcategory = new SubcategoryWrapper();
-                    // Generate a pseudo-ID for the subcategory
-                    subcategory.id = EncodingUtil.base64Encode(Crypto.generateAesKey(128)).substring(0, 15);
-                    subcategory.name = categoryName;
-                    subcategory.articles = collectionMap.get(collectionName).get(categoryName);
-                    collection.subcategories.add(subcategory);
-                }
-                
-                categories.add(collection);
-            }
+                CollectionWrapper collWrapper = new CollectionWrapper();
+                collWrapper.id = collectionName.replaceAll('\\s+', '_');
+                collWrapper.name = collectionName;
+                collWrapper.subcategories = new List<SubcategoryWrapper>();
             
-            return categories;
-        } catch(Exception e) {
-            throw new AuraHandledException('Error fetching knowledge articles: ' + e.getMessage());
+                for(String categoryName : collectionMap.get(collectionName).keySet()) {
+                    SubcategoryWrapper subWrapper = new SubcategoryWrapper();
+                    subWrapper.id = (collectionName + '_' + categoryName).replaceAll('\\s+', '_');
+                    subWrapper.name = categoryName;
+                    subWrapper.articles = collectionMap.get(collectionName).get(categoryName);
+                
+                    collWrapper.subcategories.add(subWrapper);
+                }
+            
+                collections.add(collWrapper);
+            }
+        
+            return collections;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error retrieving collection data: ' + e.getMessage());
         }
     }
     
+    public class CategoryWrapper {
+        @AuraEnabled
+        public String collection {get;set;}
+        @AuraEnabled
+        public String category {get;set;}
+        @AuraEnabled
+        public List<ArticleWrapper> articles {get;set;}
+    }
+    
+    public class ArticleWrapper {
+        @AuraEnabled public String id {get;set;}
+        @AuraEnabled public String title {get;set;}
+        @AuraEnabled public String description {get;set;}
+        @AuraEnabled public String body {get;set;}  // New field for the full article body
+        @AuraEnabled public String role {get;set;} // Add Role__c field with a simpler name
+    }
+    
+    public class CollectionWrapper {
+        @AuraEnabled public String id {get;set;}
+        @AuraEnabled public String name {get;set;}
+        @AuraEnabled public List<SubcategoryWrapper> subcategories {get;set;}
+    }
+
+    public class SubcategoryWrapper {
+        @AuraEnabled public String id {get;set;}
+        @AuraEnabled public String name {get;set;}
+        @AuraEnabled public List<ArticleWrapper> articles {get;set;}
+    }
+    
+    private static List<CategoryWrapper> buildCategoryWrappers(Map<String, Map<String, List<ArticleWrapper>>> collectionMap) {
+        List<CategoryWrapper> categories = new List<CategoryWrapper>();
+        
+        for(String collection : collectionMap.keySet()) {
+            for(String category : collectionMap.get(collection).keySet()) {
+                CategoryWrapper wrapper = new CategoryWrapper();
+                wrapper.collection = collection;
+                wrapper.category = category;
+                wrapper.articles = collectionMap.get(collection).get(category);
+                categories.add(wrapper);
+            }
+        }
+        
+        return categories;
+    }
+
     @AuraEnabled(cacheable=true)
     public static Knowledge__kav getArticle(String UrlName, String recordId){
         try {
@@ -73,7 +152,7 @@ public with sharing class VBU_KnowledgeController {
                 return [
                     SELECT Id, Title, Media_Id__c, Media_Type__c, Summary__c, Question__c, CreatedDate,
                            Collection__c, Collection_Category__c, ArticleCaseAttachCount, ArticleTotalViewCount,
-                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, 
+                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, Role__c,
                            Do_Not_Show_Collection_On_Community__c, Do_Not_Show_Collection_On_Public_KB__c, 
                            Navigation_Title__c, Expand_Navigation__c
                     FROM Knowledge__kav
@@ -85,7 +164,7 @@ public with sharing class VBU_KnowledgeController {
                 return [
                     SELECT Id, Title, Media_Id__c, Media_Type__c, Summary__c, Question__c, CreatedDate,
                            Collection__c, Collection_Category__c, ArticleCaseAttachCount, ArticleTotalViewCount,
-                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, 
+                           KnowledgeArticleId, Article__c, Step_by_Step__c, UrlName, Role__c,
                            Do_Not_Show_Collection_On_Community__c, Do_Not_Show_Collection_On_Public_KB__c, 
                            Navigation_Title__c, Expand_Navigation__c
                     FROM Knowledge__kav
@@ -101,24 +180,5 @@ public with sharing class VBU_KnowledgeController {
             return null;
         }
     }
-
-    
-    public class CategoryWrapper {
-        @AuraEnabled public String id;
-        @AuraEnabled public String name;
-        @AuraEnabled public List<SubcategoryWrapper> subcategories;
-    }
-    
-    public class SubcategoryWrapper {
-        @AuraEnabled public String id;
-        @AuraEnabled public String name;
-        @AuraEnabled public List<ArticleWrapper> articles;
-    }
-    
-    public class ArticleWrapper {
-        @AuraEnabled public String id;
-        @AuraEnabled public String title;
-        @AuraEnabled public String description;
-        @AuraEnabled public String body;  // New field for the full article body
-    }
 }
+

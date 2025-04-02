@@ -1,0 +1,44 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "0050h00000J4x90AAB",
+      "createdByName": "Emmanuel Maina",
+      "createdDate": "2024-07-08T18:42:42.000Z",
+      "fileName": "EmbeddedServiceConfig/PRO_Chat.EmbeddedServiceConfig",
+      "fullName": "PRO_Chat",
+      "id": "04IV1000000bq65MAA",
+      "lastModifiedById": "0050h00000J4x90AAB",
+      "lastModifiedByName": "Emmanuel Maina",
+      "lastModifiedDate": "2024-07-08T18:43:51.000Z",
+      "manageableState": "unmanaged",
+      "type": "EmbeddedServiceConfig"
+    },
+    {
+      "createdById": "0050h00000J4x90AAB",
+      "createdByName": "Emmanuel Maina",
+      "createdDate": "2024-07-17T17:39:03.000Z",
+      "fileName": "EmbeddedServiceConfig/Customer_Success_Community.EmbeddedServiceConfig",
+      "fullName": "Customer_Success_Community",
+      "id": "04IV1000000ehSrMAI",
+      "lastModifiedById": "0050h00000J4x90AAB",
+      "lastModifiedByName": "Emmanuel Maina",
+      "lastModifiedDate": "2024-07-17T17:39:03.000Z",
+      "manageableState": "unmanaged",
+      "type": "EmbeddedServiceConfig"
+    },
+    {
+      "createdById": "0050h00000J4x90AAB",
+      "createdByName": "Emmanuel Maina",
+      "createdDate": "2024-02-12T22:19:46.000Z",
+      "fileName": "EmbeddedServiceConfig/Web_Chat.EmbeddedServiceConfig",
+      "fullName": "Web_Chat",
+      "id": "04IV10000001Z29MAE",
+      "lastModifiedById": "0050h00000J4x90AAB",
+      "lastModifiedByName": "Emmanuel Maina",
+      "lastModifiedDate": "2024-02-16T19:46:54.000Z",
+      "manageableState": "unmanaged",
+      "type": "EmbeddedServiceConfig"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 6826,
+    "serverMaxRevisionCounter": 7125,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 6635,
+            "serverRevisionCounter": 7083,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -352,7 +352,7 @@
         },
         "NavigationMenu__Voicebrook_University_Main_Navigation": {
             "memberType": "NavigationMenu",
-            "serverRevisionCounter": 6352,
+            "serverRevisionCounter": 6827,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -370,7 +370,7 @@
         },
         "StaticResource__SNA_ssAbl_sf_default_cdn_Voicebrook_University1": {
             "memberType": "StaticResource",
-            "serverRevisionCounter": 6085,
+            "serverRevisionCounter": 7085,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -550,8 +550,8 @@
         },
         "ApexClass__VBU_KnowledgeController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 5695,
-            "lastRetrievedFromServer": 5695,
+            "serverRevisionCounter": 7084,
+            "lastRetrievedFromServer": 7084,
             "isNameObsolete": false
         },
         "LightningComponentBundle__vBU_KnowledgeArticleViewer": {
@@ -1060,7 +1060,7 @@
         },
         "SiteDotCom__The_Lab1": {
             "memberType": "SiteDotCom",
-            "serverRevisionCounter": 6367,
+            "serverRevisionCounter": 7115,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1186,32 +1186,32 @@
         },
         "LightningComponentBundle__knowledgeArticleViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 6096,
-            "lastRetrievedFromServer": 6096,
+            "serverRevisionCounter": 7121,
+            "lastRetrievedFromServer": 7121,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6097,
-            "lastRetrievedFromServer": 6097,
+            "serverRevisionCounter": 7122,
+            "lastRetrievedFromServer": 7122,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6098,
-            "lastRetrievedFromServer": 6098,
+            "serverRevisionCounter": 7123,
+            "lastRetrievedFromServer": 7123,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6099,
-            "lastRetrievedFromServer": 6099,
+            "serverRevisionCounter": 7124,
+            "lastRetrievedFromServer": 7124,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 6100,
-            "lastRetrievedFromServer": 6100,
+            "serverRevisionCounter": 7125,
+            "lastRetrievedFromServer": 7125,
             "isNameObsolete": false
         },
         "FlexiPage__Knowledge_Record_Page_2": {
@@ -1228,8 +1228,8 @@
         },
         "ApexClass__IdeasController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 6636,
-            "lastRetrievedFromServer": 6636,
+            "serverRevisionCounter": 6852,
+            "lastRetrievedFromServer": 6852,
             "isNameObsolete": false
         },
         "CustomField__Knowledge__kav.Role__c": {
