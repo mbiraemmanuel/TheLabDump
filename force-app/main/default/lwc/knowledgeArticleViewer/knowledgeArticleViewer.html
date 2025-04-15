@@ -46,9 +46,21 @@
         <div class="slds-col slds-size_12-of-12 slds-medium-size_9-of-12 content-col">
             <div class="content-scroll">
                 <template if:true={activeArticle}>
-                    <!-- Title and Filter on same line -->
+                    <!-- Title and Filter on same line with Back button -->
                     <div class="title-filter-container">
-                        <h1>{activeArticle.Title}</h1>
+                        <div class="left-section">
+                            <!-- Back Button .. talk to deidra about turning this on-->
+                            <!-- <lightning-button 
+                                variant="neutral"
+                                icon-name="utility:back"
+                                icon-position="left"
+                                label="Back"
+                                title="Go back to previous page"
+                                onclick={handleBackButton}
+                                class="back-button slds-m-right_small">
+                            </lightning-button> -->
+                            <h1>{activeArticle.Title}</h1>
+                        </div>
                         <!-- Role Filter Button - Inline with title -->
                         <template if:true={showRoleFilter}>
                             <lightning-button 
@@ -66,9 +78,21 @@
                 </template>
 
                 <template if:false={activeArticle}>
-                    <!-- Title and Filter on same line for empty state -->
+                    <!-- Title and Filter on same line for empty state with Back button -->
                     <div class="title-filter-container">
-                        <h1></h1>
+                        <div class="left-section">
+                            <!-- Back Button -->
+                            <!-- <lightning-button 
+                                variant="neutral"
+                                icon-name="utility:back"
+                                icon-position="left"
+                                label="Back"
+                                title="Go back to previous page"
+                                onclick={handleBackButton}
+                                class="back-button slds-m-right_small">
+                            </lightning-button> -->
+                            <h1></h1>
+                        </div>
                         <!-- Role Filter Button - Inline with title -->
                         <template if:true={showRoleFilter}>
                             <lightning-button 

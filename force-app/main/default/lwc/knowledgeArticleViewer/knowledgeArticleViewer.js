@@ -17,6 +17,9 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   urlName = ""
   roleParam = ""
 
+  // Page reference for navigation
+  @track pageReference
+
   // API properties
   @api activeArticleId
   @api activeCollectionName
@@ -37,6 +40,9 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   @wire(CurrentPageReference)
   getStateParameters(currentPageReference) {
     if (currentPageReference) {
+      // Store the current page reference for back navigation
+      this.pageReference = currentPageReference
+
       this.urlName = currentPageReference.attributes.urlName || ""
 
       // Get role parameter from state
@@ -55,6 +61,12 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   connectedCallback() {
     this.loadCollectionData()
     this.loadRoles()
+  }
+
+  // Handle back button click
+  handleBackButton() {
+    // Use browser history to go back
+    window.history.back()
   }
 
   async loadRoles() {
