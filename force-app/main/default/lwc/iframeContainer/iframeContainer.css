@@ -1,0 +1,11 @@
+.article-content ul {
+    list-style-type: disc;       /* show default bullet point */
+    margin-left: 1rem;          /* indent your bullets if you wish */
+    padding-left: 1rem;         /* or use padding instead */
+}
+
+.article-content ol {
+    list-style-type: decimal;    /* numbered bullets */
+    margin-left: 1rem;
+    padding-left: 1rem;
+}

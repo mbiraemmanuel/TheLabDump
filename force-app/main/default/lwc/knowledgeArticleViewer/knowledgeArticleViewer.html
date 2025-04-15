@@ -45,7 +45,7 @@
         <!-- RIGHT COLUMN -->
         <div class="slds-col slds-size_12-of-12 slds-medium-size_9-of-12 content-col">
             <!-- Role Filter Button - Only show for "All About Your Role" collection -->
-            <template if:true={showRoleFilter}>
+            <!-- <template if:true={showRoleFilter}>
                 <div class="role-filter-button-container">
                     <lightning-button 
                         variant="brand" 
@@ -56,32 +56,14 @@
                         class="filter-button">
                     </lightning-button>
                 </div>
-            </template>
+            </template> -->
 
             <div class="content-scroll">
                 <template if:true={activeArticle}>
                     <h1>{activeArticle.Title}</h1>
                     <p>{activeArticle.description}</p>
-                    <lightning-formatted-rich-text value={activeArticle.Article__c}></lightning-formatted-rich-text>
-                    <!-- Render media if the article has a Media_Type__c -->
-                    <template if:true={showMedia}>
-                        <div class="media">
-                            <template if:true={isPdf}>
-                                <!-- PDF media viewer -->
-                                <iframe src={pdfUrl} style={iframeStyle} frameborder="0"></iframe>
-                            </template>
-                            <template if:true={isVideo}>
-                                <!-- Show any RTE content above the video -->
-                                <lightning-formatted-rich-text
-                                    value={activeArticle.body}></lightning-formatted-rich-text>
-
-                                <!-- Vidyard video viewer (iframe) -->
-                                <iframe src={vidyardUrl} width="700" height="450" frameborder="0"
-                                    allow="autoplay; fullscreen" allowfullscreen>
-                                </iframe>
-                            </template>
-                        </div>
-                    </template>
+                    <c-iframe-container article-html={activeArticle.Article__c} class="article-content"></c-iframe-container>
+                    
                 </template>
 
                 <template if:false={activeArticle}>

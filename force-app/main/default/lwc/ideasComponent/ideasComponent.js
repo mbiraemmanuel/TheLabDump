@@ -39,9 +39,9 @@ export default class IdeasComponent extends LightningElement {
     @track isLoading = true
     @track error
     @track wiredIdeasResult
-    @track showShowFilter = false
-    @track showCategoryFilter = false
-    @track showStatusFilter = false
+    @track showShowFilter = true
+    @track showCategoryFilter = true
+    @track showStatusFilter = true
 
     // New idea form
     @track isNewIdeaModalOpen = false
@@ -66,6 +66,7 @@ export default class IdeasComponent extends LightningElement {
         this.loadCategoryOptions()
         this.loadStatusOptions()
 
+
         // Initialize options with customClass
         this.showOptions = this.showOptions.map((option) => {
             return {
@@ -83,7 +84,7 @@ export default class IdeasComponent extends LightningElement {
 
     }
 
-    @wire(getIdeas)
+    @wire(getIdeas, { zoneId: "$zoneId" })
     wiredIdeas(result) {
         this.wiredIdeasResult = result
         this.isLoading = true
@@ -320,7 +321,7 @@ export default class IdeasComponent extends LightningElement {
                 return refreshApex(this.wiredIdeasResult)
             })
             .catch((error) => {
-                this.showToast("Error", "Error voting: " + error.body.message, "error")
+                this.showToast("Error", error.body.message, "error")
             })
             .finally(() => {
                 this.isLoading = false

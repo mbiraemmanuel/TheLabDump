@@ -17,8 +17,13 @@ export default class IdeasAdminDashboard extends LightningElement {
   @track ideas = []
   @track filteredIdeas = []
   @track statusOptions = []
+  @track statusOptionsWithoutAll = []
+
   @track categoryOptions = []
+  @track categoryOptionsWithoutAll = []
+
   @track priorityOptions = []
+  @track priorityOptionsWithoutAll = []
 
   @track searchQuery = ""
   @track statusFilter = "All"
@@ -30,7 +35,6 @@ export default class IdeasAdminDashboard extends LightningElement {
   @track isDetailModalOpen = false
   @track isResponseModalOpen = false
   @track responseText = ""
-  @track modalRefreshCounter = 0
 
   @track isLoading = true
   @track error
@@ -84,15 +88,12 @@ export default class IdeasAdminDashboard extends LightningElement {
   // Store current user Id
   currentUserId = Id
 
-  // Add these tracked properties for statistics
+  // Add the statsData property to the component
   @track statsData = {
     totalIdeas: 0,
     pendingResponse: 0,
     implementationRate: 0,
-    totalTrend: '+0% from last month',       // Replace with real logic or keep as placeholder
-    pendingTrend: '-0% from last week',      // Replace with real logic or keep as placeholder
-    implementationTrend: '+0% from last quarter' // Replace with real logic or keep as placeholder
-  };
+  }
 
   // Wire methods to fetch data
   @wire(getIdeas)
@@ -106,13 +107,9 @@ export default class IdeasAdminDashboard extends LightningElement {
 
       // Add priority field (not in standard Idea object)
       this.ideas = this.ideas.map((idea) => {
-        // Add tags array (not in standard Idea object)
+
         const tags = idea.category ? idea.category.split(";") : []
-
-        // Add status class
         const statusClass = this.getStatusClass(idea.status)
-
-        // Ensure description is properly formatted for rich text display
         const description = idea.description || ""
 
         return {
@@ -126,6 +123,7 @@ export default class IdeasAdminDashboard extends LightningElement {
       this.applyFilters()
       this.calculateAnalytics()
       this.calculateStatistics()
+
       this.isLoading = false
     } else if (result.error) {
       this.error = result.error
@@ -139,6 +137,7 @@ export default class IdeasAdminDashboard extends LightningElement {
     if (data) {
       // Add "All" option
       this.statusOptions = [{ label: "All", value: "All" }].concat(data)
+      this.statusOptionsWithoutAll = [ ...data ]
     } else if (error) {
       this.showToast("Error", "Error loading status options: " + error.body.message, "error")
     }
@@ -151,6 +150,7 @@ export default class IdeasAdminDashboard extends LightningElement {
       this.categoryOptions = [{ label: "All", value: "All" }].concat(
         data.map((category) => ({ label: category, value: category })),
       )
+      this.categoryOptionsWithoutAll = [ ...data.map((category) => ({ label: category, value: category })) ]
     } else if (error) {
       this.showToast("Error", "Error loading category options: " + error.body.message, "error")
     }
@@ -161,6 +161,8 @@ export default class IdeasAdminDashboard extends LightningElement {
     if (data) {
       // Add "All" option and format for combobox
       this.priorityOptions = [{ label: "All", value: "All" }].concat(data)
+      this.priorityOptionsWithoutAll= [ ...data ]
+
     } else if (error) {
       this.showToast("Error", "Error loading priority options: " + error.body.message, "error")
     }
@@ -224,7 +226,7 @@ export default class IdeasAdminDashboard extends LightningElement {
 
   handleStatusChange(event) {
     const ideaId = event.currentTarget.dataset.id
-    const newStatus = event.detail.value ? event.detail.value : event.currentTarget.value
+    const newStatus = event.detail.value || event.currentTarget.value
 
     this.isLoading = true
 
@@ -256,8 +258,7 @@ export default class IdeasAdminDashboard extends LightningElement {
 
   handlePriorityChange(event) {
     const ideaId = event.currentTarget.dataset.id
-
-    const newPriority = event.detail.value ? event.detail.value : event.currentTarget.value
+    const newPriority = event.detail.value || event.currentTarget.value
 
     this.isLoading = true
 
@@ -282,35 +283,6 @@ export default class IdeasAdminDashboard extends LightningElement {
         this.isLoading = false
       })
   }
-
-  handleCategoryChange(event) {
-    const ideaId = event.currentTarget.dataset.id
-    const newCategory = event.detail.value ? event.detail.value : event.currentTarget.value
-
-    this.isLoading = true
-
-    // Call Apex method to update the category
-    updateIdea({ ideaId, fieldName: "category", newValue: newCategory })
-      .then(() => {
-        // Update local state
-        this.ideas = this.ideas.map((idea) => {
-          if (idea.id === ideaId) {
-            return { ...idea, category: newCategory }
-          }
-          return idea
-        })
-
-        this.applyFilters()
-        this.showToast("Success", "Category updated successfully", "success")
-      })
-      .catch((error) => {
-        this.showToast("Error", "Error updating category: " + error.body.message, "error")
-      })
-      .finally(() => {
-        this.isLoading = false
-      })
-  }
-
 
   // Add these methods for the searchable dropdown
   handleUserSearch(event) {
@@ -356,13 +328,14 @@ export default class IdeasAdminDashboard extends LightningElement {
     const selectedUser = this.userOptions.find((user) => user.value === userId)
 
     if (selectedUser) {
-      this.searchTerm = ''
+      this.searchTerm = selectedUser.label
       this.isUserSearchOpen = false
 
       // Update the assignment
       this.updateAssignment(this.selectedIdea.id, userId, selectedUser)
-
     }
+    // Reset the search term
+    this.searchTerm = ""
   }
 
   // Helper method to update assignment
@@ -372,46 +345,48 @@ export default class IdeasAdminDashboard extends LightningElement {
     // Call Apex method to update the assignment
     updateIdea({ ideaId, fieldName: "assignedto", newValue: userId || "" })
       .then(() => {
-        // Update the global ideas list.
+        // Update local state
         this.ideas = this.ideas.map((idea) => {
           if (idea.id === ideaId) {
-            const updatedIdea = {
+            return {
               ...idea,
               assignedTo: selectedUser ? selectedUser.label : null,
               assignedToPhotoUrl: selectedUser ? selectedUser.photoUrl : null,
-            };
-            // If this idea is currently shown in the modal, update it.
-            if (this.selectedIdea && this.selectedIdea.id === ideaId) {
-              this.selectedIdea = { ...updatedIdea };
-
             }
-            return updatedIdea;
           }
-          return idea;
-        });
-        this.modalRefreshCounter++;
-        this.applyFilters();
-        this.showToast("Success", "Assignment updated successfully", "success");
+          return idea
+        })
+
+        // If this is the selected idea, update it too
+        if (this.selectedIdea && this.selectedIdea.id === ideaId) {
+          this.selectedIdea = {
+            ...this.selectedIdea,
+            assignedTo: selectedUser ? selectedUser.label : null,
+            assignedToPhotoUrl: selectedUser ? selectedUser.photoUrl : null,
+          }
+        }
+
+        this.applyFilters()
+        this.showToast("Success", "Assignment updated successfully", "success")
       })
       .catch((error) => {
-        this.showToast("Error", "Error updating assignment: " + error.body.message, "error");
+        this.showToast("Error", "Error updating assignment: " + error.body.message, "error")
       })
       .finally(() => {
-        this.isLoading = false;
-      });
-
-
+        this.isLoading = false
+      })
   }
+
   // Update the handleRemoveAssignment method
-  // handleRemoveAssignment(event) {
-  //   const ideaId = event.currentTarget.dataset.id
+  handleRemoveAssignment(event) {
+    const ideaId = event.currentTarget.dataset.id
 
-  //   // Clear the search term
-  //   this.searchTerm = ""
+    // Clear the search term
+    this.searchTerm = ""
 
-  //   // Update assignment with null user
-  //   this.updateAssignment(ideaId, null, null)
-  // }
+    // Update assignment with null user
+    this.updateAssignment(ideaId, null, null)
+  }
 
   // Update the handleAssignToMe method
   handleAssignToMe(event) {
@@ -454,6 +429,7 @@ export default class IdeasAdminDashboard extends LightningElement {
         this.isLoading = false
       })
   }
+
   handleOpenResponseModal(event) {
     const ideaId = event.currentTarget.dataset.id
     if (ideaId && !this.selectedIdea) {
@@ -493,12 +469,14 @@ export default class IdeasAdminDashboard extends LightningElement {
       .finally(() => {
         this.isLoading = false
       })
+
+      // Close the response modal
+      this.handleCloseModal()
   }
 
   handleCloseModal() {
     this.isDetailModalOpen = false
     this.isResponseModalOpen = false
-    this.searchTerm = "" // Clear the search term when closing the modal  
     this.selectedIdea = null // Also reset the selected idea to fully close the modal
   }
 
@@ -506,7 +484,6 @@ export default class IdeasAdminDashboard extends LightningElement {
     this.isLoading = true
     refreshApex(this.wiredIdeasResult)
       .then(() => {
-        this.calculateStatistics()
         this.showToast("Success", "Data refreshed successfully", "success")
       })
       .catch((error) => {
@@ -537,74 +514,6 @@ export default class IdeasAdminDashboard extends LightningElement {
     this.categoryFilter = "All"
     this.priorityFilter = "All"
     this.applyFilters()
-  }
-
-  handleRemoveAssignment(event) {
-    const ideaId = event.currentTarget.dataset.id
-
-    this.isLoading = true
-
-    // Call Apex method to remove assignment
-    updateIdea({ ideaId, fieldName: "assignedto", newValue: "" })
-      .then(() => {
-        // Update local state
-        this.ideas = this.ideas.map((idea) => {
-          if (idea.id === ideaId) {
-            return {
-              ...idea,
-              assignedTo: null,
-              assignedToPhotoUrl: null,
-            }
-          }
-          return idea
-        })
-        this.selectedIdea = { ...this.selectedIdea, assignedTo: null, assignedToPhotoUrl: null }
-        this.applyFilters()
-        this.showToast("Success", "Assignment removed successfully", "success")
-      })
-      .catch((error) => {
-        this.showToast("Error", "Error removing assignment: " + error.body.message, "error")
-      })
-      .finally(() => {
-        this.isLoading = false
-      })
-  }
-
-  // Update handleAssignToMe to use the Apex method
-  handleAssignToMe(event) {
-    const ideaId = event.currentTarget.dataset.id
-
-    this.isLoading = true
-
-    // Call Apex method to assign to current user
-    assignToMe({ ideaId })
-      .then(() => {
-        // Find the current user from our options
-        const currentUser = this.userOptions.find((user) => user.value === this.currentUserId)
-
-        if (currentUser) {
-          // Update local state
-          this.ideas = this.ideas.map((idea) => {
-            if (idea.id === ideaId) {
-              return {
-                ...idea,
-                assignedTo: currentUser.label,
-                assignedToPhotoUrl: currentUser.photoUrl,
-              }
-            }
-            return idea
-          })
-
-          this.applyFilters()
-          this.showToast("Success", "Idea assigned to you successfully", "success")
-        }
-      })
-      .catch((error) => {
-        this.showToast("Error", "Error assigning idea: " + error.body.message, "error")
-      })
-      .finally(() => {
-        this.isLoading = false
-      })
   }
 
   // Helper methods
@@ -716,6 +625,8 @@ export default class IdeasAdminDashboard extends LightningElement {
     this.filteredIdeas = filtered.slice(startIndex, endIndex)
   }
 
+  // Update the calculateAnalytics method to populate the statsData object
+ 
   calculateAnalytics() {
     // Calculate category distribution
     this.categoryDistribution = this.ideas.reduce((acc, idea) => {
@@ -792,6 +703,15 @@ export default class IdeasAdminDashboard extends LightningElement {
       .map(([tag, count]) => ({ tag, count }))
   }
 
+  // Add a helper method to calculate implementation rate
+  calculateImplementationRate() {
+    const completedIdeas = this.ideas.filter(
+      (idea) => idea.status === "Completed" || idea.status === "Released" || idea.status === "Implemented",
+    ).length
+
+    return this.ideas.length > 0 ? Math.round((completedIdeas / this.ideas.length) * 100) : 0
+  }
+
   showToast(title, message, variant) {
     this.dispatchEvent(
       new ShowToastEvent({
@@ -844,11 +764,11 @@ export default class IdeasAdminDashboard extends LightningElement {
   }
 
   get completedIdeasCount() {
-    return this.ideas.filter((idea) => idea.status === "Completed/Archived/Released").length
+    return this.ideas.filter((idea) => idea.status === "Completed").length
   }
 
   get highPriorityIdeasCount() {
-    return this.ideas.filter((idea) => idea.priority === "High").length
+    return this.ideas.filter((idea) => idea.priority === "high").length
   }
 
   get totalCommentsCount() {
@@ -903,46 +823,57 @@ export default class IdeasAdminDashboard extends LightningElement {
       (idea) => idea.assignedTo && currentUserName && idea.assignedTo.trim() === currentUserName.trim(),
     ).length
   }
+
+  // Add a getter for combobox class
   get comboboxClass() {
     return this.isUserSearchOpen
       ? "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"
       : "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click"
   }
 
+
+
+  
   calculateStatistics() {
     // Calculate total ideas
     const totalIdeas = this.ideas.length;
 
     // Calculate pending response (e.g. status = New or Under Review)
     const pendingResponse = this.ideas.filter(
-        idea => idea.status === 'New'
+      idea => idea.status === 'New'
     ).length;
 
     // Calculate how many are "implemented" or "completed"
     const implementedIdeas = this.ideas.filter(
-        idea => idea.status === 'Completed/Archived/Released'
+      idea => idea.status === 'Completed/Archived/Released'
     ).length;
 
     // Calculate implementation rate as a percentage
-    const implementationRate = totalIdeas > 0 
-        ? Math.round((implementedIdeas / totalIdeas) * 100)
-        : 0;
-    
+    const implementationRate = totalIdeas > 0
+      ? Math.round((implementedIdeas / totalIdeas) * 100)
+      : 0;
+
+    // Calculate pending response rate as a percentage
+    const pendingResponseRate = totalIdeas > 0
+      ? Math.round((pendingResponse / totalIdeas) * 100)
+      : 0;
+      
+    // Calculate response completion rate (inverse of pending response rate)
+    const responseCompletionRate = 100 - pendingResponseRate;
+
     // Update the reactive statsData object
     this.statsData = {
-        totalIdeas,
-        pendingResponse,
-        implementationRate,
-        // You can dynamically compute "trend" or keep them placeholders
-        totalTrend: '+12% from last month',
-        pendingTrend: '-3% from last week',
-        implementationTrend: '+5% from last quarter'
+      totalIdeas,
+      pendingResponse,
+      implementationRate,
+      // You can dynamically compute "trend" or keep them placeholders
+      totalTrend: '+12% from last month',
+      pendingTrend: '-3% from last week',
+      implementationTrend: '+5% from last quarter',
+      // CSS width properties for visualization
+      totalIdeasWidth: 'width: 100%',
+      pendingResponseWidth: `width: ${responseCompletionRate}%`,
+      implementationRateWidth: `width: ${implementationRate}%`
     };
-}
-
-  // Remove these getters as they're now part of statsData
-  get pendingResponseCount() {
-    return this.statsData.pendingResponse
   }
 }
-

@@ -1,7 +1,7 @@
 import { LightningElement, api, wire, track } from "lwc"
-import getCollectionData from "@salesforce/apex/VBU_KnowledgeController.getCollectionData"
-import getArticle from "@salesforce/apex/VBU_KnowledgeController.getArticle"
-import getRoles from "@salesforce/apex/VBU_KnowledgeController.getRoles"
+import getCollectionData from "@salesforce/apex/KnowledgeArticleViewerController.getCollectionData"
+import getArticle from "@salesforce/apex/KnowledgeArticleViewerController.getArticle"
+import getRoles from "@salesforce/apex/KnowledgeArticleViewerController.getRoles"
 
 import { CurrentPageReference } from "lightning/navigation"
 import { NavigationMixin } from "lightning/navigation"
@@ -346,9 +346,10 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     if (!this.activeArticle?.Media_Id__c) {
       return ""
     }
+    // Get the base URL dynamically from the current org
+    const baseUrl = window.location.origin
     return (
-      "https://voicebrook--rafiki.sandbox.file.force.com/sfc/servlet.shepherd/version/download/" +
-      this.activeArticle.Media_Id__c
+      `${baseUrl}/sfc/servlet.shepherd/version/download/${this.activeArticle.Media_Id__c}`
     )
   }
   get vidyardUrl() {

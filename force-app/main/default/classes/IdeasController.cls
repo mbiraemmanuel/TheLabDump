@@ -1,40 +1,109 @@
 public with sharing class IdeasController {
 
-    /**
+    
+       /**
      * Retrieves a list of ideas using the standard Idea object
      * @return List<IdeaWrapper> - List of idea wrappers
      */
     @AuraEnabled(cacheable=true)
-    public static List<IdeaWrapper> getIdeas() {
+    public static List<IdeaWrapper> getIdeas(string zoneID) {
         List<IdeaWrapper> ideaWrappers = new List<IdeaWrapper>();
 
         // Query for native Idea records
         // Note: The VoteScore field is read-only, automatically reflecting the net votes.
         //       IdeaComments is the child relationship name for comments on an Idea.
-        List<Idea> ideas = [
-            SELECT 
-                Id,
-                Title,
-                Body,
-                Categories,
-                Status,
-                VoteScore,
-                VoteTotal,
-                CreatedDate,
-                CreatedById,
-                CreatedBy.Name,
-                CreatedBy.SmallPhotoUrl,
-                Priority__c,
-                Idea_Owner__r.Name,
-                Idea_Owner__r.SmallPhotoUrl,
-                (SELECT Id FROM Comments)
-            FROM Idea
-            ORDER BY CreatedDate DESC
-            LIMIT 100
-        ];
+        Date createdDateFilter = Date.newInstance(2025, 1, 1);
+        List<Idea> ideas;
+        
+        if (String.isBlank(zoneID)) {
+            ideas = [
+                SELECT 
+                    Id,
+                    Title,
+                    Body,
+                    Categories,
+                    Status,
+                    VoteScore,
+                    VoteTotal,
+                    CreatedDate,
+                    CreatedById,
+                    CreatedBy.Name,
+                    CreatedBy.SmallPhotoUrl,
+                    Priority__c,
+                    Idea_Owner__r.Name,
+                    Idea_Owner__r.SmallPhotoUrl,
+                    (SELECT Id FROM Comments)
+                FROM Idea 
+                WHERE CreatedDate >= :createdDateFilter
+                ORDER BY CreatedDate DESC
+                LIMIT 100
+            ];
+        } else {
+            ideas = [
+                SELECT 
+                    Id,
+                    Title,
+                    Body,
+                    Categories,
+                    Status,
+                    VoteScore,
+                    VoteTotal,
+                    CreatedDate,
+                    CreatedById,
+                    CreatedBy.Name,
+                    CreatedBy.SmallPhotoUrl,
+                    Priority__c,
+                    Idea_Owner__r.Name,
+                    Idea_Owner__r.SmallPhotoUrl,
+                    (SELECT Id FROM Comments)
+                FROM Idea 
+                WHERE CreatedDate >= :createdDateFilter
+                AND CommunityId = :zoneID
+                ORDER BY CreatedDate DESC
+                LIMIT 100
+            ];
+        }
 
         // Current user for reference checks
         Id currentUserId = UserInfo.getUserId();
+        
+        // Get all idea IDs for bulk queries
+        Set<Id> ideaIds = new Set<Id>();
+        for (Idea idea : ideas) {
+            ideaIds.add(idea.Id);
+        }
+        
+        // Bulk query for votes
+        Map<Id, List<Vote>> votesByIdea = new Map<Id, List<Vote>>();
+        Map<Id, Integer> upVotesMap = new Map<Id, Integer>();
+        Map<Id, Integer> downVotesMap = new Map<Id, Integer>();
+        Map<Id, Boolean> userVotedIdea = new Map<Id, Boolean>();
+        
+        for (Vote v : [SELECT Id, ParentId, Type, CreatedById FROM Vote WHERE Parent.Type = 'Idea' AND ParentId IN :ideaIds]) {
+            // Group votes by idea
+            if (!votesByIdea.containsKey(v.ParentId)) {
+                votesByIdea.put(v.ParentId, new List<Vote>());
+            }
+            votesByIdea.get(v.ParentId).add(v);
+            
+            // Check if current user voted
+            if (v.CreatedById == currentUserId) {
+                userVotedIdea.put(v.ParentId, true);
+            }
+            
+            // Count up and down votes
+            if (v.Type == 'Up') {
+                upVotesMap.put(v.ParentId, upVotesMap.containsKey(v.ParentId) ? upVotesMap.get(v.ParentId) + 1 : 1);
+            } else if (v.Type == 'Down') {
+                downVotesMap.put(v.ParentId, downVotesMap.containsKey(v.ParentId) ? downVotesMap.get(v.ParentId) + 1 : 1);
+            }
+        }
+        
+        // Bulk query for user comments
+        Map<Id, Boolean> commentedIdeas = new Map<Id, Boolean>();
+        for (IdeaComment comment : [SELECT IdeaId FROM IdeaComment WHERE IdeaId IN :ideaIds AND CreatedById = :currentUserId]) {
+            commentedIdeas.put(comment.IdeaId, true);
+        }
 
         // Convert Ideas to wrapper objects
         for (Idea idea : ideas) {
@@ -46,14 +115,10 @@ public with sharing class IdeasController {
             wrapper.status = idea.Status;
             
             // VoteScore is read-only; map it to wrapper "points"
-            wrapper.points = (idea.VoteScore != null) 
-                ? Integer.valueOf(idea.VoteScore) 
-                : 0;
+            wrapper.points = (idea.VoteScore != null) ? Integer.valueOf(idea.VoteScore) : 0;
 
             // VoteTotal is read-only; map it to wrapper "voteTotal" divide by 10 to get the number of votes
-            wrapper.voteTotal = (idea.VoteTotal != null) 
-                ? Integer.valueOf(idea.VoteTotal) / 10
-                : 0;
+            wrapper.voteTotal = (idea.VoteTotal != null) ? Integer.valueOf(idea.VoteTotal) / 10 : 0;
 
             wrapper.createdDate = idea.CreatedDate;
             wrapper.formattedDate = idea.CreatedDate.format('MMMM d, yyyy');
@@ -80,13 +145,17 @@ public with sharing class IdeasController {
 
             // Check if current user is the author
             wrapper.isCurrentUserAuthor = (idea.CreatedById == currentUserId);
-
-            // For simplicity, default these to false
-            // In a real app, you would query IdeaComment and IdeaVote to see if
-            // the current user has commented or voted already.
-            wrapper.isCommentedByCurrentUser = false;
-            wrapper.isVotedByCurrentUser = false;
-
+            
+            // Check if current user has commented on this idea
+            wrapper.isCommentedByCurrentUser = commentedIdeas.containsKey(idea.Id);
+            
+            // Check if current user has voted on this idea
+            wrapper.isVotedByCurrentUser = userVotedIdea.containsKey(idea.Id);
+                
+            // Assign vote counts to the wrapper
+            wrapper.upVotes = upVotesMap.containsKey(idea.Id) ? upVotesMap.get(idea.Id) : 0;
+            wrapper.downVotes = downVotesMap.containsKey(idea.Id) ? downVotesMap.get(idea.Id) : 0;
+            
             ideaWrappers.add(wrapper);
         }
 
@@ -229,11 +298,19 @@ public with sharing class IdeasController {
             );
             insert newVote;
         } else {
-            // If a vote already exists, update it if necessary
+            // If a vote already exists, delete it and create a new one if necessary
             Vote existingVote = existingVotes[0];
             if (existingVote.Type != voteTypeValue) {
-                existingVote.Type = voteTypeValue;
-                update existingVote;
+                try {
+                    delete existingVote;
+                    Vote newVote = new Vote(
+                        ParentId = ideaId,
+                        Type = voteTypeValue
+                    );
+                    insert newVote;
+                } catch (Exception e) {
+                    throw new AuraHandledException('Invalid operation :  Cannot Vote Against Your Own Idea');
+                }
             }
         }
         return true;
@@ -450,6 +527,8 @@ public with sharing class IdeasController {
         @AuraEnabled public Boolean isCurrentUserAuthor;
         @AuraEnabled public Boolean isCommentedByCurrentUser;
         @AuraEnabled public Boolean isVotedByCurrentUser;
+        @AuraEnabled public Integer upVotes;
+        @AuraEnabled public Integer downVotes;
         @AuraEnabled public List<CommentWrapper> comments;
 
         public IdeaWrapper() {

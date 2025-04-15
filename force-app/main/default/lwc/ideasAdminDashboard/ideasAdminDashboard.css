@@ -1,141 +1,185 @@
 .slds-badge.High {
-    background-color: #c23934;
-    color: white;
-  }
-  
-  .slds-badge.Medium {
-    background-color: #ffb75d;
-    color: #514f4d;
-  }
-  
-  .slds-badge.Low {
-    background-color: #4bca81;
-    color: white;
-  }
-  
-  .status-new {
-    color: #1589ee;
-    font-weight: bold;
-  }
-  
-  .status-backlog {
-    color: #706e6b;
-    font-weight: bold;
-  }
-  
-  .status-in-progress {
-    color: #04844b;
-    font-weight: bold;
-  }
-  
-  .status-scheduled {
-    color: #006dcc;
-    font-weight: bold;
-  }
-  
-  .status-default {
-    color: #514f4d;
-    font-weight: bold;
-  }
-  
-  /* Add status class for Scheduled status */
-  
-  /* Update the status class method in the JS controller */
-  
-  /* Trend bar height classes for the chart */
-  .trend-bar-height {
-    min-height: 10px;
-  }
-  
-  .trend-bar-height-10 {
-    height: 10%;
-  }
-  
-  .trend-bar-height-20 {
-    height: 20%;
-  }
-  
-  .trend-bar-height-30 {
-    height: 30%;
-  }
-  
-  .trend-bar-height-40 {
-    height: 40%;
-  }
-  
-  .trend-bar-height-50 {
-    height: 50%;
-  }
-  
-  .trend-bar-height-60 {
-    height: 60%;
-  }
-  
-  .trend-bar-height-70 {
-    height: 70%;
-  }
-  
-  .trend-bar-height-80 {
-    height: 80%;
-  }
-  
-  .trend-bar-height-90 {
-    height: 90%;
-  }
-  
-  .trend-bar-height-100 {
-    height: 100%;
-  }
-  
-  /* Add styles for rich text editor */
-  .slds-rich-text-editor {
-    min-height: 120px;
-  }
-  
-  /* Ensure rich text content displays properly */
-  .slds-rich-text-area__content {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-  
-  /* Add styles for the lookup dropdown */
-  .slds-dropdown {
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .slds-dropdown.slds-dropdown_fluid {
-    min-width: 100%;
-  }
-  
-  .slds-listbox__option {
-    cursor: pointer;
-  }
-  
-  .slds-listbox__option:hover {
-    background-color: #f3f2f2;
-  }
-  
-  /* Add these styles at the end of the file to ensure they override the default SLDS styles */
-  
-  /* Increase modal width - using !important to override SLDS defaults */
-  .wide-modal .slds-modal__container {
-    max-width: 90% !important;
-    width: 90% !important;
-  }
-  
-  /* Make sure the content has proper spacing */
-  .wide-modal .slds-modal__content {
-    padding: 1.5rem 2rem !important;
-  }
-  
-  /* Ensure the modal header and footer match the wider container */
-  .wide-modal .slds-modal__header,
-  .wide-modal .slds-modal__footer {
-    width: 100% !important;
-  }
-  
-  .selection-section{
-    cursor: pointer;
-  }
-  
+  background-color: #c23934;
+  color: white;
+}
+
+.slds-badge.Medium {
+  background-color: #ffb75d;
+  color: #514f4d;
+}
+
+.slds-badge.Low {
+  background-color: #4bca81;
+  color: white;
+}
+
+.status-new {
+  color: #1589ee;
+  font-weight: bold;
+}
+
+.status-backlog {
+  color: #706e6b;
+  font-weight: bold;
+}
+
+.status-in-progress {
+  color: #04844b;
+  font-weight: bold;
+}
+
+.status-scheduled {
+  color: #006dcc;
+  font-weight: bold;
+}
+
+.status-default {
+  color: #514f4d;
+  font-weight: bold;
+}
+
+/* Add status class for Scheduled status */
+
+/* Update the status class method in the JS controller */
+
+/* Trend bar height classes for the chart */
+.trend-bar-height {
+  min-height: 10px;
+}
+
+.trend-bar-height-10 {
+  height: 10%;
+}
+
+.trend-bar-height-20 {
+  height: 20%;
+}
+
+.trend-bar-height-30 {
+  height: 30%;
+}
+
+.trend-bar-height-40 {
+  height: 40%;
+}
+
+.trend-bar-height-50 {
+  height: 50%;
+}
+
+.trend-bar-height-60 {
+  height: 60%;
+}
+
+.trend-bar-height-70 {
+  height: 70%;
+}
+
+.trend-bar-height-80 {
+  height: 80%;
+}
+
+.trend-bar-height-90 {
+  height: 90%;
+}
+
+.trend-bar-height-100 {
+  height: 100%;
+}
+
+/* Add styles for rich text editor */
+.slds-rich-text-editor {
+  min-height: 120px;
+}
+
+/* Ensure rich text content displays properly */
+.slds-rich-text-area__content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Add styles for the lookup dropdown */
+.slds-dropdown {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.slds-dropdown.slds-dropdown_fluid {
+  min-width: 100%;
+}
+
+.slds-listbox__option {
+  cursor: pointer;
+}
+
+.slds-listbox__option:hover {
+  background-color: #f3f2f2;
+}
+
+/* Add these styles at the end of the file to ensure they override the default SLDS styles */
+
+/* Increase modal width - using !important to override SLDS defaults */
+.wide-modal .slds-modal__container {
+  max-width: 90% !important;
+  width: 90% !important;
+}
+
+/* Make sure the content has proper spacing */
+.wide-modal .slds-modal__content {
+  padding: 1.5rem 2rem !important;
+}
+
+/* Ensure the modal header and footer match the wider container */
+.wide-modal .slds-modal__header,
+.wide-modal .slds-modal__footer {
+  width: 100% !important;
+}
+
+/* User avatar tooltip styles */
+.user-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.user-avatar-wrapper .user-tooltip {
+  visibility: hidden;
+  background-color: #16325c;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.user-avatar-wrapper .user-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #16325c transparent transparent transparent;
+}
+
+.user-avatar-wrapper:hover .user-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Add styles for the vote icons */
+.slds-icon-text-success {
+  --slds-c-icon-color-foreground: #04844b;
+}
+
+.slds-icon-text-error {
+  --slds-c-icon-color-foreground: #c23934;
+}

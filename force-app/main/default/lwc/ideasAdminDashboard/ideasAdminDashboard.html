@@ -3,7 +3,7 @@
     <template if:true={isLoading}>
         <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
     </template>
-
+    
     <div class="slds-card">
         <!-- Header -->
         <div class="slds-card__header slds-grid slds-wrap">
@@ -11,16 +11,22 @@
                 <h2 class="slds-text-heading_medium slds-p-around_small">Ideas Admin Dashboard</h2>
                 <p class="slds-text-body_small slds-p-horizontal_small">Manage and respond to customer ideas</p>
             </div>
-            <div
-                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-grid_align-end slds-p-around_small">
-                <lightning-button label="Refresh" icon-name="utility:refresh" variant="neutral"
-                    class="slds-m-right_x-small" onclick={handleRefresh}>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-grid_align-end slds-p-around_small">
+                <lightning-button 
+                    label="Refresh" 
+                    icon-name="utility:refresh" 
+                    variant="neutral" 
+                    class="slds-m-right_x-small"
+                    onclick={handleRefresh}>
                 </lightning-button>
-                <lightning-button label="Add Idea" icon-name="utility:add" variant="brand">
-                </lightning-button>
+                <!-- <lightning-button 
+                    label="Add Idea" 
+                    icon-name="utility:add" 
+                    variant="brand">
+                </lightning-button> -->
             </div>
         </div>
-
+        
         <!-- Dashboard Content -->
         <div class="slds-card__body">
             <!-- Stats Cards -->
@@ -35,14 +41,14 @@
                                 {statsData.totalIdeas}
                             </div>
                             <!-- Trend (placeholder or real logic) -->
-                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">
+                            <!-- <div class="slds-badge slds-badge_lightest slds-m-left_auto">
                                 {statsData.totalTrend}
-                            </div>
+                            </div> -->
                         </div>
                         <!-- If you want a progress bar, you can show an arbitrary value or compute it in statsData -->
                         <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" role="progressbar"
                             aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
-                            <span class="slds-progress-bar__value" style="width: 75%"></span>
+                            <span class="slds-progress-bar__value" style={statsData.totalIdeasWidth}></span>
                         </div>
                     </div>
                 </div>
@@ -56,14 +62,10 @@
                             <div class="slds-text-heading_large">
                                 {statsData.pendingResponse}
                             </div>
-                            <!-- Trend placeholder -->
-                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">
-                                {statsData.pendingTrend}
-                            </div>
                         </div>
                         <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" role="progressbar"
                             aria-valuemin="0" aria-valuemax="100" aria-valuenow="45">
-                            <span class="slds-progress-bar__value" style="width: 45%"></span>
+                            <span class="slds-progress-bar__value" style={statsData.pendingResponseWidth}></span>
                         </div>
                     </div>
                 </div>
@@ -77,21 +79,16 @@
                             <div class="slds-text-heading_large">
                                 {statsData.implementationRate}%
                             </div>
-                            <!-- Trend placeholder -->
-                            <div class="slds-badge slds-badge_lightest slds-m-left_auto">
-                                {statsData.implementationTrend}
-                            </div>
                         </div>
                         <div class="slds-progress-bar slds-progress-bar_circular slds-m-top_small" role="progressbar"
                             aria-valuemin="0" aria-valuemax="100" aria-valuenow={statsData.implementationRate}>
-                            <span class="slds-progress-bar__value" style="width: {statsData.implementationRate}%">
+                            <span class="slds-progress-bar__value" style={statsData.implementationRateWidth}>
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            
             <!-- Main Content -->
             <div class="slds-grid slds-gutters slds-wrap slds-p-horizontal_medium slds-p-bottom_medium">
                 <!-- Sidebar -->
@@ -100,83 +97,95 @@
                     <div class="slds-box slds-box_small slds-theme_default slds-m-bottom_medium">
                         <h3 class="slds-text-heading_small slds-m-bottom_small">Filters</h3>
                         <p class="slds-text-body_small slds-m-bottom_medium">Narrow down the ideas list</p>
-
+                        
                         <div class="slds-form-element slds-m-bottom_medium">
                             <label class="slds-form-element__label" for="search-input">Search</label>
                             <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
-                                <lightning-icon icon-name="utility:search" size="x-small"
-                                    class="slds-icon slds-input__icon slds-input__icon_left"></lightning-icon>
-                                <input type="text" id="search-input" class="slds-input" placeholder="Search ideas..."
-                                    onkeyup={handleSearchChange} value={searchQuery} />
+                                <lightning-icon icon-name="utility:search" size="x-small" class="slds-icon slds-input__icon slds-input__icon_left"></lightning-icon>
+                                <input type="text" id="search-input" class="slds-input" placeholder="Search ideas..." onkeyup={handleSearchChange} value={searchQuery} />
                             </div>
                         </div>
-
+                        
                         <div class="slds-form-element slds-m-bottom_medium">
-                            <label class="slds-form-element__label" for="status-select">Status</label>
                             <div class="slds-form-element__control">
-                                <lightning-combobox id="status-select" name="status" value={statusFilter}
-                                    options={statusOptions} onchange={handleStatusFilterChange}>
+                                <lightning-combobox
+                                    id="status-select"
+                                    label="Status"
+                                    name="status"
+                                    value={statusFilter}
+                                    options={statusOptions}
+                                    onchange={handleStatusFilterChange}>
                                 </lightning-combobox>
                             </div>
                         </div>
-
+                        
                         <div class="slds-form-element slds-m-bottom_medium">
-                            <label class="slds-form-element__label" for="category-select">Category</label>
                             <div class="slds-form-element__control">
-                                <lightning-combobox id="category-select" name="category" value={categoryFilter}
-                                    options={categoryOptions} onchange={handleCategoryFilterChange}>
+                                <lightning-combobox
+                                    id="category-select"
+                                    name="category"
+                                    label="Category"
+                                    value={categoryFilter}
+                                    options={categoryOptions}
+                                    onchange={handleCategoryFilterChange}>
                                 </lightning-combobox>
                             </div>
                         </div>
-
+                        
                         <div class="slds-form-element slds-m-bottom_medium">
-                            <label class="slds-form-element__label" for="priority-select">Priority</label>
                             <div class="slds-form-element__control">
-                                <lightning-combobox id="priority-select" name="priority" value={priorityFilter}
-                                    options={priorityOptions} onchange={handlePriorityFilterChange}>
+                                <lightning-combobox
+                                    label="Priority"
+                                    id="priority-select"
+                                    name="priority"
+                                    value={priorityFilter}
+                                    options={priorityOptions}
+                                    onchange={handlePriorityFilterChange}>
                                 </lightning-combobox>
                             </div>
                         </div>
-
-                        <lightning-button label="Reset Filters" variant="neutral"
-                            class="slds-m-top_small slds-size_1-of-1" onclick={handleResetFilters}>
+                        
+                        <lightning-button 
+                            label="Reset Filters" 
+                            variant="neutral" 
+                            class="slds-m-top_small slds-size_1-of-1"
+                            onclick={handleResetFilters}>
                         </lightning-button>
                     </div>
-
+                    
                     <!-- Quick Stats -->
                     <div class="slds-box slds-box_small slds-theme_default">
                         <h3 class="slds-text-heading_small slds-m-bottom_medium">Quick Stats</h3>
-
+                        
                         <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
                             <span class="slds-text-body_small slds-text-color_weak">New Ideas&nbsp;</span>
                             <span class="slds-badge slds-badge_lightest slds-m-left_auto">{newIdeasCount}</span>
                         </div>
-
+                        
                         <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
                             <span class="slds-text-body_small slds-text-color_weak">In Progress&nbsp;</span>
                             <span class="slds-badge slds-badge_lightest slds-m-left_auto">{inProgressIdeasCount}</span>
                         </div>
-
+                        
                         <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
                             <span class="slds-text-body_small slds-text-color_weak">Completed&nbsp;</span>
                             <span class="slds-badge slds-badge_lightest slds-m-left_auto">{completedIdeasCount}</span>
                         </div>
-
+                        
                         <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
                             <span class="slds-text-body_small slds-text-color_weak">High Priority&nbsp;</span>
-                            <span
-                                class="slds-badge slds-badge_lightest slds-m-left_auto">{highPriorityIdeasCount}</span>
+                            <span class="slds-badge slds-badge_lightest slds-m-left_auto">{highPriorityIdeasCount}</span>
                         </div>
-
+                        
                         <div class="slds-border_top slds-m-vertical_small"></div>
-
+                        
                         <div class="slds-grid slds-grid_vertical-align-center">
                             <span class="slds-text-body_small slds-text-color_weak">Total Comments&nbsp;</span>
                             <span class="slds-badge slds-badge_lightest slds-m-left_auto">{totalCommentsCount}</span>
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- Main Content Area -->
                 <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-4">
                     <!-- Tabs -->
@@ -199,8 +208,19 @@
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Submitted By">Submitted By</div>
                                             </th>
+                                            <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                            
                                             <th class="slds-text-title_caps" scope="col">
-                                                <div class="slds-truncate" title="Votes">Votes</div>
+                                                <div class="slds-truncate" title="Upvotes">
+                                                    <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                    Upvotes
+                                                </div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Downvotes">
+                                                    <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                    Downvotes
+                                                </div>
                                             </th>
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Comments">Comments</div>
@@ -234,15 +254,29 @@
                                                     </td>
                                                     <td data-label="Submitted By">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
-                                                            <span
-                                                                class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                            <!-- Add tooltip to author avatar -->
+                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                    <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                                </span>
+                                                                <span class="user-tooltip">{idea.authorName}</span>
                                                             </span>
                                                             <span class="slds-truncate">{idea.authorName}</span>
                                                         </div>
                                                     </td>
-                                                    <td data-label="Votes">
-                                                        <div class="slds-truncate">{idea.voteTotal}</div>
+                                                    <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                                    
+                                                    <td data-label="Upvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                            <span>{idea.upVotes}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Downvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                            <span>{idea.downVotes}</span>
+                                                        </div>
                                                     </td>
                                                     <td data-label="Comments">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
@@ -263,7 +297,7 @@
                                                             <lightning-menu-divider></lightning-menu-divider>
                                                             <lightning-menu-subheader
                                                                 label="Change Status"></lightning-menu-subheader>
-                                                            <template for:each={statusOptions} for:item="status">
+                                                            <template for:each={statusOptionsWithoutAll} for:item="status">
                                                                 <template if:true={status.value}>
                                                                     <lightning-menu-item key={status.value}
                                                                         value={status.value} label={status.label}
@@ -274,7 +308,7 @@
                                                             <lightning-menu-divider></lightning-menu-divider>
                                                             <lightning-menu-subheader
                                                                 label="Change Priority"></lightning-menu-subheader>
-                                                            <template for:each={priorityOptions} for:item="priority">
+                                                            <template for:each={priorityOptionsWithoutAll} for:item="priority">
                                                                 <lightning-menu-item key={priority.value}
                                                                     value={priority.value} label={priority.label}
                                                                     onclick={handlePriorityChange} data-id={idea.id}>
@@ -294,26 +328,34 @@
                                         </template>
                                     </tbody>
                                 </table>
-
+                                
                                 <!-- Pagination -->
                                 <div class="slds-grid slds-grid_align-center slds-p-around_medium">
-                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
-                                        onclick={handlePrevPage} disabled={isPrevDisabled} class="slds-m-right_small">
+                                    <lightning-button 
+                                        label="Previous" 
+                                        icon-name="utility:chevronleft" 
+                                        onclick={handlePrevPage} 
+                                        disabled={isPrevDisabled}
+                                        class="slds-m-right_small">
                                     </lightning-button>
                                     <span class="slds-align-middle slds-p-horizontal_small">{paginationText}</span>
-                                    <lightning-button label="Next" icon-name="utility:chevronright"
-                                        icon-position="right" onclick={handleNextPage} disabled={isNextDisabled}
+                                    <lightning-button 
+                                        label="Next" 
+                                        icon-name="utility:chevronright" 
+                                        icon-position="right" 
+                                        onclick={handleNextPage} 
+                                        disabled={isNextDisabled}
                                         class="slds-m-left_small">
                                     </lightning-button>
                                 </div>
                             </div>
-
+                            
                             <!-- Analytics Section -->
                             <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
                                 <h3 class="slds-text-heading_small slds-m-bottom_small">Analytics</h3>
                                 <p class="slds-text-body_small slds-m-bottom_medium">Insights and trends from submitted
                                     ideas</p>
-
+                                
                                 <lightning-tabset variant="default">
                                     <lightning-tab label="Distribution">
                                         <div class="slds-grid slds-gutters slds-wrap slds-p-around_medium">
@@ -395,14 +437,14 @@
                                 </lightning-tabset>
                             </div>
                         </lightning-tab>
-
+                        
                         <!-- My Work Tab -->
                         <lightning-tab label="My Work" value="mywork" onactive={handleTabChange}>
                             <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
                                 <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
                                     <h3 class="slds-text-heading_small">My Assigned Ideas ({myWorkCount})</h3>
                                 </div>
-
+                                
                                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
                                     <thead>
                                         <tr class="slds-line-height_reset">
@@ -418,8 +460,19 @@
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Submitted By">Submitted By</div>
                                             </th>
+                                            <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                            
                                             <th class="slds-text-title_caps" scope="col">
-                                                <div class="slds-truncate" title="Votes">Votes</div>
+                                                <div class="slds-truncate" title="Upvotes">
+                                                    <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                    Upvotes
+                                                </div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Downvotes">
+                                                    <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                    Downvotes
+                                                </div>
                                             </th>
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Comments">Comments</div>
@@ -453,15 +506,29 @@
                                                     </td>
                                                     <td data-label="Submitted By">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
-                                                            <span
-                                                                class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                            <!-- Add tooltip to author avatar -->
+                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                    <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                                </span>
+                                                                <span class="user-tooltip">{idea.authorName}</span>
                                                             </span>
                                                             <span class="slds-truncate">{idea.authorName}</span>
                                                         </div>
                                                     </td>
-                                                    <td data-label="Votes">
-                                                        <div class="slds-truncate">{idea.voteTotal}</div>
+                                                    <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                                    
+                                                    <td data-label="Upvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                            <span>{idea.upVotes}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Downvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                            <span>{idea.downVotes}</span>
+                                                        </div>
                                                     </td>
                                                     <td data-label="Comments">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
@@ -504,28 +571,36 @@
                                         </template>
                                     </tbody>
                                 </table>
-
+                                
                                 <!-- Pagination -->
                                 <div class="slds-grid slds-grid_align-center slds-p-around_medium">
-                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
-                                        onclick={handlePrevPage} disabled={isPrevDisabled} class="slds-m-right_small">
+                                    <lightning-button 
+                                        label="Previous" 
+                                        icon-name="utility:chevronleft" 
+                                        onclick={handlePrevPage} 
+                                        disabled={isPrevDisabled}
+                                        class="slds-m-right_small">
                                     </lightning-button>
                                     <span class="slds-align-middle slds-p-horizontal_small">{paginationText}</span>
-                                    <lightning-button label="Next" icon-name="utility:chevronright"
-                                        icon-position="right" onclick={handleNextPage} disabled={isNextDisabled}
+                                    <lightning-button 
+                                        label="Next" 
+                                        icon-name="utility:chevronright" 
+                                        icon-position="right" 
+                                        onclick={handleNextPage} 
+                                        disabled={isNextDisabled}
                                         class="slds-m-left_small">
                                     </lightning-button>
                                 </div>
                             </div>
                         </lightning-tab>
-
+                        
                         <!-- Assigned Tab -->
                         <lightning-tab label="Assigned" value="assigned" onactive={handleTabChange}>
                             <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
                                 <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
                                     <h3 class="slds-text-heading_small">Assigned Ideas ({assignedCount})</h3>
                                 </div>
-
+                                
                                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
                                     <thead>
                                         <tr class="slds-line-height_reset">
@@ -543,6 +618,20 @@
                                             </th>
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Assigned To">Assigned To</div>
+                                            </th>
+                                            <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                            
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Upvotes">
+                                                    <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                    Upvotes
+                                                </div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Downvotes">
+                                                    <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                    Downvotes
+                                                </div>
                                             </th>
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Comments">Comments</div>
@@ -576,9 +665,12 @@
                                                     </td>
                                                     <td data-label="Submitted By">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
-                                                            <span
-                                                                class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                            <!-- Add tooltip to author avatar -->
+                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                    <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                                </span>
+                                                                <span class="user-tooltip">{idea.authorName}</span>
                                                             </span>
                                                             <span class="slds-truncate">{idea.authorName}</span>
                                                         </div>
@@ -587,16 +679,32 @@
                                                     <td data-label="Assigned To">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
                                                             <template if:true={idea.assignedTo}>
-                                                                <span
-                                                                    class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                    <img src={idea.assignedToPhotoUrl}
-                                                                        alt={idea.assignedTo} />
+                                                                <!-- Add tooltip to assignee avatar -->
+                                                                <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                    <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                        <img src={idea.assignedToPhotoUrl} alt={idea.assignedTo} />
+                                                                    </span>
+                                                                    <span class="user-tooltip">{idea.assignedTo}</span>
                                                                 </span>
                                                                 <span class="slds-truncate">{idea.assignedTo}</span>
                                                             </template>
                                                             <template if:false={idea.assignedTo}>
                                                                 <span class="slds-truncate">Unassigned</span>
                                                             </template>
+                                                        </div>
+                                                    </td>
+                                                    <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                                    
+                                                    <td data-label="Upvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-icon-text-success slds-m-right_xx-small"></lightning-icon>
+                                                            <span>{idea.upVotes}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Downvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-icon-text-error slds-m-right_xx-small"></lightning-icon>
+                                                            <span>{idea.downVotes}</span>
                                                         </div>
                                                     </td>
                                                     <td data-label="Comments">
@@ -632,28 +740,36 @@
                                         </template>
                                     </tbody>
                                 </table>
-
+                                
                                 <!-- Pagination -->
                                 <div class="slds-grid slds-grid_align-center slds-p-around_medium">
-                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
-                                        onclick={handlePrevPage} disabled={isPrevDisabled} class="slds-m-right_small">
+                                    <lightning-button 
+                                        label="Previous" 
+                                        icon-name="utility:chevronleft" 
+                                        onclick={handlePrevPage} 
+                                        disabled={isPrevDisabled}
+                                        class="slds-m-right_small">
                                     </lightning-button>
                                     <span class="slds-align-middle slds-p-horizontal_small">{paginationText}</span>
-                                    <lightning-button label="Next" icon-name="utility:chevronright"
-                                        icon-position="right" onclick={handleNextPage} disabled={isNextDisabled}
+                                    <lightning-button 
+                                        label="Next" 
+                                        icon-name="utility:chevronright" 
+                                        icon-position="right" 
+                                        onclick={handleNextPage} 
+                                        disabled={isNextDisabled}
                                         class="slds-m-left_small">
                                     </lightning-button>
                                 </div>
                             </div>
                         </lightning-tab>
-
+                        
                         <!-- Unassigned Tab -->
                         <lightning-tab label="Unassigned" value="unassigned" onactive={handleTabChange}>
                             <div class="slds-box slds-box_small slds-theme_default slds-m-top_medium">
                                 <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
                                     <h3 class="slds-text-heading_small">Unassigned Ideas ({unassignedCount})</h3>
                                 </div>
-
+                                
                                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
                                     <thead>
                                         <tr class="slds-line-height_reset">
@@ -669,8 +785,19 @@
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Submitted By">Submitted By</div>
                                             </th>
+                                            <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                            
                                             <th class="slds-text-title_caps" scope="col">
-                                                <div class="slds-truncate" title="Votes">Votes</div>
+                                                <div class="slds-truncate" title="Upvotes">
+                                                    <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-m-right_xx-small upvote-icon"></lightning-icon>
+                                                    Upvotes
+                                                </div>
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <div class="slds-truncate" title="Downvotes">
+                                                    <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-m-right_xx-small downvote-icon"></lightning-icon>
+                                                    Downvotes
+                                                </div>
                                             </th>
                                             <th class="slds-text-title_caps" scope="col">
                                                 <div class="slds-truncate" title="Comments">Comments</div>
@@ -704,15 +831,29 @@
                                                     </td>
                                                     <td data-label="Submitted By">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
-                                                            <span
-                                                                class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                            <!-- Add tooltip to author avatar -->
+                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                    <img src={idea.authorPhotoUrl} alt={idea.authorName} />
+                                                                </span>
+                                                                <span class="user-tooltip">{idea.authorName}</span>
                                                             </span>
                                                             <span class="slds-truncate">{idea.authorName}</span>
                                                         </div>
                                                     </td>
-                                                    <td data-label="Votes">
-                                                        <div class="slds-truncate">{idea.points}</div>
+                                                    <!-- Replace the single Votes column with separate Upvotes and Downvotes columns -->
+                                                    
+                                                    <td data-label="Upvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowup" size="xx-small" class="slds-icon-text-success slds-m-right_xx-small"></lightning-icon>
+                                                            <span>{idea.upVotes}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Downvotes">
+                                                        <div class="slds-grid slds-grid_vertical-align-center">
+                                                            <lightning-icon icon-name="utility:arrowdown" size="xx-small" class="slds-icon-text-error slds-m-right_xx-small"></lightning-icon>
+                                                            <span>{idea.downVotes}</span>
+                                                        </div>
                                                     </td>
                                                     <td data-label="Comments">
                                                         <div class="slds-grid slds-grid_vertical-align-center">
@@ -747,15 +888,23 @@
                                         </template>
                                     </tbody>
                                 </table>
-
+                                
                                 <!-- Pagination -->
                                 <div class="slds-grid slds-grid_align-center slds-p-around_medium">
-                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
-                                        onclick={handlePrevPage} disabled={isPrevDisabled} class="slds-m-right_small">
+                                    <lightning-button 
+                                        label="Previous" 
+                                        icon-name="utility:chevronleft" 
+                                        onclick={handlePrevPage} 
+                                        disabled={isPrevDisabled}
+                                        class="slds-m-right_small">
                                     </lightning-button>
                                     <span class="slds-align-middle slds-p-horizontal_small">{paginationText}</span>
-                                    <lightning-button label="Next" icon-name="utility:chevronright"
-                                        icon-position="right" onclick={handleNextPage} disabled={isNextDisabled}
+                                    <lightning-button 
+                                        label="Next" 
+                                        icon-name="utility:chevronright" 
+                                        icon-position="right" 
+                                        onclick={handleNextPage} 
+                                        disabled={isNextDisabled}
                                         class="slds-m-left_small">
                                     </lightning-button>
                                 </div>
@@ -766,7 +915,7 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Idea Detail Modal -->
     <template if:true={hasSelectedIdea}>
         <section key={modalRefreshCounter} role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
@@ -781,7 +930,7 @@
                         Submitted by {selectedIdea.authorName} on {selectedIdea.formattedDate}
                     </p>
                 </header>
-
+                
                 <!-- Modal Body -->
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <div class="slds-grid slds-gutters">
@@ -795,7 +944,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="slds-form-element slds-m-bottom_medium">
                                 <label class="slds-form-element__label slds-text-title_caps">Tags</label>
                                 <div class="slds-form-element__control">
@@ -805,7 +954,7 @@
                                     </template>
                                 </div>
                             </div>
-
+                            
                             <div class="slds-form-element">
                                 <label class="slds-form-element__label slds-text-title_caps">Comments</label>
                                 <div class="slds-form-element__control">
@@ -816,13 +965,15 @@
                                                     <div class={comment.commentClass}>
                                                         <div
                                                             class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
-                                                            <span
-                                                                class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                                <img src={comment.authorPhotoUrl}
-                                                                    alt={comment.authorName} />
+                                                            <!-- Add tooltip to comment author avatar -->
+                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                                    <img src={comment.authorPhotoUrl} alt={comment.authorName} />
+                                                                </span>
+                                                                <span class="user-tooltip">{comment.authorName}</span>
                                                             </span>
                                                             <span
-                                                                class="slds-text-body_small slds-text-title_bold">{comment.authorName}</span>
+                                                                class="slds-text-body_small slds-text-title_bold">{comment.authorName} &nbsp;</span>
                                                             <template if:true={comment.isStaff}>
                                                                 <span
                                                                     class="slds-badge slds-badge_lightest slds-m-left_x-small">Staff</span>
@@ -846,39 +997,39 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="slds-col slds-size_1-of-3">
                             <div class="slds-form-element slds-m-bottom_medium" onchange={handleStatusChange}
                                 data-id={selectedIdea.id}>
                                 <!-- <label class="slds-form-element__label slds-text-title_caps">Status</label> -->
                                 <div class="slds-form-element__control">
                                     <lightning-combobox name="status" value={selectedIdea.status}
-                                        options={statusOptions} label="STATUS">
+                                        options={statusOptionsWithoutAll} label="STATUS">
                                     </lightning-combobox>
                                 </div>
                             </div>
-
+                            
                             <div class="slds-form-element slds-m-bottom_medium">
                                 <!-- <label class="slds-form-element__label slds-text-title_caps">Priority</label> -->
                                 <div class="slds-form-element__control">
                                     <lightning-combobox name="priority" value={selectedIdea.priority}
-                                        options={priorityOptions} onchange={handlePriorityChange}
+                                        options={priorityOptionsWithoutAll} onchange={handlePriorityChange}
                                         data-id={selectedIdea.id} label="PRIORITY">
                                     </lightning-combobox>
                                 </div>
                             </div>
-
+                            
                             <div class="slds-form-element slds-m-bottom_medium">
                                 <!-- <label class="slds-form-element__label slds-text-title_caps">Category</label> -->
                                 <div class="slds-form-element__control">
                                     <lightning-combobox name="category" value={selectedIdea.category}
-                                        options={categoryOptions} onchange={handleCategoryChange}
+                                        options={categoryOptionsWithoutAll} onchange={handleCategoryChange}
                                         data-id={selectedIdea.id} label="CATEGORY">
                                     </lightning-combobox>
                                 </div>
                             </div>
-
-
+                            
+                            
                             <div class="slds-form-element slds-m-bottom_medium">
                                 <label class="slds-form-element__label slds-text-title_caps">Assigned To</label>
                                 <div class="slds-form-element__control">
@@ -887,19 +1038,24 @@
                                             <div
                                                 class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
                                                 <div class="slds-grid slds-grid_vertical-align-center">
-                                                    <span
-                                                        class="slds-avatar slds-avatar_circle slds-avatar_small slds-m-right_x-small">
-                                                        <img src={selectedIdea.assignedToPhotoUrl}
-                                                            alt={selectedIdea.assignedTo} />
+                                                    <!-- Add tooltip to assignee avatar in modal -->
+                                                    <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                        <span class="slds-avatar slds-avatar_circle slds-avatar_small">
+                                                            <img src={selectedIdea.assignedToPhotoUrl} alt={selectedIdea.assignedTo} />
+                                                        </span>
+                                                        <span class="user-tooltip">{selectedIdea.assignedTo}</span>
                                                     </span>
                                                     <div class="slds-grid slds-grid_vertical">
                                                         <span
                                                             class="slds-text-body_small slds-text-title_bold">{selectedIdea.assignedTo}</span>
                                                     </div>
                                                 </div>
-                                                <lightning-button-icon icon-name="utility:close"
-                                                    alternative-text="Remove assignment" title="Remove assignment"
-                                                    onclick={handleRemoveAssignment} data-id={selectedIdea.id}>
+                                                <lightning-button-icon 
+                                                    icon-name="utility:close" 
+                                                    alternative-text="Remove assignment" 
+                                                    title="Remove assignment" 
+                                                    onclick={handleRemoveAssignment}
+                                                    data-id={selectedIdea.id}>
                                                 </lightning-button-icon>
                                             </div>
                                         </div>
@@ -954,6 +1110,13 @@
                                                                         <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
                                                                             role="option" data-id={user.value}
                                                                             onclick={handleUserSelect}>
+                                                                            <!-- Add tooltip to user search results -->
+                                                                            <span class="user-avatar-wrapper slds-m-right_x-small">
+                                                                                <span class="slds-avatar slds-avatar_circle slds-avatar_x-small">
+                                                                                    <img src={user.photoUrl} alt={user.label} />
+                                                                                </span>
+                                                                                <span class="user-tooltip">{user.label}</span>
+                                                                            </span>
                                                                             <span class="slds-media__body">
                                                                                 <span
                                                                                     class="slds-listbox__option-text slds-listbox__option-text_entity">{user.label}</span>
@@ -971,14 +1134,34 @@
                                 </div>
                             </div>
 
+                            
                             <div class="slds-form-element slds-m-bottom_medium">
                                 <label class="slds-form-element__label slds-text-title_caps">Votes</label>
                                 <div class="slds-form-element__control">
                                     <div class="slds-box slds-box_xx-small slds-theme_default">
-                                        {selectedIdea.voteTotal} votes
+                                        <div class="slds-grid slds-grid_vertical-align-center slds-gutters">
+                                            <div class="slds-col">
+                                                <div class="slds-grid slds-grid_vertical-align-center">
+                                                    <lightning-icon icon-name="utility:arrowup" size="x-small" class="slds-icon-text-success slds-m-right_xx-small"></lightning-icon>
+                                                    <span>{selectedIdea.upVotes} upvotes</span>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col">
+                                                <div class="slds-grid slds-grid_vertical-align-center">
+                                                    <lightning-icon icon-name="utility:arrowdown" size="x-small" class="slds-icon-text-error slds-m-right_xx-small"></lightning-icon>
+                                                    <span>{selectedIdea.downVotes} downvotes</span>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="slds-col">
+                                                <div class="slds-grid slds-grid_vertical-align-center">
+                                                    <span class="slds-text-body_small slds-text-color_weak">Total: {selectedIdea.points}</span>
+                                                </div>
+                                            </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,6 @@ export default class NavigationMenuItem extends NavigationMixin(
 
         const observer = new MutationObserver(() => {
             this.setActiveStatus();
-            console.log('Change noted');
         });
 
         observer.observe(document, { childList: true, subtree: true });
@@ -36,9 +35,13 @@ export default class NavigationMenuItem extends NavigationMixin(
     handleClick(evt) {
         evt.stopPropagation();
         evt.preventDefault();
+        const itemLabel = this.item.label;
         if (this.pageReference) {
             this[NavigationMixin.Navigate](this.pageReference);
-        } else {
+        } else if(itemLabel === 'VOICEBROOK SUCCESS COMMUNITY'){
+            window.open('/servlet/networks/switch?networkId=0DBV100000003M5', '_blank');
+        }
+        else {
             console.log(
                 `Navigation menu type "${this.item.type}" not implemented for item ${JSON.stringify(this.item)}`
             );

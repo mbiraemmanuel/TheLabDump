@@ -28,7 +28,8 @@ global class IdeasComponentZoneChoice extends VisualEditor.DynamicPickList {
             WHERE IsActive = true
             ORDER BY Name
         ]) {
-            myValues.addRow(new VisualEditor.DataRow(zone.Name, zone.Name));
+            string zoneID = zone.Id;
+            myValues.addRow(new VisualEditor.DataRow(zone.Name, zoneID));
         }
         
         return myValues;

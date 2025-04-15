@@ -314,11 +314,12 @@
                             </div>
                             
                             <div class="slds-form-element slds-m-bottom_medium">
-                                <label class="slds-form-element__label">
+                                <!-- <label class="slds-form-element__label">
                                     <abbr class="slds-required" title="required">*</abbr> Category
-                                </label>
+                                </label> -->
                                 <div class="slds-form-element__control">
                                     <lightning-combobox
+                                        label="Category"
                                         name="category"
                                         options={categoryOptions}
                                         value={newIdea.category}
