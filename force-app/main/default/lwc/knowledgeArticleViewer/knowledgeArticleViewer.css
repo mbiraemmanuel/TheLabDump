@@ -122,11 +122,21 @@
 }
 
 /* --- CONTENT AREA --- */
-.content-col h1 {
+/* Title and filter container */
+.title-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.title-filter-container h1 {
   color: #003087;
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+  flex: 1;
 }
 
 .content-col p {
@@ -144,144 +154,8 @@
 }
 
 /* --- ROLE FILTER STYLES --- */
-.role-filter-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  margin: 1rem;
-}
-
-.role-filter-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
-}
-
-.role-filter-button {
-  background-color: #003087;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.role-filter-button:hover {
-  background-color: #002266;
-}
-
-.filter-icon {
-  margin-right: 0.5rem;
-}
-
-.role-filter-dropdown {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  width: 300px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 20;
-  display: none;
-}
-
-.role-filter-dropdown.open {
-  display: block;
-}
-
-.role-filter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #e0e5ee;
-}
-
-.role-filter-header h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #003087;
-  margin: 0;
-}
-
-.close-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #706e6b;
-}
-
-.role-filter-body {
-  padding: 1rem;
-}
-
-.role-selector {
-  margin-bottom: 1rem;
-}
-
-.filter-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.apply-filter-button {
-  background-color: #003087;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.apply-filter-button:hover {
-  background-color: #002266;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 5;
-}
-
-/* --- RESPONSIVE ADJUSTMENTS --- */
-@media (max-width: 1024px) {
-  /* The .slds-grid .slds-wrap will stack columns vertically if the viewport is narrow. */
-  .navigation-col,
-  .content-col {
-    width: 100%;
-  }
-
-  .role-filter-container {
-    position: static;
-    margin: 0 0 1rem 0;
-    width: 100%;
-  }
-
-  .role-filter-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .role-filter-dropdown {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 300px;
-  }
+.filter-button {
+  min-width: 150px;
 }
 
 /* Ensure no horizontal scroll from forced widths */
@@ -298,3 +172,34 @@
   overflow-wrap: break-word;
 }
 
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .navigation-col,
+  .content-col {
+    width: 100%;
+  }
+
+  .title-filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-filter-container h1 {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+  }
+
+  .filter-button {
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .role-filter-dropdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+  }
+}

@@ -1,6 +1,6 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 7683,
+    "serverMaxRevisionCounter": 7708,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
@@ -1186,32 +1186,32 @@
         },
         "LightningComponentBundle__knowledgeArticleViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 7466,
-            "lastRetrievedFromServer": 7466,
+            "serverRevisionCounter": 7704,
+            "lastRetrievedFromServer": 7704,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7467,
-            "lastRetrievedFromServer": 7467,
+            "serverRevisionCounter": 7705,
+            "lastRetrievedFromServer": 7705,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7468,
-            "lastRetrievedFromServer": 7468,
+            "serverRevisionCounter": 7706,
+            "lastRetrievedFromServer": 7706,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7469,
-            "lastRetrievedFromServer": 7469,
+            "serverRevisionCounter": 7707,
+            "lastRetrievedFromServer": 7707,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7470,
-            "lastRetrievedFromServer": 7470,
+            "serverRevisionCounter": 7708,
+            "lastRetrievedFromServer": 7708,
             "isNameObsolete": false
         },
         "FlexiPage__Knowledge_Record_Page_2": {

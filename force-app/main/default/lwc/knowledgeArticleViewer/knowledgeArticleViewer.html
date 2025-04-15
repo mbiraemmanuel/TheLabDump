@@ -44,29 +44,43 @@
 
         <!-- RIGHT COLUMN -->
         <div class="slds-col slds-size_12-of-12 slds-medium-size_9-of-12 content-col">
-            <!-- Role Filter Button - Only show for "All About Your Role" collection -->
-            <!-- <template if:true={showRoleFilter}>
-                <div class="role-filter-button-container">
-                    <lightning-button 
-                        variant="brand" 
-                        label="Filter by Role" 
-                        icon-name="utility:filter" 
-                        icon-position="left"
-                        onclick={toggleRoleFilter}
-                        class="filter-button">
-                    </lightning-button>
-                </div>
-            </template> -->
-
             <div class="content-scroll">
                 <template if:true={activeArticle}>
-                    <h1>{activeArticle.Title}</h1>
+                    <!-- Title and Filter on same line -->
+                    <div class="title-filter-container">
+                        <h1>{activeArticle.Title}</h1>
+                        <!-- Role Filter Button - Inline with title -->
+                        <template if:true={showRoleFilter}>
+                            <lightning-button 
+                                variant={roleFilterButtonVariant}
+                                label={roleFilterButtonLabel}
+                                icon-name="utility:filter" 
+                                icon-position="left"
+                                onclick={toggleRoleFilter}
+                                class="filter-button">
+                            </lightning-button>
+                        </template>
+                    </div>
                     <p>{activeArticle.description}</p>
                     <c-iframe-container article-html={activeArticle.Article__c} class="article-content"></c-iframe-container>
-                    
                 </template>
 
                 <template if:false={activeArticle}>
+                    <!-- Title and Filter on same line for empty state -->
+                    <div class="title-filter-container">
+                        <h1></h1>
+                        <!-- Role Filter Button - Inline with title -->
+                        <template if:true={showRoleFilter}>
+                            <lightning-button 
+                                variant={roleFilterButtonVariant}
+                                label={roleFilterButtonLabel}
+                                icon-name="utility:filter" 
+                                icon-position="left"
+                                onclick={toggleRoleFilter}
+                                class="filter-button">
+                            </lightning-button>
+                        </template>
+                    </div>
                     <p>Please select an article to view its content.</p>
                 </template>
             </div>
@@ -107,4 +121,3 @@
         </template>
     </div>
 </template>
-

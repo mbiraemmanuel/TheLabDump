@@ -11,35 +11,44 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   collections = []
   loading = true
   error = ""
-  // @track pdfUrl;
   contentVersionId = "068WE000005j7orYAA"
 
   // URL parameter
   urlName = ""
+  roleParam = ""
 
   // API properties
   @api activeArticleId
   @api activeCollectionName
   @api activeCollectionId
-
   @api recordId
 
   // PDF height in rem (if media is PDF)
   @api heightInRem = "40"
 
   // Role filter properties
-  @track selectedRole = ""
+  @track selectedRole = "--" // Default to "none" (represented as --)
   @track availableRoles = []
   @track isRoleFilterOpen = false
   @track originalCollections = [] // Store original collections before filtering
+  @track roleFilterActive = false
 
-  // Capture the URL parameter using wire
+  // Capture the URL parameters using wire
   @wire(CurrentPageReference)
   getStateParameters(currentPageReference) {
     if (currentPageReference) {
       this.urlName = currentPageReference.attributes.urlName || ""
+
+      // Get role parameter from state
+      if (currentPageReference.state && currentPageReference.state.role) {
+        this.roleParam = currentPageReference.state.role
+        this.selectedRole = this.roleParam
+        this.roleFilterActive = this.roleParam !== "--"
+      }
+
       console.log("CurrentPageReference:", currentPageReference)
       console.log("URL Param (urlName):", this.urlName)
+      console.log("Role Param:", this.roleParam)
     }
   }
 
@@ -52,14 +61,22 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     try {
       // Call Apex method to get roles
       const roles = await getRoles()
-      this.availableRoles = roles.map((role) => ({
-        label: role,
-        value: role,
-      }))
 
-      // Set default selected role to the first one if available
-      if (this.availableRoles.length > 0) {
-        this.selectedRole = this.availableRoles[0].value
+      // Add "none" option as first in the list
+      this.availableRoles = [
+        { label: "-- None --", value: "--" },
+        ...roles.map((role) => ({
+          label: role,
+          value: role,
+        })),
+      ]
+
+      // If role param exists, set it as selected role
+      if (this.roleParam) {
+        this.selectedRole = this.roleParam
+        this.roleFilterActive = this.roleParam !== "--"
+      } else {
+        this.selectedRole = "--" // Default to "none"
       }
     } catch (error) {
       console.error("Error loading roles:", error)
@@ -74,8 +91,6 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
 
       // Store original collections for role filtering
       this.originalCollections = JSON.parse(JSON.stringify(data))
-
-
       let collections = data
 
       // Scenario 1: If urlName is present
@@ -107,9 +122,10 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
         })
         this.activeArticle = foundArticle
 
-        // If this is a "Your Role" collection, set the selected role based on the article
-        if (foundArticle.Collection__c === "All About Your Role" && foundArticle.Role__c) {
-          this.selectedRole = foundArticle.Role__c
+        // If we have a role parameter, use it; otherwise, don't set a role filter based on the article
+        if (this.roleParam && this.roleParam !== "--") {
+          this.selectedRole = this.roleParam
+          this.roleFilterActive = true
         }
       }
       // Scenario 1b: If no urlName but recordId is present
@@ -141,12 +157,12 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
         })
         this.activeArticle = foundArticle
 
-        // If this is a "Your Role" collection, set the selected role based on the article
-        if (foundArticle.Collection__c === "All About Your Role" && foundArticle.Role__c) {
-          this.selectedRole = foundArticle.Role__c
+        // If we have a role parameter, use it; otherwise, don't set a role filter based on the article
+        if (this.roleParam && this.roleParam !== "--") {
+          this.selectedRole = this.roleParam
+          this.roleFilterActive = true
         }
       }
-
       // Scenario 2: No urlName but activeCollectionName is given
       else if (this.activeCollectionName) {
         // Filter to that one collection name
@@ -159,6 +175,11 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
             isExpanded: true,
           })),
         }))
+      }
+
+      // Apply role filter if we have a role parameter
+      if (this.roleParam && this.roleParam !== "--") {
+        collections = this.applyRoleFilterToCollections(collections)
       }
 
       this.collections = collections
@@ -188,46 +209,82 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     event.stopPropagation()
   }
 
+  // Apply role filter to collections
+  applyRoleFilterToCollections(collectionsToFilter) {
+    if (this.selectedRole === "--") {
+      // If "none" is selected, return all collections unfiltered
+      return collectionsToFilter
+    }
+
+    // First, filter articles by role across ALL collections
+    let filteredCollections = collectionsToFilter.map((collection) => {
+      return {
+        ...collection,
+        subcategories: collection.subcategories.map((subcat) => {
+          const filteredArticles = subcat.articles.filter((article) => {
+            // Check if the article has the selected role
+            // Note: article.roles should be an array of roles
+            return article.roles && Array.isArray(article.roles)
+              ? article.roles.includes(this.selectedRole)
+              : article.role === this.selectedRole // Fallback for backward compatibility
+          })
+          return {
+            ...subcat,
+            articles: filteredArticles,
+          }
+        }),
+      }
+    })
+
+    // Then, remove subcategories with no articles
+    filteredCollections = filteredCollections.map((collection) => {
+      return {
+        ...collection,
+        subcategories: collection.subcategories.filter((subcat) => subcat.articles.length > 0),
+      }
+    })
+
+    // Finally, remove collections with no subcategories
+    filteredCollections = filteredCollections.filter((collection) => collection.subcategories.length > 0)
+
+    return filteredCollections
+  }
+
   // Update the applyRoleFilter method to properly handle the Role__c field
   applyRoleFilter() {
-    if (!this.selectedRole) return
-
     console.log("Applying role filter:", this.selectedRole)
-    console.log("Original collections:", JSON.stringify(this.originalCollections))
+
+    // Set role filter active flag
+    this.roleFilterActive = this.selectedRole !== "--"
 
     // Start with the original collections to ensure we have all articles
     let filteredCollections = JSON.parse(JSON.stringify(this.originalCollections))
 
-    // Filter only the "All About Your Role" collection articles
-    filteredCollections = filteredCollections.map((collection) => {
-      if (collection.name === "All About Your Role") {
-        console.log("Found All About Your Role collection")
-        return {
-          ...collection,
-          subcategories: collection.subcategories.map((subcat) => {
-            console.log("Subcategory:", subcat.name, "Articles before filter:", subcat.articles.length)
-            const filteredArticles = subcat.articles.filter((article) => {
-              console.log("Article:", article.title, "Role:", article.role)
-              return article.role === this.selectedRole
-            })
-            console.log("Articles after filter:", filteredArticles.length)
-            return {
-              ...subcat,
-              articles: filteredArticles,
-            }
-          }),
-        }
-      }
-      return collection
-    })
-
-    console.log("Filtered collections:", JSON.stringify(filteredCollections))
+    // Apply the filter
+    if (this.selectedRole !== "--") {
+      filteredCollections = this.applyRoleFilterToCollections(filteredCollections)
+    }
 
     // Update collections with filtered data
     this.collections = filteredCollections
 
     // Close the filter dropdown
     this.isRoleFilterOpen = false
+
+    // Navigate to the same page with role parameter
+    this[NavigationMixin.Navigate]({
+      type: "standard__webPage",
+      attributes: {
+        url: this.addRoleToCurrentUrl(this.selectedRole),
+      },
+    })
+  }
+
+  // Add role parameter to current URL
+  addRoleToCurrentUrl(role) {
+    const url = new URL(window.location.href)
+    url.searchParams.set("role", role)
+    return url.toString()
   }
 
   // Handle role selection change
@@ -259,13 +316,17 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
       return
     }
     this.activeArticleId = selectedId
-    // Optionally use NavigationMixin to open the record
+
+    // Navigate to the record page with the role parameter
     this[NavigationMixin.Navigate]({
       type: "standard__recordPage",
       attributes: {
         recordId: selectedId,
         objectApiName: "Knowledge__kav",
         actionName: "view",
+      },
+      state: {
+        role: this.selectedRole, // Pass the role as a parameter
       },
     })
   }
@@ -348,9 +409,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     }
     // Get the base URL dynamically from the current org
     const baseUrl = window.location.origin
-    return (
-      `${baseUrl}/sfc/servlet.shepherd/version/download/${this.activeArticle.Media_Id__c}`
-    )
+    return `${baseUrl}/sfc/servlet.shepherd/version/download/${this.activeArticle.Media_Id__c}`
   }
   get vidyardUrl() {
     return this.activeArticle ? `https://play.vidyard.com/${this.activeArticle.Media_Id__c}` : ""
@@ -363,9 +422,20 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
     return `height: ${this.pdfHeight}; width: 100%;`
   }
 
-
+  // Show role filter for All About Your Role collection
   get showRoleFilter() {
-    return this.collections.some((collection) => collection.name === "All About Your Role") && this.activeCollectionName !== "All About Your Role"
+    // only return true if the collection is "All About Your Role"
+    const isAllAboutYourRole = this.collections.some((collection) => collection.name === "All About Your Role")
+    return isAllAboutYourRole && this.collections.length > 0
+  }
+
+  // Get the button variant based on whether filter is active
+  get roleFilterButtonVariant() {
+    return this.roleFilterActive ? "brand" : "neutral"
+  }
+
+  // Get the filter button label
+  get roleFilterButtonLabel() {
+    return this.roleFilterActive ? `Filtered by: ${this.selectedRole}` : "Filter by Role"
   }
 }
-
