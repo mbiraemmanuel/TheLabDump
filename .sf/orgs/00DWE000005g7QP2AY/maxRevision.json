@@ -1,10 +1,10 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 7723,
+    "serverMaxRevisionCounter": 7769,
     "sourceMembers": {
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 7677,
+            "serverRevisionCounter": 7768,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1060,7 +1060,7 @@
         },
         "SiteDotCom__The_Lab1": {
             "memberType": "SiteDotCom",
-            "serverRevisionCounter": 7489,
+            "serverRevisionCounter": 7766,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1186,32 +1186,32 @@
         },
         "LightningComponentBundle__knowledgeArticleViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 7719,
-            "lastRetrievedFromServer": 7719,
+            "serverRevisionCounter": 7734,
+            "lastRetrievedFromServer": 7734,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7720,
-            "lastRetrievedFromServer": 7720,
+            "serverRevisionCounter": 7735,
+            "lastRetrievedFromServer": 7735,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7721,
-            "lastRetrievedFromServer": 7721,
+            "serverRevisionCounter": 7736,
+            "lastRetrievedFromServer": 7736,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7722,
-            "lastRetrievedFromServer": 7722,
+            "serverRevisionCounter": 7737,
+            "lastRetrievedFromServer": 7737,
             "isNameObsolete": false
         },
         "LightningComponentResource__knowledgeArticleViewer/knowledgeArticleViewer.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 7723,
-            "lastRetrievedFromServer": 7723,
+            "serverRevisionCounter": 7738,
+            "lastRetrievedFromServer": 7738,
             "isNameObsolete": false
         },
         "FlexiPage__Knowledge_Record_Page_2": {
@@ -1228,8 +1228,8 @@
         },
         "ApexClass__IdeasController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 7678,
-            "lastRetrievedFromServer": 7678,
+            "serverRevisionCounter": 7746,
+            "lastRetrievedFromServer": 7746,
             "isNameObsolete": false
         },
         "CustomField__Knowledge__kav.Role__c": {
@@ -1420,8 +1420,8 @@
         },
         "ApexClass__KnowledgeArticleViewerController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 7207,
-            "lastRetrievedFromServer": 7207,
+            "serverRevisionCounter": 7769,
+            "lastRetrievedFromServer": 7769,
             "isNameObsolete": false
         },
         "ApexClass__KnowledgeArticleViewerControllerTest": {
@@ -1432,8 +1432,8 @@
         },
         "ApexClass__IdeasControllerTest": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 7416,
-            "lastRetrievedFromServer": 7416,
+            "serverRevisionCounter": 7744,
+            "lastRetrievedFromServer": 7744,
             "isNameObsolete": false
         },
         "ApexClass__IdeasComponentZoneChoiceTest": {

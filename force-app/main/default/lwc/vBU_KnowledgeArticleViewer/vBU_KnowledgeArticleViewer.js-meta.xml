@@ -3,13 +3,12 @@
     <apiVersion>63.0</apiVersion>
     <isExposed>true</isExposed>
 
-    <masterLabel>Knowledge Article Viewer</masterLabel>
+    <masterLabel>VBU Knowledge Article Viewer</masterLabel>
 
     <targets>
         <!-- experience site -->
         <target>lightningCommunity__Default</target>
         <target>lightningCommunity__Page</target>
-        <target>lightning__RecordPage</target>
     </targets>
 
     <targetConfigs>
@@ -17,10 +16,6 @@
             <property name="activeCollectionId" type="String" label="Active Collection Id" />
             <property name="activeCollectionName" type="String" label="Active Collection Name" />
         </targetConfig>
-        <targetConfig targets="lightning__RecordPage">
-            <property name="recordId" type="String" label="Record Id" />
-        </targetConfig>
-        
     </targetConfigs>
 
 </LightningComponentBundle>

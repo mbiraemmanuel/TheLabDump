@@ -15,6 +15,7 @@ public with sharing class KnowledgeArticleViewerController {
                 FROM Knowledge__kav 
                 WHERE Collection__c = 'All About Your Role' 
                 AND PublishStatus = 'Online'
+                AND Approval_Status__c = 'Approved'
             ]) {
                 if(String.isNotBlank(article.Role__c)) {
                     roleSet.add(article.Role__c);
@@ -40,6 +41,7 @@ public with sharing class KnowledgeArticleViewerController {
                 Article__c, Role__c
                 FROM Knowledge__kav 
                 WHERE PublishStatus = 'Online' 
+                AND Approval_Status__c = 'Approved'
                 AND Language = 'en_US'
                 ORDER BY Collection__c, Collection_Category__c, Title
             ];
@@ -145,6 +147,7 @@ public with sharing class KnowledgeArticleViewerController {
                     FROM Knowledge__kav
                     WHERE UrlName = :UrlName
                     AND PublishStatus = 'Online'
+                    AND Approval_Status__c = 'Approved'
                     LIMIT 1
                 ];
             } else {

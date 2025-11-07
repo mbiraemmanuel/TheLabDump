@@ -546,6 +546,8 @@ public with sharing class IdeasController {
                 SELECT Id, Name, SmallPhotoUrl, Department, Title
                 FROM User
                 WHERE IsActive = true
+                AND UserType = 'Standard'
+                AND Manage_Ideas__c = true
                 ORDER BY Name
                 LIMIT 100
             ];

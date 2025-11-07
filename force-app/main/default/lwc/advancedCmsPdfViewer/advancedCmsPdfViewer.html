@@ -1,0 +1,60 @@
+<template>
+    <div class="pdf-viewer-wrapper">
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <lightning-spinner alternative-text="Loading PDF..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+        
+        <template if:true={error}>
+            <div class="error-container">
+                <p class="error-text">{error}</p>
+            </div>
+        </template>
+        
+        <template if:false={isLoading}>
+            <template if:false={error}>
+                <!-- Toolbar -->
+                <div class="pdf-toolbar">
+                    <div class="toolbar-section">
+                        <!-- Zoom Controls -->
+                        <lightning-button-icon 
+                            icon-name="utility:zoomout" 
+                            alternative-text="Zoom Out"
+                            class="zoom-out"
+                            variant="border-filled">
+                        </lightning-button-icon>
+                        
+                        <lightning-button-icon 
+                            icon-name="utility:refresh" 
+                            alternative-text="Reset Zoom"
+                            class="zoom-reset"
+                            variant="border-filled"
+                            title="Reset to 100%">
+                        </lightning-button-icon>
+                        
+                        <lightning-button-icon 
+                            icon-name="utility:zoomin" 
+                            alternative-text="Zoom In"
+                            class="zoom-in"
+                            variant="border-filled">
+                        </lightning-button-icon>
+                    </div>
+
+                    <div class="toolbar-section">
+                        <!-- Download -->
+                        <lightning-button 
+                            label="Download PDF" 
+                            icon-name="utility:download"
+                            onclick={handleDownload}
+                            variant="brand">
+                        </lightning-button>
+                    </div>
+                </div>
+
+                <!-- PDF Canvas Container - Scrollable -->
+                <div class="pdf-canvas-container"></div>
+            </template>
+        </template>
+    </div>
+</template>

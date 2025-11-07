@@ -1,0 +1,12 @@
+<!-- cmsPdfViewer.html -->
+<template>
+  <div class="wrap">
+    <template if:true={isLoading}>
+      <lightning-spinner alternative-text="Loading PDF…"></lightning-spinner>
+    </template>
+    <template if:true={error}>
+      <div class="slds-text-color_error slds-m-top_small">{error}</div>
+    </template>
+    <div class="pdf-container"></div>
+  </div>
+</template>

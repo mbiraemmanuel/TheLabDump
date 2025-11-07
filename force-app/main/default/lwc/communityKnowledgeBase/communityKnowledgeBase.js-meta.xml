@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Community Knowledge Base</masterLabel>
+    <description>A navigation menu component for knowledge base categories</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+                name="menuName"
+                type="String"
+                datasource="apex://NavigationLinkSetPickList"
+                label="Navigation Menu Name"
+                description="The name of the Navigation Menu Linkset, which can be configured in Settings > Navigation"
+            />
+            <property name="title" type="String" label="Title" default="Knowledge Base" description="The title displayed above the navigation grid"/>
+            <property name="buttonLabel" type="String" label="Button Label" description="Optional button label"/>
+            <property name="buttonRedirectPageAPIName" type="String" label="Button Redirect Page API Name" description="API name of the page to redirect to when button is clicked"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

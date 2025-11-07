@@ -1,0 +1,144 @@
+{
+    "fileVersion": 0,
+    "serverMaxRevisionCounter": 936,
+    "sourceMembers": {
+        "PermissionSet__sfdcInternalInt__sfdc_scrt2": {
+            "memberType": "PermissionSet",
+            "serverRevisionCounter": 2,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSet__sfdcInternalInt__sfdc_chatbot": {
+            "memberType": "PermissionSet",
+            "serverRevisionCounter": 4,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__Brook_v2.v4": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 167,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BotVersion__Brook_v2.v5": {
+            "memberType": "BotVersion",
+            "serverRevisionCounter": 168,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Flow__Case_Management_Mark_Ready_for_Agent": {
+            "memberType": "Flow",
+            "serverRevisionCounter": 60,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__AgentforceServiceAgentUserPsg": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 65,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__CopilotSalesforceUserPSG": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 64,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "PermissionSetGroup__force__CopilotSalesforceAdminPSG": {
+            "memberType": "PermissionSetGroup",
+            "serverRevisionCounter": 67,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Flow__Omni_Management_Route_Work_to_Queue": {
+            "memberType": "Flow",
+            "serverRevisionCounter": 159,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__CommunityNewCase": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 205,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunityNewCase/CommunityNewCase.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 204,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "SiteDotCom__Voicebrook_Success_Community1": {
+            "memberType": "SiteDotCom",
+            "serverRevisionCounter": 931,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunityNewCase/CommunityNewCase.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 187,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__Admin": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 169,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__BounceMessagingSessionJob": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 170,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexTrigger__MessagingSessionTrigger": {
+            "memberType": "ApexTrigger",
+            "serverRevisionCounter": 172,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__CommunityNewCase/CommunityNewCaseHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 178,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__communityKnowledgeBase": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 932,
+            "lastRetrievedFromServer": 932,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityKnowledgeBase/communityKnowledgeBase.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 933,
+            "lastRetrievedFromServer": 933,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityKnowledgeBase/communityKnowledgeBase.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 934,
+            "lastRetrievedFromServer": 934,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityKnowledgeBase/communityKnowledgeBase.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 935,
+            "lastRetrievedFromServer": 935,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__communityKnowledgeBase/communityKnowledgeBase.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 936,
+            "lastRetrievedFromServer": 936,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Success_Community_Knowledge_Base_Navigation": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 916,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        }
+    }
+}

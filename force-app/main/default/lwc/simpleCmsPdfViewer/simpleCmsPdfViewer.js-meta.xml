@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="managedContent" type="String" label="Content Key" 
+                      description="CMS Content Key (leave empty to auto-detect from URL)"/>
+            <property name="defaultLanguage" type="String" default="en_US" 
+                      label="Language" description="Language code"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

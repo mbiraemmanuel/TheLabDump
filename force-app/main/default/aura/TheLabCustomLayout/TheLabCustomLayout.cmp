@@ -39,9 +39,9 @@
                         </div>
 
                         <!-- Search Component Drop Zone -->
-                        <!-- <div class="search-wrapper">
+                        <div class="search-wrapper">
                             {!v.search}
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </section>

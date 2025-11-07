@@ -1,0 +1,4 @@
+<design:component label="CMS PDF Viewer">
+    <design:attribute name="contentKey" label="Content Key" description="CMS content key for the PDF document" />
+    <design:attribute name="language" label="Language" default="en_US" description="Language for the content" />
+</design:component>

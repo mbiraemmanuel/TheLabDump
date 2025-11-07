@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <apiVersion>65.0</apiVersion>
+  <isExposed>true</isExposed>
+  <masterLabel>CMS PDF Viewer</masterLabel>
+  <targets>
+    <!-- Use it on Experience Cloud pages (including the CMS Document detail page template) -->
+    <target>lightningCommunity__Page</target>
+    <target>lightningCommunity__Default</target>
+  </targets>
+  <targetConfigs>
+    <targetConfig targets="lightningCommunity__Default">
+      <!-- Lets a builder pick a specific CMS item instead of inferring from URL -->
+      <property name="managedContent" label="Select CMS Document (optional)"
+                type="ContentReference" description="Optional: choose a CMS Document. If empty, the component will read the content key from the URL."/>
+      <property name="fallbackContentKey" type="String" label="Fallback Content Key (optional)"/>
+      <property name="defaultLanguage" type="String" label="Language" default="en_US"/>
+    </targetConfig>
+  </targetConfigs>
+</LightningComponentBundle>

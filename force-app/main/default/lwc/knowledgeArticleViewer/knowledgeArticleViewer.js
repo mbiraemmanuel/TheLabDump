@@ -10,6 +10,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   // Data properties
   collections = []
   loading = true
+  filterLoading = false // New property to track filter loading state
   error = ""
   contentVersionId = "068WE000005j7orYAA"
 
@@ -35,6 +36,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   @track isRoleFilterOpen = false
   @track originalCollections = [] // Store original collections before filtering
   @track roleFilterActive = false
+  @track filteredCollections = [] // Store filtered collections separately
 
   // Capture the URL parameters using wire
   @wire(CurrentPageReference)
@@ -195,6 +197,7 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
       }
 
       this.collections = collections
+      this.filteredCollections = collections // Initialize filteredCollections
       this.loading = false
 
       // Add console logging to debug
@@ -266,30 +269,43 @@ export default class KnowledgeArticleViewer extends NavigationMixin(LightningEle
   applyRoleFilter() {
     console.log("Applying role filter:", this.selectedRole)
 
+    // Set filter loading state to true
+    this.filterLoading = true
+
     // Set role filter active flag
     this.roleFilterActive = this.selectedRole !== "--"
-
-    // Start with the original collections to ensure we have all articles
-    let filteredCollections = JSON.parse(JSON.stringify(this.originalCollections))
-
-    // Apply the filter
-    if (this.selectedRole !== "--") {
-      filteredCollections = this.applyRoleFilterToCollections(filteredCollections)
-    }
-
-    // Update collections with filtered data
-    this.collections = filteredCollections
 
     // Close the filter dropdown
     this.isRoleFilterOpen = false
 
-    // Navigate to the same page with role parameter
-    this[NavigationMixin.Navigate]({
-      type: "standard__webPage",
-      attributes: {
-        url: this.addRoleToCurrentUrl(this.selectedRole),
-      },
-    })
+    // Use setTimeout to allow the UI to update with the loading state
+    // before we start the filtering process
+    setTimeout(() => {
+      // Start with the original collections to ensure we have all articles
+      let newFilteredCollections = JSON.parse(JSON.stringify(this.originalCollections))
+
+      // Apply the filter
+      if (this.selectedRole !== "--") {
+        newFilteredCollections = this.applyRoleFilterToCollections(newFilteredCollections)
+      }
+
+      // Update filtered collections
+      this.filteredCollections = newFilteredCollections
+
+      // Update collections with filtered data
+      this.collections = newFilteredCollections
+
+      // Turn off loading state
+      this.filterLoading = false
+
+      // Navigate to the same page with role parameter
+      this[NavigationMixin.Navigate]({
+        type: "standard__webPage",
+        attributes: {
+          url: this.addRoleToCurrentUrl(this.selectedRole),
+        },
+      })
+    }, 0)
   }
 
   // Add role parameter to current URL
