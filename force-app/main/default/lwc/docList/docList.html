@@ -1,0 +1,13 @@
+<template>
+  <template if:true={loading}>
+    <div class="skeleton" role="presentation"></div>
+  </template>
+
+  <template if:false={loading}>
+    <div class="grid">
+      <template for:each={docs} for:item="doc">
+        <c-doc-button key={doc.urlName} doc={doc}></c-doc-button>
+      </template>
+    </div>
+  </template>
+</template>

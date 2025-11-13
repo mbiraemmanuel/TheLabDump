@@ -1,0 +1,8 @@
+.back-button-container {
+    display: inline-block;
+}
+
+/* Optional: Custom styling for Experience Sites */
+.slds-button {
+    font-size: 14px;
+}

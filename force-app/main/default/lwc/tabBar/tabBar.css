@@ -1,0 +1,50 @@
+/* Enhanced tab navigation with modern styling and animations */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab:hover {
+  color: #1e40af;
+  background: #eff6ff;
+}
+
+.tab:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Active state with blue accent and bottom border */
+.tab--active {
+  color: #1e40af;
+  background: #eff6ff;
+  border-bottom: 3px solid #2563eb;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #2563eb;
+}

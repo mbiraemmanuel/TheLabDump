@@ -1,0 +1,19 @@
+<template>
+  <template if:true={loading}>
+    <div class="skeleton" role="presentation"></div>
+  </template>
+
+  <template if:false={loading}>
+    <template if:true={sections.length}>
+      <template for:each={sections} for:item="section">
+        <c-section-card key={section.SectionKey} section={section}></c-section-card>
+      </template>
+    </template>
+    
+    <template if:false={sections.length}>
+      <div class="empty-state">
+        <p>No content available for this section yet.</p>
+      </div>
+    </template>
+  </template>
+</template>

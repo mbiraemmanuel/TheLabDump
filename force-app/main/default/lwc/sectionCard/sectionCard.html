@@ -1,0 +1,23 @@
+<template>
+  <section class="card">
+    <template if:true={section.Title}>
+      <h2 class="title">{section.Title}</h2>
+    </template>
+
+    <template if:true={hasSubtitle}>
+      <div class="subtitle" lwc:dom="manual"></div>
+    </template>
+
+    <c-doc-list
+      section={section}
+      section-key={section.SectionKey}
+      manual-slugs={section.ManualItems}
+      auto-query={isAuto}
+      use-prefix={usePrefix}
+      product-slug={section.ProductSlug}
+      auto-category={section.AutoCategory}
+      auto-engine={section.AutoEngine}
+      auto-tags={section.AutoTags}
+    ></c-doc-list>
+  </section>
+</template>

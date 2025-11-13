@@ -1,6 +1,6 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 4866,
+    "serverMaxRevisionCounter": 5919,
     "sourceMembers": {
         "PermissionSet__sfdcInternalInt__sfdc_scrt2": {
             "memberType": "PermissionSet",
@@ -16,7 +16,7 @@
         },
         "Profile__The Lab Profile": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4410,
+            "serverRevisionCounter": 4907,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -58,7 +58,7 @@
         },
         "Profile__Admin": {
             "memberType": "Profile",
-            "serverRevisionCounter": 4409,
+            "serverRevisionCounter": 5899,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -334,7 +334,7 @@
         },
         "PermissionSetGroup__force__AgentforceServiceAgentUserPsg": {
             "memberType": "PermissionSetGroup",
-            "serverRevisionCounter": 4740,
+            "serverRevisionCounter": 5822,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -586,7 +586,7 @@
         },
         "PermissionSetGroup__force__Manage_ASC_Analytics": {
             "memberType": "PermissionSetGroup",
-            "serverRevisionCounter": 4739,
+            "serverRevisionCounter": 5821,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -616,7 +616,7 @@
         },
         "SiteDotCom__The_Lab1": {
             "memberType": "SiteDotCom",
-            "serverRevisionCounter": 4851,
+            "serverRevisionCounter": 5832,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
@@ -1150,44 +1150,44 @@
         },
         "ManagedTopics__The Lab": {
             "memberType": "ManagedTopics",
-            "serverRevisionCounter": 3680,
+            "serverRevisionCounter": 4958,
             "lastRetrievedFromServer": null,
             "isNameObsolete": false
         },
         "ApexClass__CmsPdfController": {
             "memberType": "ApexClass",
-            "serverRevisionCounter": 4276,
-            "lastRetrievedFromServer": 4276,
-            "isNameObsolete": false
+            "serverRevisionCounter": 4909,
+            "lastRetrievedFromServer": 4909,
+            "isNameObsolete": true
         },
         "LightningComponentBundle__cmsPdfViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 4255,
-            "lastRetrievedFromServer": 4255,
+            "serverRevisionCounter": 5002,
+            "lastRetrievedFromServer": 5002,
             "isNameObsolete": false
         },
         "LightningComponentResource__cmsPdfViewer/cmsPdfViewer.css": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 4256,
-            "lastRetrievedFromServer": 4256,
+            "serverRevisionCounter": 5003,
+            "lastRetrievedFromServer": 5003,
             "isNameObsolete": false
         },
         "LightningComponentResource__cmsPdfViewer/cmsPdfViewer.html": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 4257,
-            "lastRetrievedFromServer": 4257,
+            "serverRevisionCounter": 5004,
+            "lastRetrievedFromServer": 5004,
             "isNameObsolete": false
         },
         "LightningComponentResource__cmsPdfViewer/cmsPdfViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 4258,
-            "lastRetrievedFromServer": 4258,
+            "serverRevisionCounter": 5005,
+            "lastRetrievedFromServer": 5005,
             "isNameObsolete": false
         },
         "LightningComponentResource__cmsPdfViewer/cmsPdfViewer.js": {
             "memberType": "LightningComponentResource",
-            "serverRevisionCounter": 4259,
-            "lastRetrievedFromServer": 4259,
+            "serverRevisionCounter": 5006,
+            "lastRetrievedFromServer": 5006,
             "isNameObsolete": false
         },
         "RemoteSiteSetting__Experience_Site": {
@@ -1198,15 +1198,15 @@
         },
         "RemoteSiteSetting__Voicebrook_CMS": {
             "memberType": "RemoteSiteSetting",
-            "serverRevisionCounter": 4159,
-            "lastRetrievedFromServer": null,
-            "isNameObsolete": false
+            "serverRevisionCounter": 4903,
+            "lastRetrievedFromServer": 4903,
+            "isNameObsolete": true
         },
         "ApexPage__CmsPdfViewer": {
             "memberType": "ApexPage",
-            "serverRevisionCounter": 4408,
-            "lastRetrievedFromServer": 4408,
-            "isNameObsolete": false
+            "serverRevisionCounter": 4906,
+            "lastRetrievedFromServer": 4906,
+            "isNameObsolete": true
         },
         "CspTrustedSite__PDF_JS": {
             "memberType": "CspTrustedSite",
@@ -1234,38 +1234,38 @@
         },
         "AuraDefinitionBundle__CmsPdfViewerAura": {
             "memberType": "AuraDefinitionBundle",
-            "serverRevisionCounter": 4402,
-            "lastRetrievedFromServer": 4402,
-            "isNameObsolete": false
+            "serverRevisionCounter": 4902,
+            "lastRetrievedFromServer": 4902,
+            "isNameObsolete": true
         },
         "AuraDefinition__CmsPdfViewerAura/CmsPdfViewerAura.cmp": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 4403,
-            "lastRetrievedFromServer": 4403,
+            "serverRevisionCounter": 4897,
+            "lastRetrievedFromServer": 4897,
             "isNameObsolete": false
         },
         "AuraDefinition__CmsPdfViewerAura/CmsPdfViewerAuraController.js": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 4404,
-            "lastRetrievedFromServer": 4404,
+            "serverRevisionCounter": 4898,
+            "lastRetrievedFromServer": 4898,
             "isNameObsolete": false
         },
         "AuraDefinition__CmsPdfViewerAura/CmsPdfViewerAura.css": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 4405,
-            "lastRetrievedFromServer": 4405,
+            "serverRevisionCounter": 4899,
+            "lastRetrievedFromServer": 4899,
             "isNameObsolete": false
         },
         "AuraDefinition__CmsPdfViewerAura/CmsPdfViewerAura.auradoc": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 4406,
-            "lastRetrievedFromServer": 4406,
+            "serverRevisionCounter": 4900,
+            "lastRetrievedFromServer": 4900,
             "isNameObsolete": false
         },
         "AuraDefinition__CmsPdfViewerAura/CmsPdfViewerAura.design": {
             "memberType": "AuraDefinition",
-            "serverRevisionCounter": 4407,
-            "lastRetrievedFromServer": 4407,
+            "serverRevisionCounter": 4901,
+            "lastRetrievedFromServer": 4901,
             "isNameObsolete": false
         },
         "AuraDefinitionBundle__VBU_SubmitFeedback": {
@@ -1348,9 +1348,9 @@
         },
         "LightningComponentBundle__simpleCmsPdfViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 4732,
+            "serverRevisionCounter": 4893,
             "lastRetrievedFromServer": 4732,
-            "isNameObsolete": false
+            "isNameObsolete": true
         },
         "LightningComponentResource__simpleCmsPdfViewer/simpleCmsPdfViewer.js-meta.xml": {
             "memberType": "LightningComponentResource",
@@ -1384,9 +1384,9 @@
         },
         "LightningComponentBundle__advancedCmsPdfViewer": {
             "memberType": "LightningComponentBundle",
-            "serverRevisionCounter": 4862,
+            "serverRevisionCounter": 4892,
             "lastRetrievedFromServer": 4862,
-            "isNameObsolete": false
+            "isNameObsolete": true
         },
         "LightningComponentResource__advancedCmsPdfViewer/advancedCmsPdfViewer.css": {
             "memberType": "LightningComponentResource",
@@ -1410,6 +1410,798 @@
             "memberType": "LightningComponentResource",
             "serverRevisionCounter": 4866,
             "lastRetrievedFromServer": 4866,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__backButton": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 4915,
+            "lastRetrievedFromServer": 4915,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__backButton/backButton.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 4916,
+            "lastRetrievedFromServer": 4916,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__backButton/backButton.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 4917,
+            "lastRetrievedFromServer": 4917,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__backButton/backButton.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 4918,
+            "lastRetrievedFromServer": 4918,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__backButton/backButton.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 4919,
+            "lastRetrievedFromServer": 4919,
+            "isNameObsolete": false
+        },
+        "DigitalExperienceConfig__community_test1": {
+            "memberType": "DigitalExperienceConfig",
+            "serverRevisionCounter": 5011,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/home": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5172,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperienceBundle__content/The_Lab_2": {
+            "memberType": "DigitalExperienceBundle",
+            "serverRevisionCounter": 4971,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__content/The_Lab_2.sfdc_cms__languageSettings/languages": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 4973,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/documentDetail": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5018,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__route/Document_Detail__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 4977,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__appPage/mainAppPage": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5012,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__trustedSites/trustedSites": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 4986,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__themeLayout/headerAndFooter": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5173,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/Search": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5029,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__route/search__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5022,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/checkPasswordResetEmail": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5031,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/announcementDetail": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5074,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__route/Announcement_Detail__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5035,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CspTrustedSite__real_id": {
+            "memberType": "CspTrustedSite",
+            "serverRevisionCounter": 5071,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_Navigation17": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 5078,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "StaticResource__SNA_qKlGa_sf_default_cdn_community_test1": {
+            "memberType": "StaticResource",
+            "serverRevisionCounter": 5081,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomSite__community_test": {
+            "memberType": "CustomSite",
+            "serverRevisionCounter": 5080,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__brandingSet/Marketing_Microsite": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5085,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__view/Product_Information": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5101,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/community_test1.sfdc_cms__route/product_information__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5097,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5114,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5116,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5118,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningLoginFormControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5120,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningForgotPasswordControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5122,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__LightningSelfRegisterControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5124,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setExpId": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 5128,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setExpId/setExpId.evt": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5126,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__setStartUrl": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 5132,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__setStartUrl/setStartUrl.evt": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5130,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__loginForm": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 5144,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5134,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5136,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginFormHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5138,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5140,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__loginForm/loginForm.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5142,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__selfRegister": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 5156,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5146,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5148,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegisterHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5150,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5152,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__selfRegister/selfRegister.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5154,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinitionBundle__forgotPassword": {
+            "memberType": "AuraDefinitionBundle",
+            "serverRevisionCounter": 5168,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.cmp": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5158,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordController.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5160,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPasswordHelper.js": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5162,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.css": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5164,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AuraDefinition__forgotPassword/forgotPassword.design": {
+            "memberType": "AuraDefinition",
+            "serverRevisionCounter": 5166,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Profile__The Lab 2 Profile": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 5190,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomSite__The_Lab_2": {
+            "memberType": "CustomSite",
+            "serverRevisionCounter": 5191,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "AppMenu__AppSwitcher": {
+            "memberType": "AppMenu",
+            "serverRevisionCounter": 5198,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NetworkBranding__cbThe_Lab_2": {
+            "memberType": "NetworkBranding",
+            "serverRevisionCounter": 5193,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Default_Navigation23": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 5284,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Audience__Default18": {
+            "memberType": "Audience",
+            "serverRevisionCounter": 5197,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Network__The Lab 2": {
+            "memberType": "Network",
+            "serverRevisionCounter": 5207,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperienceBundle__site/The_Lab_21": {
+            "memberType": "DigitalExperienceBundle",
+            "serverRevisionCounter": 5202,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__languageSettings/languages": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5204,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__mobilePublisherConfig/mobilePublisherConfig": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5206,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__styles/styles_css": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5210,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__styles/print_css": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5211,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__site/The_Lab_21": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5236,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__appPage/mainAppPage": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5237,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__theme/Build_Your_Own_LWR": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5238,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__brandingSet/Build_Your_Own_LWR": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5316,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Too_Many_Requests": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5240,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/tooManyRequests": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5241,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/forgotPassword": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5253,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Error": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5254,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/error": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5255,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Check_Password": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5256,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/checkPasswordResetEmail": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5257,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/newsDetail": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5258,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/News_Detail__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5259,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Home": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5250,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/home": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5251,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Forgot_Password": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5252,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__themeLayout/snaThemeLayout": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5242,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Service_Not_Available": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5243,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/serviceNotAvailable": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5244,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Register": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5245,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/register": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5246,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__themeLayout/scopedHeaderAndFooter": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5330,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/Login": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5248,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/login": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5249,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperienceConfig__The_Lab_21": {
+            "memberType": "DigitalExperienceConfig",
+            "serverRevisionCounter": 5325,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperienceBundle__content/The_Lab_v2": {
+            "memberType": "DigitalExperienceBundle",
+            "serverRevisionCounter": 5273,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__content/The_Lab_v2.sfdc_cms__languageSettings/languages": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5275,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__view/Feedback": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5315,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "DigitalExperience__site/The_Lab_21.sfdc_cms__route/feedback__c": {
+            "memberType": "DigitalExperience",
+            "serverRevisionCounter": 5289,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ApexClass__CmsContentService": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 5883,
+            "lastRetrievedFromServer": 5883,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__docButton": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5910,
+            "lastRetrievedFromServer": 5910,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docButton/docButton.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5911,
+            "lastRetrievedFromServer": 5911,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docButton/docButton.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5912,
+            "lastRetrievedFromServer": 5912,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docButton/docButton.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5913,
+            "lastRetrievedFromServer": 5913,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docButton/docButton.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5914,
+            "lastRetrievedFromServer": 5914,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__docList": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5905,
+            "lastRetrievedFromServer": 5905,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docList/docList.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5906,
+            "lastRetrievedFromServer": 5906,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docList/docList.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5907,
+            "lastRetrievedFromServer": 5907,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docList/docList.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5908,
+            "lastRetrievedFromServer": 5908,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__docList/docList.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5909,
+            "lastRetrievedFromServer": 5909,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__releaseNotesList": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5411,
+            "lastRetrievedFromServer": 5411,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__releaseNotesList/releaseNotesList.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5412,
+            "lastRetrievedFromServer": 5412,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__releaseNotesList/releaseNotesList.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5413,
+            "lastRetrievedFromServer": 5413,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__releaseNotesList/releaseNotesList.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5414,
+            "lastRetrievedFromServer": 5414,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__releaseNotesList/releaseNotesList.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5415,
+            "lastRetrievedFromServer": 5415,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__tabBar": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5837,
+            "lastRetrievedFromServer": 5837,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__tabBar/tabBar.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5838,
+            "lastRetrievedFromServer": 5838,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__tabBar/tabBar.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5839,
+            "lastRetrievedFromServer": 5839,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__tabBar/tabBar.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5840,
+            "lastRetrievedFromServer": 5840,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__tabBar/tabBar.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5841,
+            "lastRetrievedFromServer": 5841,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__sectionCard": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5915,
+            "lastRetrievedFromServer": 5915,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionCard/sectionCard.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5916,
+            "lastRetrievedFromServer": 5916,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionCard/sectionCard.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5917,
+            "lastRetrievedFromServer": 5917,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionCard/sectionCard.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5918,
+            "lastRetrievedFromServer": 5918,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionCard/sectionCard.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5919,
+            "lastRetrievedFromServer": 5919,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__sectionList": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5872,
+            "lastRetrievedFromServer": 5872,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionList/sectionList.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5873,
+            "lastRetrievedFromServer": 5873,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionList/sectionList.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5874,
+            "lastRetrievedFromServer": 5874,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionList/sectionList.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5875,
+            "lastRetrievedFromServer": 5875,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__sectionList/sectionList.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5876,
+            "lastRetrievedFromServer": 5876,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__productHub": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 5862,
+            "lastRetrievedFromServer": 5862,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__productHub/productHub.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5863,
+            "lastRetrievedFromServer": 5863,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__productHub/productHub.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5864,
+            "lastRetrievedFromServer": 5864,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__productHub/productHub.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5865,
+            "lastRetrievedFromServer": 5865,
+            "isNameObsolete": false
+        },
+        "NavigationMenu__Voicebrook_University_Main_Navigation": {
+            "memberType": "NavigationMenu",
+            "serverRevisionCounter": 5772,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__productHub/productHub.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 5866,
+            "lastRetrievedFromServer": 5866,
             "isNameObsolete": false
         }
     }

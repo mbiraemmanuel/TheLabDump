@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Product_Section</members>
+        <members>Product_Info</members>
+        <name>ManagedContentType</name>
+    </types>
+    <!--<types>
         <members>VoicebrookUniveristyLayout</members>
         <members>CommunitySubmitIdea</members>
         <name>AuraDefinitionBundle</name>
@@ -15,6 +20,6 @@
         <members>VBUBackgroundImage</members>
         <members>VBUTileMenuIcons</members>
         <name>StaticResource</name>
-    </types>
+    </types>-->
     <version>62.0</version>
 </Package>

@@ -1,0 +1,20 @@
+<template>
+  <c-tab-bar active-tab={tab} onchange={onTabChange}></c-tab-bar>
+
+  <template if:true={isReleases}>
+    <c-section-list product-slug={productSlug} group="Product Releases"></c-section-list>
+  </template>
+
+  <template if:true={isResources}>
+    <c-section-list product-slug={productSlug} group="Product Resources"></c-section-list>
+  </template>
+
+  <template if:true={isHardware}>
+    <c-section-list product-slug={productSlug} group="Hardware Info"></c-section-list>
+  </template>
+
+  <template if:true={isNotes}>
+    <c-section-list product-slug={productSlug} group="Release Notes"></c-section-list>
+    <c-release-notes-list product-slug={productSlug}></c-release-notes-list>
+  </template>
+</template>

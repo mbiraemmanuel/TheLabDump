@@ -1,0 +1,16 @@
+<template>
+  <nav class="tabs" role="tablist">
+    <template for:each={normalizedTabs} for:item="t">
+      <button
+        key={t.id}
+        class={t.className}
+        data-id={t.id}
+        onclick={handleClick}
+        type="button"
+        aria-current={t.ariaCurrent}
+      >
+        {t.label}
+      </button>
+    </template>
+  </nav>
+</template>

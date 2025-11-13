@@ -1,0 +1,33 @@
+<template>
+  <template if:true={loading}>
+    <div class="skeleton" role="presentation"></div>
+  </template>
+
+  <template if:false={loading}>
+    <div class="list" role="list">
+      <template for:each={rows} for:item="row">
+        <div key={row.title} class="item" role="listitem">
+          <div class="meta">
+            <div class="t">{row.title}</div>
+            <div class="d">
+              <template if:true={row.publishedDate}>
+                Published {row.publishedDate}
+              </template>
+            </div>
+          </div>
+          <div class="actions">
+            <template if:true={row.externalHref}>
+              <a class="btn primary" href={row.externalHref}>External</a>
+            </template>
+            <template if:true={row.internalHref}>
+              <a class="btn secondary" href={row.internalHref}>Internal</a>
+            </template>
+            <template if:true={guest}>
+              <span class="hint">Sign in to see internal</span>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template>
